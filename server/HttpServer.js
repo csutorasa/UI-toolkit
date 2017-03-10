@@ -33,30 +33,41 @@ class HttpServer {
 	}
 
 	process(req, res) {
-		const filename = this.readFilename(req, '/showcase');
-
-		if (filename) {
-			this.writeFile(res, filename);
+		if(req.method === 'GET') {
+			const filename = this.readFilename(req, ['/showcase', '/target', '/node_modules']);
+			if (filename) {
+				this.writeFile(res, filename);
+			} else {
+				this.writeNotFound(res);
+			}
+		} else if(req.method === 'POST') {
+			// TODO file upload handle
+			this.writeMethodNotAllowed();
 		} else {
-			this.writeNotFound(res);
+			this.writeMethodNotAllowed();
 		}
 	}
 
-	readFilename(req, basepath) {
-		const base = path.join(process.cwd(), (basepath || ''));
-		const uri = url.parse(req.url).pathname;
-		const filename = path.join(base, uri);
-		try {
-			const stat = fs.statSync(filename);
-			if (stat.isDirectory()) {
-				return path.join(filename, '/index.html');
-			}
-			return filename;
-		}
-		catch (ex) {
-			// file not Found
+	readFilename(req, paths) {
+		if(!(paths instanceof Array))
 			return undefined;
+
+		for(let basepath of paths) {
+			const base = path.join(process.cwd(), basepath);
+			const uri = url.parse(req.url).pathname;
+			const filename = path.join(base, uri);
+			try {
+				const stat = fs.statSync(filename);
+				if (stat.isDirectory()) {
+					return path.join(filename, '/index.html');
+				}
+				return filename;
+			}
+			catch (ex) {
+				// file not Found
+			}
 		}
+		return undefined;
 	}
 
 	getContentType(filename) {
@@ -73,10 +84,7 @@ class HttpServer {
 	writeFile(res, filename) {
 		fs.readFile(filename, 'binary', (err, file) => {
 			if (err) {
-				res.writeHead(500, { 'Content-Type': 'text/plain' });
-				res.write(err + '\n');
-				res.end();
-				return;
+				this.writeInternalError(res, err);
 			} else {
 				res.writeHead(200, { 'Content-Type': this.getContentType(filename) });
 				res.write(file, 'binary');
@@ -88,6 +96,18 @@ class HttpServer {
 	writeNotFound(res) {
 		res.writeHead(404, { 'Content-Type': 'text/plain' });
 		res.write('404 Not Found\n');
+		res.end();
+	}
+
+	writeMethodNotAllowed() {
+		res.writeHead(405, { 'Content-Type': 'text/plain' });
+		res.write('405 Method Not Allowed\n');
+		res.end();
+	}
+
+	writeInternalError(res, err) {
+		res.writeHead(500, { 'Content-Type': 'text/plain' });
+		res.write(err + '\n');
 		res.end();
 	}
 }

@@ -40,8 +40,6 @@ function compile() {
         if(output.stdout) {
             writeToFile(output.stdout);
         }
-    }, err => {
-        console.error(error);
     });
 }
 

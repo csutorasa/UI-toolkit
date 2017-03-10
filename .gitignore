@@ -17,3 +17,6 @@ pids
 
 # TypeScript typings directory
 typings
+
+# Target directory
+target

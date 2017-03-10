@@ -1,0 +1,8 @@
+{
+  "name": "ui-toolkit",
+  "dependencies": {},
+  "globalDependencies": {
+    "node": "registry:dt/node#7.0.0+20170310052549",
+    "systemjs": "registry:dt/systemjs#0.20.5+20170220224323"
+  }
+}

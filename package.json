@@ -4,9 +4,11 @@
   "description": "UI-toolkit",
   "main": "server.js",
   "scripts": {
-    "install": "node build/scripts/install.js",
+    "install": "typings install",
+    "pre-publish": "node build/scripts/install.js",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "typings": "typings install",
     "typescript": "node build/scripts/typescript.js",
     "sass": "node build/scripts/sass.js"
   },
@@ -24,10 +26,14 @@
     "@angular/common": "^2.4.9",
     "@angular/compiler": "^2.4.9",
     "@angular/core": "^2.4.9",
+    "@angular/forms": "^2.4.9",
+    "@angular/http": "^2.4.9",
     "@angular/platform-browser": "^2.4.9",
     "@angular/platform-browser-dynamic": "^2.4.9",
     "@angular/router": "^3.4.9",
+    "reflect-metadata": "^0.1.10",
     "rxjs": "^5.2.0",
+    "systemjs": "^0.20.9",
     "zone.js": "^0.7.8"
   },
   "devDependencies": {

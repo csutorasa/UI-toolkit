@@ -8,7 +8,8 @@
     "postinstall": "node build/scripts/install.js",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "typings": "typings install",
+    "clean": "node build/scripts/clean.js",
+    "typings": "node build/scripts/typings.js",
     "typescript": "node build/scripts/typescript.js",
     "sass": "node build/scripts/sass.js"
   },

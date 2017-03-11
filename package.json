@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "install": "typings install",
-    "pre-publish": "node build/scripts/install.js",
+    "postinstall": "node build/scripts/install.js",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "typings": "typings install",

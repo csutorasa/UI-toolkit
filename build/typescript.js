@@ -1,10 +1,9 @@
 const typescript = require('typescript');
 const path = require('path');
+const paths = require('./paths');
 
 function compile() {
-    const sourceDir = path.join(process.cwd(), "modules");
-    const targetDir = path.join(process.cwd(), "target");
-    const sourceFile = path.join(sourceDir, "main.ts");
+    const sourceFile = path.join(paths.sourceDir, "main.ts");
 
     const program = typescript.createProgram([sourceFile], {
         emitDecoratorMetadata: true,
@@ -13,8 +12,8 @@ function compile() {
         module: typescript.ModuleKind.CommonJS,
         moduleResolution: typescript.ModuleResolutionKind.NodeJs,
         removeComments: true,
-        rootDir: sourceDir,
-        outDir: targetDir
+        rootDir: paths.sourceDir,
+        outDir: paths.targetDir
     });
 
     const emitResult = program.emit();

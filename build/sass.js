@@ -8,7 +8,7 @@ function sass(outputstyle) {
     return new Promise((resolve, reject) => {
         nodeSass.render({
             file: sourceFile,
-            'output-style': 'compressed'
+            outputStyle: 'compressed'
         }, (err, result) => {
             if(err) {
                 reject(err);
@@ -34,9 +34,7 @@ function writeToFile(data) {
 function compile() {
     console.log('Building sass...');
     return sass().then(output => {
-        if(output.stdout) {
-            writeToFile(output.stdout);
-        }
+        writeToFile(output.css);
     });
 }
 

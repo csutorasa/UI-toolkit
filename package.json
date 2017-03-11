@@ -4,7 +4,7 @@
   "description": "UI-toolkit",
   "main": "server.js",
   "scripts": {
-    "install": "typings install",
+    "install": "node build/scripts/typings.js",
     "postinstall": "node build/scripts/install.js",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",

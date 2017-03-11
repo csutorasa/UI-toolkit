@@ -1,10 +1,9 @@
-const common = require('./common');
+const build = require('./common').build;
+const clean = require('../clean');
 const typescript = require('../typescript');
 const sass = require('../sass');
 
-const startTime = new Date();
-
-Promise.all([
+build(clean.compile().then(() => Promise.all([
     typescript.compile(),
     sass.compile()
-]).then(common.success(startTime), common.fail(startTime));
+])));

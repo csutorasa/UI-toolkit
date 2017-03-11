@@ -1,6 +1,4 @@
-const common = require('./common');
+const build = require('./common').build;
 const typings = require('../typings');
 
-const startTime = new Date();
-
-typings.compile().then(common.success(startTime), common.fail(startTime));
+build(typings.compile());

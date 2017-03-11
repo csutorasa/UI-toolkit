@@ -3,6 +3,8 @@ const fs = require('fs');
 const nodeSass = require('node-sass');
 const paths = require('./paths');
 
+const name = 'Compiling SASS';
+
 function sass(outputstyle) {
     const sourceFile = path.join(paths.sourceDir, 'main.scss');
     return new Promise((resolve, reject) => {
@@ -32,12 +34,12 @@ function writeToFile(data) {
 }
 
 function compile() {
-    console.log('Building sass...');
     return sass().then(output => {
         writeToFile(output.css);
     });
 }
 
 module.exports = {
-    compile
+    compile,
+    name
 };

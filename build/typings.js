@@ -2,8 +2,9 @@ const exec = require('child_process').exec;
 const path = require('path');
 const paths = require('./paths');
 
+const name = 'Downloading TypeScript typings';
+
 function compile() {
-    console.log('Building typings...');
     const typings = path.join(paths.projectDir, 'node_modules', '.bin', 'typings');
 
     let err;
@@ -31,5 +32,6 @@ function compile() {
 }
 
 module.exports = {
-    compile
+    compile,
+    name
 };

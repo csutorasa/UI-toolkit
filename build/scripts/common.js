@@ -3,6 +3,17 @@ function build(promise) {
     return promise.then(success(startTime), fail(startTime));
 }
 
+function task(task) {
+    console.log(task.name + '...');
+    return task.compile().then(x => {
+        console.log(task.name + ' succeeded!');
+        return x;
+    }, err => {
+        console.log(task.name + ' failed!');
+        throw err;
+    })
+}
+
 function success(start) {
     return () => {
         console.log('Build time: ' + (new Date().getTime() - start.getTime()) + ' ms');
@@ -20,5 +31,6 @@ function fail(start) {
 }
 
 module.exports = {
-    build
+    build,
+    task
 }

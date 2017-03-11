@@ -1,4 +1,5 @@
 const build = require('./common').build;
+const task = require('./common').task;
 const typings = require('../typings');
 
-build(typings.compile());
+build(task(typings));

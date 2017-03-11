@@ -2,8 +2,9 @@ const typescript = require('typescript');
 const path = require('path');
 const paths = require('./paths');
 
+const name = 'Transpiling TypeScript';
+
 function compile() {
-    console.log('Building typescript...');
     const sourceFile = path.join(paths.sourceDir, 'main.ts');
 
     const program = typescript.createProgram([sourceFile], {
@@ -45,5 +46,6 @@ function compile() {
 }
 
 module.exports = {
-    compile
+    compile,
+    name
 };

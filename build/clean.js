@@ -2,9 +2,9 @@ const path = require('path');
 const fs = require('fs');
 const paths = require('./paths');
 
-function compile() {
-    console.log('Cleaning...');
+const name = 'Cleaning';
 
+function compile() {
     try {
         fs.statSync(paths.targetDir);
     } catch (ex) {
@@ -26,5 +26,6 @@ function compile() {
 }
 
 module.exports = {
-    compile
+    compile,
+    name
 };

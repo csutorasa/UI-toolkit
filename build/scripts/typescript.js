@@ -1,8 +1,6 @@
+const common = require('./common');
 const typescript = require('../typescript');
 
-typescript.compile().then(() => {
-    console.log('Build succeed!');
-}, err => {
-    console.error(err);
-    console.error('Build failed!');
-});
+const startTime = new Date();
+
+typescript.compile().then(common.success(startTime), common.fail(startTime));

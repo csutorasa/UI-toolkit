@@ -32,6 +32,7 @@ function writeToFile(data) {
 }
 
 function compile() {
+    console.log('Building sass...');
     return sass().then(output => {
         if(output.stdout) {
             writeToFile(output.stdout);

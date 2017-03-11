@@ -3,7 +3,8 @@ const path = require('path');
 const paths = require('./paths');
 
 function compile() {
-    const sourceFile = path.join(paths.sourceDir, "main.ts");
+    console.log('Building typescript...');
+    const sourceFile = path.join(paths.sourceDir, 'main.ts');
 
     const program = typescript.createProgram([sourceFile], {
         emitDecoratorMetadata: true,
@@ -45,4 +46,4 @@ function compile() {
 
 module.exports = {
     compile
-}
+};

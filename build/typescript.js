@@ -6,8 +6,9 @@ const name = 'Transpiling TypeScript';
 
 function compile() {
     const sourceFile = path.join(paths.sourceDir, 'main.ts');
+    const typings = path.join(paths.typingsDir, 'index.d.ts');
 
-    const program = typescript.createProgram([sourceFile], {
+    const program = typescript.createProgram([typings, sourceFile], {
         emitDecoratorMetadata: true,
         experimentalDecorators: true,
         target: typescript.ScriptTarget.ES5,

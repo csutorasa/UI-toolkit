@@ -5,7 +5,7 @@ const paths = require('./paths');
 const name = 'Downloading TypeScript typings';
 
 function compile() {
-    const typings = path.join(paths.projectDir, 'node_modules', '.bin', 'typings');
+    const typings = path.join(paths.nodeModulesBinariesDir, 'typings');
 
     let err;
     let output;

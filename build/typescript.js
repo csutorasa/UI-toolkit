@@ -15,6 +15,7 @@ function compile() {
         module: typescript.ModuleKind.CommonJS,
         moduleResolution: typescript.ModuleResolutionKind.NodeJs,
         removeComments: true,
+        declaration: true,
         rootDir: paths.sourceDir,
         outDir: paths.targetDir
     });

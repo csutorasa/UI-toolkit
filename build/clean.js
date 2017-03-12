@@ -4,6 +4,19 @@ const paths = require('./paths');
 
 const name = 'Cleaning';
 
+function recursiveRemove(dirpath) {
+    const files = fs.readdirSync(dirpath);
+    for(let file of files) {
+        const p = path.join(dirpath, file);
+        if(fs.statSync(p).isDirectory()) {
+            recursiveRemove(p);
+        } else {
+            fs.unlinkSync(p);
+        }
+    }
+    fs.rmdirSync(dirpath);
+}
+
 function compile() {
     try {
         fs.statSync(paths.targetDir);
@@ -13,11 +26,7 @@ function compile() {
     }
     return new Promise((resolve, reject) => {
         try {
-            const files = fs.readdirSync(paths.targetDir);
-            for(let file of files) {
-                fs.unlinkSync(path.join(paths.targetDir, file));
-            }
-            fs.rmdirSync(paths.targetDir);
+            recursiveRemove(paths.targetDir);
             resolve();
         } catch (err) {
             reject(err);

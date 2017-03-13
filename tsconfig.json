@@ -8,7 +8,7 @@
         "experimentalDecorators": true,
         "removeComments": true,
         "declaration": true,
-        "rootDir": "modules",
+        "rootDir": "uitoolkit",
         "outDir": "target/uitoolkit"
     },
     "exclude": [

@@ -4,12 +4,12 @@
   "description": "UI-toolkit",
   "main": "server.js",
   "scripts": {
-    "install": "rimraf target && tsc && node-sass --output-style compressed modules/main.scss > target/main.css",
+    "install": "rimraf target && tsc && node-sass --output-style compressed uitoolkit/main.scss > target/main.css",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf target ",
     "typescript": "tsc",
-    "sass": "node-sass --output-style compressed modules/main.scss > target/main.css"
+    "sass": "node-sass --output-style compressed uitoolkit/main.scss > target/main.css"
   },
   "repository": {
     "type": "git",

@@ -9,7 +9,7 @@ System.config({
 		}
 	},
 	map: {
-		'app': './app',
+		'src': './src',
 
 		'@angular/common': '@angular/common/bundles/common.umd.min.js',
 		'@angular/compiler': '@angular/compiler/bundles/compiler.umd.min.js',
@@ -24,7 +24,7 @@ System.config({
 		'typescript': 'typescript/lib/typescript.js'
 	},
 	packages: {
-		app: {
+		src: {
 			main: './main.ts',
 			defaultExtension: 'ts'
 		},
@@ -37,4 +37,4 @@ System.config({
 	}
 });
 
-System.import('app').catch(console.error.bind(console));
+System.import('src').catch(console.error.bind(console));

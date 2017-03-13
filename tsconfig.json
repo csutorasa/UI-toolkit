@@ -10,7 +10,7 @@
         "declaration": true,
         "noImplicitAny": false,
         "rootDir": "modules",
-        "outDir": "target"
+        "outDir": "target/uitoolkit"
     },
     "exclude": [
         "node_modules"

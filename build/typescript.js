@@ -16,7 +16,7 @@ function compile() {
         removeComments: true,
         declaration: true,
         rootDir: paths.sourceDir,
-        outDir: paths.targetDir
+        outDir: paths.targetUIToolkitDir
     });
 
     const emitResult = program.emit();

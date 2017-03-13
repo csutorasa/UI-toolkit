@@ -12,7 +12,7 @@ function compile() {
         emitDecoratorMetadata: true,
         experimentalDecorators: true,
         target: typescript.ScriptTarget.ES5,
-        module: typescript.ModuleKind.CommonJS,
+        module: typescript.ModuleKind.UMD,
         moduleResolution: typescript.ModuleResolutionKind.NodeJs,
         removeComments: true,
         declaration: true,

@@ -9,11 +9,7 @@
         "removeComments": true,
         "declaration": true,
         "rootDir": "modules",
-        "outDir": "target/uitoolkit",
-        "baseUrl": ".",
-        "paths": {
-            "uitoolkit": ["/target/uitoolkit"]
-        }
+        "outDir": "target/uitoolkit"
     },
     "exclude": [
         "node_modules",

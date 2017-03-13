@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { UIToolkitModule } from '../../target/main';
+import { UIToolkitModule } from 'uitoolkit/main';
 
 @Component({
 	selector: 'my-app',
@@ -10,7 +10,6 @@ import { UIToolkitModule } from '../../target/main';
 export class App {
 
 }
-
 
 @NgModule({
 	imports: [BrowserModule, UIToolkitModule],

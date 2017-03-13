@@ -4,12 +4,12 @@
   "description": "UI-toolkit",
   "main": "server.js",
   "scripts": {
-    "install": "node build/scripts/install.js",
+    "install": "rimraf target && tsc && node-sass --output-style compressed modules/main.scss > target/main.css",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "node build/scripts/clean.js",
-    "typescript": "node build/scripts/typescript.js",
-    "sass": "node build/scripts/sass.js"
+    "clean": "rimraf target ",
+    "typescript": "tsc",
+    "sass": "node-sass --output-style compressed modules/main.scss > target/main.css"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "core-js": "^2.4.1",
     "node-sass": "^4.5.0",
     "reflect-metadata": "^0.1.10",
+    "rimraf": "^2.6.1",
     "rxjs": "^5.2.0",
     "systemjs": "^0.19.46",
     "typescript": "^2.2.1",

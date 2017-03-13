@@ -8,11 +8,16 @@
         "experimentalDecorators": true,
         "removeComments": true,
         "declaration": true,
-        "noImplicitAny": false,
         "rootDir": "modules",
-        "outDir": "target/uitoolkit"
+        "outDir": "target/uitoolkit",
+        "baseUrl": ".",
+        "paths": {
+            "uitoolkit": ["/target/uitoolkit"]
+        }
     },
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "showcase",
+        "target"
     ]
 }

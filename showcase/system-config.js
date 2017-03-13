@@ -4,7 +4,10 @@ System.config({
 		target: "es5",
 		module: "commonjs",
 		emitDecoratorMetadata: true,
-        experimentalDecorators: true
+        experimentalDecorators: true,
+		paths: {
+			uitoolkit: '/uitoolkit'
+		}
 	},
 	map: {
 		'app': './app',
@@ -18,13 +21,16 @@ System.config({
 		'@angular/platform-browser-dynamic': '@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.min.js',
 		'@angular/router': '@angular/router/bundles/router.umd.min.js',
 
-		'rxjs': 'rxjs/bundles/Rx.min.js',
+		'rxjs': 'rxjs/',
 		'typescript': 'typescript/lib/typescript.js'
 	},
 	packages: {
 		app: {
 			main: './main.ts',
 			defaultExtension: 'ts'
+		},
+		uitoolkit: {
+			defaultExtension: 'js'
 		},
 		rxjs: {
 			defaultExtension: 'js'

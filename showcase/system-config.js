@@ -2,11 +2,10 @@ System.config({
 	transpiler: 'typescript',
 	typescriptOptions: {
 		target: "es5",
-		module: "commonjs",
 		emitDecoratorMetadata: true,
         experimentalDecorators: true,
 		paths: {
-			uitoolkit: '/uitoolkit'
+            "uitoolkit/*": ["./target/uitoolkit/*"]
 		}
 	},
 	map: {

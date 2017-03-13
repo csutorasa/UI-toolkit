@@ -15,8 +15,5 @@ pids
 # Optional npm cache directory
 .npm
 
-# TypeScript typings directory
-typings
-
 # Target directory
 target

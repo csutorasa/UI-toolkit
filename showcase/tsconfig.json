@@ -2,10 +2,12 @@
     "compilerOptions": {
         "target": "es5",
         "module": "umd",
+        "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "baseUrl": "..",
         "paths": {
+            "*": ["*"],
             "uitoolkit/*": ["./target/uitoolkit/*"]
         }
     }

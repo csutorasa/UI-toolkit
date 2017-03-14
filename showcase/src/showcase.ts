@@ -4,7 +4,11 @@ import { LocalizationService } from 'uitoolkit/localization/LocalizationService'
 
 @Component({
 	selector: 'my-app',
-	template: '<h1 routerLink="/">Showcase</h1><router-outlet></router-outlet>',
+	template: `
+	<div class="showcase-content">
+		<h1 routerLink="/">Showcase</h1>
+		<router-outlet></router-outlet>
+	</div>`,
 })
 export class Showcase {
 	constructor(protected localizationService: LocalizationService, protected http: Http) {

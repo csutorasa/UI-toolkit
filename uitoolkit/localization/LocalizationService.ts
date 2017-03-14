@@ -88,7 +88,6 @@ export class LocalizationService {
         if (!this.cachedGetTranslations || force) {
             this.cachedGetTranslations = this.getTranslationData(this.languageCode)
                 .then((response) => {
-                    console.log(response);
                     this.localizeData = response;
                     return response;
                 });

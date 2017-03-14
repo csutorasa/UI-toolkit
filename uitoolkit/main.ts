@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { Cache } from './storage/Cache';
-import { LocalStorage } from './storage/LocalStorage';
-
 import { LocalizationPipe } from './localization/LocalizationPipe';
 import { LocalizationResolver } from './localization/LocalizationResolver';
 import { LocalizationService } from './localization/LocalizationService';
+
+import { ProgressBarComponent } from './progressbar/ProgressBarComponent';
+
+import { Cache } from './storage/Cache';
+import { LocalStorage } from './storage/LocalStorage';
 
 @NgModule({
     imports: [BrowserModule],
@@ -17,10 +19,12 @@ import { LocalizationService } from './localization/LocalizationService';
         LocalStorage
     ],
     declarations: [
-        LocalizationPipe
+        LocalizationPipe,
+        ProgressBarComponent
     ],
     exports: [
-        LocalizationPipe
+        LocalizationPipe,
+        ProgressBarComponent
     ]
 })
 export class UIToolkitModule { }

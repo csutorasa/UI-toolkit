@@ -1,0 +1,13 @@
+.progressbar-background {
+    height: $progressbar-height;
+    background: $progressbar-background-color;
+    border-radius: $progressbar-border-radius;
+}
+
+.progressbar-foreground {
+    height: $progressbar-height;
+    background: $progressbar-foreground-color;
+    border-radius: $progressbar-border-radius;
+    position: relative;
+    transition: width $progressbar-width-transition-duration;
+}

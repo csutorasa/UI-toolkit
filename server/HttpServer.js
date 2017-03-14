@@ -64,12 +64,14 @@ class HttpServer {
 					language: 'hu',
 					localize: 'Lokalizáció',
 					setLanguage: 'Nyelv beállítása',
+					progressbar: 'Állapotjelző',
 				};
 			case 'en':
 				return {
 					language: 'en',
 					localize: 'Localize',
 					setLanguage: 'Set language',
+					progressbar: 'Progress bar',
 				};
 			default: return {};
 		}

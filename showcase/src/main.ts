@@ -9,7 +9,9 @@ import { LocalizationService } from 'uitoolkit/localization/LocalizationService'
 import { Showcase } from './showcase';
 import { routerConfig } from './router';
 import { MainMenuComponent } from './menu';
+
 import { LocalizeTestComponent } from './modules/localize';
+import { ProgressBarTestComponent } from './modules/progressbar';
 
 @NgModule({
 	imports: [
@@ -21,7 +23,8 @@ import { LocalizeTestComponent } from './modules/localize';
 	declarations: [
 		Showcase,
 		MainMenuComponent,
-		LocalizeTestComponent
+		LocalizeTestComponent,
+		ProgressBarTestComponent
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },

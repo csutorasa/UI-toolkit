@@ -11,3 +11,17 @@ body {
 .showcase-content {
     padding: 20px;
 }
+
+.showcase:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.mainmenu-item {
+    font-size: larger;
+}
+
+.mainmenu-item:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

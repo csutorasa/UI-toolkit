@@ -6,7 +6,7 @@ import { LocalizationService } from 'uitoolkit/localization/LocalizationService'
 	selector: 'my-app',
 	template: `
 	<div class="showcase-content">
-		<h1 routerLink="/">Showcase</h1>
+		<h1 routerLink="/" class="showcase">Showcase</h1>
 		<router-outlet></router-outlet>
 	</div>`,
 })

@@ -7,8 +7,8 @@ import { ProgressBarTestComponent } from './modules/progressbar';
 	selector: 'mainmenu',
 	template: `
     <ul>
-        <li routerLink="/localize">{{"localize" | localize}}</li>
-        <li routerLink="/progressbar">{{"progressbar" | localize}}</li>
+        <li routerLink="/localize" class="mainmenu-item">{{"localize" | localize}}</li>
+        <li routerLink="/progressbar" class="mainmenu-item">{{"progressbar" | localize}}</li>
     </ul>`,
 })
 export class MainMenuComponent {

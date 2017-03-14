@@ -27,7 +27,7 @@ export class ProgressBarComponent implements AfterViewInit {
 		if(this.tempValue) {
 			this.value = this.tempValue;
 		} else {
-			this.value = this.min;
+			this.value = this.value || this.min;
 		}
 	}
 

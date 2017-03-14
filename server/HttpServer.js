@@ -33,26 +33,68 @@ class HttpServer {
 	}
 
 	process(req, res) {
-		if(req.method === 'GET') {
+		if (req.method === 'GET') {
 			const filename = this.readFilename(req, ['/showcase', '/target', '/typings', '/node_modules']);
 			if (filename) {
 				this.writeFile(res, filename);
 			} else {
 				this.writeNotFound(res);
 			}
-		} else if(req.method === 'POST') {
-			// TODO file upload handle
-			this.writeMethodNotAllowed();
+		} else if (req.method === 'POST') {
+			if (req.url === '/localization') {
+				this.readBody(req, data => {
+					const json = JSON.parse(data);
+					const localizationData = this.getTranslation(json.language);
+					this.writeObject(res, localizationData);
+				})
+			} else if(req.url === '/languages') {
+				this.readBody(req, data => {
+					this.writeObject(res, ['en', 'hu']);
+				})
+			}
 		} else {
 			this.writeMethodNotAllowed();
 		}
 	}
 
+	getTranslation(language) {
+		switch (language) {
+			case 'hu':
+				return {
+					language: 'hu',
+					localize: 'Lokalizáció',
+					setLanguage: 'Nyelv beállítása',
+				};
+			case 'en':
+				return {
+					language: 'en',
+					localize: 'Localize',
+					setLanguage: 'Set language',
+				};
+			default: return {};
+		}
+	}
+
+	readBody(req, callback) {
+		var body = '';
+
+        req.on('data', function (data) {
+            body += data;
+
+            if (body.length > 10000000)
+                request.connection.destroy();
+        });
+
+        req.on('end', function () {
+            callback(body);
+        });
+	}
+
 	readFilename(req, paths) {
-		if(!(paths instanceof Array))
+		if (!(paths instanceof Array))
 			return undefined;
 
-		for(let basepath of paths) {
+		for (let basepath of paths) {
 			const base = path.join(process.cwd(), basepath);
 			const uri = url.parse(req.url).pathname;
 			const filename = path.join(base, uri);
@@ -79,6 +121,12 @@ class HttpServer {
 			case '.json': return 'application/json';
 			default: return 'text/plain';
 		}
+	}
+
+	writeObject(res, object) {
+		res.writeHead(200, { 'Content-Type': 'application/json' });
+		res.write(JSON.stringify(object));
+		res.end();
 	}
 
 	writeFile(res, filename) {

@@ -1,13 +1,9 @@
 body {
     background: #ddd;
-}
-
-@keyframes colorchange {
-    from {color: #555555; font-size: 30px;}
-    to {color: #0000ff; font-size: 40px;}
+    margin: 0;
 }
 
 .loadingtext {
     text-align: center;
-    animation: colorchange 2s linear 0s infinite alternate;
+    font-size: 40px;
 }

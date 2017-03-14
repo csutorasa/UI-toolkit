@@ -7,8 +7,7 @@
         "experimentalDecorators": true,
         "baseUrl": "..",
         "paths": {
-            "*": ["*"],
-            "uitoolkit/*": ["./target/uitoolkit/*"]
+            "uitoolkit/**/*": ["./target/uitoolkit/**/*"]
         }
     }
 }

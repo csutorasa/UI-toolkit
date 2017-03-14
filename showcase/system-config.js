@@ -5,7 +5,7 @@ System.config({
 		emitDecoratorMetadata: true,
         experimentalDecorators: true,
 		paths: {
-            "uitoolkit/*": ["./target/uitoolkit/*"]
+            "uitoolkit/**/*": ["./target/uitoolkit/**/*"]
 		}
 	},
 	map: {

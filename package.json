@@ -4,13 +4,15 @@
   "description": "UI-toolkit",
   "main": "server.js",
   "scripts": {
-    "install": "rimraf target && tsc && node-sass --output-style compressed uitoolkit/main.scss > target/main.css",
+    "install": "npm run clean && npm run typescript && npm run sass",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "tsc -w",
+    "watch": "concurrently --prefix \"[{name}]\" --names \"TypeScript,Sass\" \"npm run typescript-watch\" \"npm run sass-watch\"",
     "clean": "rimraf target",
-    "typescript": "tsc",
-    "sass": "node-sass --output-style compressed uitoolkit/main.scss > target/main.css"
+    "typescript": "tsc --project .",
+    "typescript-watch": "tsc --watch --project .",
+    "sass": "node-sass --output-style compressed uitoolkit/main.scss target/main.css",
+    "sass-watch": "node-sass --watch --output-style compressed uitoolkit/main.scss target/main.css"
   },
   "repository": {
     "type": "git",
@@ -42,5 +44,8 @@
     "typescript": "^2.2.1",
     "uglify": "^0.1.5",
     "zone.js": "^0.7.8"
+  },
+  "devDependencies": {
+    "concurrently": "^3.4.0"
   }
 }

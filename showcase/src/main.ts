@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, enableProdMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -12,6 +12,8 @@ import { MainMenuComponent } from './menu';
 
 import { LocalizeTestComponent } from './modules/localize';
 import { ProgressBarTestComponent } from './modules/progressbar';
+
+const debug = true;
 
 @NgModule({
 	imports: [
@@ -34,9 +36,17 @@ import { ProgressBarTestComponent } from './modules/progressbar';
 })
 export class ShowcaseModule { }
 
-console.log('Bootstrapping...');
+
+if(debug) {
+	console.debug('Bootstrapping...');
+} else {
+	enableProdMode();
+}
+const bootstappingStart = new Date();
 platformBrowserDynamic().bootstrapModule(ShowcaseModule).then(() => {
-	console.log('Bootstrapped successfully');
+	if(debug) {
+		console.debug('Bootstrapped successfully in ' + (new Date().getTime() - bootstappingStart.getTime()) + 'ms');
+	}
 }, err => {
 	console.error(err);
 });

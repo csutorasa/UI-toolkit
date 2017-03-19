@@ -20,7 +20,7 @@ System.config({
 		'@angular/platform-browser-dynamic': '@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.min.js',
 		'@angular/router': '@angular/router/bundles/router.umd.min.js',
 
-		'rxjs': 'rxjs/',
+		'rxjs': 'rxjs',
 		'typescript': 'typescript/lib/typescript.js'
 	},
 	packages: {
@@ -37,4 +37,14 @@ System.config({
 	}
 });
 
-System.import('src').catch(console.error.bind(console));
+var debug = true;
+
+if(debug) {
+	console.debug('SystemJs is loading...');
+}
+var importStart = new Date();
+System.import('src').then(function() {
+	if(debug) {
+		console.debug('SystemJs is loaded successfully in ' + (new Date().getTime() - importStart.getTime()) + 'ms');
+	}
+}, console.error.bind(console));

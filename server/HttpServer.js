@@ -34,7 +34,7 @@ class HttpServer {
 
 	process(req, res) {
 		if (req.method === 'GET') {
-			const filename = this.readFilename(req, ['/showcase', '/target', '/typings', '/node_modules']);
+			const filename = this.readFilename(req, ['/showcase', '/target', '/node_modules']);
 			if (filename) {
 				this.writeFile(res, filename);
 			} else {

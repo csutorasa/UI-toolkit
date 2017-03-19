@@ -8,7 +8,7 @@
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "tsc -w",
-    "clean": "rimraf target ",
+    "clean": "rimraf target",
     "typescript": "tsc",
     "sass": "node-sass --output-style compressed uitoolkit/main.scss > target/main.css"
   },

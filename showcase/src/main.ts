@@ -29,7 +29,7 @@ import { ProgressBarTestComponent } from './modules/progressbar';
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		LocalizationService
-	]
+	],
 	bootstrap: [Showcase]
 })
 export class ShowcaseModule { }

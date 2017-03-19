@@ -5,9 +5,9 @@
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "baseUrl": "..",
+        "baseUrl": ".",
         "paths": {
-            "uitoolkit/**/*": ["./target/uitoolkit/**/*"]
+            "uitoolkit/*": ["../target/uitoolkit/*"]
         }
     }
 }

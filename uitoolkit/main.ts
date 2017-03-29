@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { LocalizationPipe } from './localization/LocalizationPipe';
 import { LocalizationResolver } from './localization/LocalizationResolver';
 import { LocalizationService } from './localization/LocalizationService';
+
+import { ListElement } from './template/ListElement';
+import { TemplateCreator } from './template/TemplateCreator';
 
 import { ProgressBarComponent } from './progressbar/ProgressBarComponent';
 
@@ -17,7 +21,10 @@ import { Cache } from './storage/Cache';
 import { LocalStorage } from './storage/LocalStorage';
 
 @NgModule({
-    imports: [BrowserModule],
+    imports: [
+        BrowserModule,
+        FormsModule
+    ],
     providers: [ 
         Cache,
         LocalizationService,
@@ -26,6 +33,8 @@ import { LocalStorage } from './storage/LocalStorage';
     ],
     declarations: [
         LocalizationPipe,
+        ListElement,
+        TemplateCreator,
         ProgressBarComponent,
         ButtonDirective,
         FileUploaderComponent,
@@ -33,6 +42,8 @@ import { LocalStorage } from './storage/LocalStorage';
     ],
     exports: [
         LocalizationPipe,
+        ListElement,
+        TemplateCreator,
         ProgressBarComponent,
         ButtonDirective,
         FileUploaderComponent,

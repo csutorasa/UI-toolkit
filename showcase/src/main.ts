@@ -1,4 +1,5 @@
 import { Component, NgModule, enableProdMode } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -23,6 +24,7 @@ const debug = true;
 		BrowserModule,
 		UIToolkitModule,
         HttpModule,
+		FormsModule,
 		RouterModule.forRoot(routerConfig)
 	],
 	declarations: [

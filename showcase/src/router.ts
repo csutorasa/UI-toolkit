@@ -3,6 +3,9 @@ import { LocalizationResolver } from 'uitoolkit/localization/LocalizationResolve
 import { MainMenuComponent } from './menu';
 import { LocalizeTestComponent } from './modules/localize';
 import { ProgressBarTestComponent } from './modules/progressbar';
+import { ButtonTestComponent } from './modules/button';
+import { FileUploadTestComponent } from './modules/fileupload';
+import { SearchBoxTestComponent } from './modules/searchbox';
 
 export const routerConfig: Routes = [
     {
@@ -18,6 +21,18 @@ export const routerConfig: Routes = [
         {
             path: 'localize',
             component: LocalizeTestComponent,
+        },
+        {
+            path: 'button',
+            component: ButtonTestComponent,
+        },
+        {
+            path: 'fileupload',
+            component: FileUploadTestComponent,
+        },
+        {
+            path: 'searchbox',
+            component: SearchBoxTestComponent,
         }],
         resolve: {
             localizeData: LocalizationResolver

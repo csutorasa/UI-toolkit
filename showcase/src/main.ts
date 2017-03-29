@@ -12,6 +12,9 @@ import { MainMenuComponent } from './menu';
 
 import { LocalizeTestComponent } from './modules/localize';
 import { ProgressBarTestComponent } from './modules/progressbar';
+import { ButtonTestComponent } from './modules/button';
+import { FileUploadTestComponent } from './modules/fileupload';
+import { SearchBoxTestComponent } from './modules/searchbox';
 
 const debug = true;
 
@@ -26,7 +29,10 @@ const debug = true;
 		Showcase,
 		MainMenuComponent,
 		LocalizeTestComponent,
-		ProgressBarTestComponent
+		ProgressBarTestComponent,
+		ButtonTestComponent,
+		FileUploadTestComponent,
+		SearchBoxTestComponent
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },

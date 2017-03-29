@@ -65,6 +65,9 @@ class HttpServer {
 					localize: 'Lokalizáció',
 					setLanguage: 'Nyelv beállítása',
 					progressbar: 'Állapotjelző',
+					button: 'Gomb',
+					searchbox: 'Kereshető mező',
+					fileuploader: 'Fájl feltöltő',
 				};
 			case 'en':
 				return {
@@ -72,6 +75,9 @@ class HttpServer {
 					localize: 'Localize',
 					setLanguage: 'Set language',
 					progressbar: 'Progress bar',
+					button: 'Button',
+					searchbox: 'Searchbox',
+					fileuploader: 'File uploader',
 				};
 			default: return {};
 		}

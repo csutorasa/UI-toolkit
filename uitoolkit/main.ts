@@ -7,6 +7,12 @@ import { LocalizationService } from './localization/LocalizationService';
 
 import { ProgressBarComponent } from './progressbar/ProgressBarComponent';
 
+import { ButtonDirective } from './button/ButtonDirective';
+
+import { FileUploaderComponent } from './fileuploader/FileuploaderComponent';
+
+import { SearchboxComponent } from './searchbox/SearchboxComponent';
+
 import { Cache } from './storage/Cache';
 import { LocalStorage } from './storage/LocalStorage';
 
@@ -20,11 +26,17 @@ import { LocalStorage } from './storage/LocalStorage';
     ],
     declarations: [
         LocalizationPipe,
-        ProgressBarComponent
+        ProgressBarComponent,
+        ButtonDirective,
+        FileUploaderComponent,
+        SearchboxComponent
     ],
     exports: [
         LocalizationPipe,
-        ProgressBarComponent
+        ProgressBarComponent,
+        ButtonDirective,
+        FileUploaderComponent,
+        SearchboxComponent
     ]
 })
 export class UIToolkitModule { }

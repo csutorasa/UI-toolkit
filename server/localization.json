@@ -1,0 +1,22 @@
+{
+    "en": {
+        "language": "en",
+        "localize": "Localize",
+        "setLanguage": "Set language",
+        "progressbar": "Progress bar",
+        "draganddrop": "Drag and drop",
+        "button": "Button",
+        "searchbox": "Searchbox",
+        "fileuploader": "File uploader"
+    },
+    "hu": {
+        "language": "hu",
+        "localize": "Lokalizáció",
+        "setLanguage": "Nyelv beállítása",
+        "progressbar": "Állapotjelző",
+        "draganddrop": "Fogd és vidd",
+        "button": "Gomb",
+        "searchbox": "Kereshető mező",
+        "fileuploader": "Fájl feltöltő"
+    }
+}

@@ -3,6 +3,7 @@ const url = require('url');
 const path = require('path');
 const fs = require('fs');
 const colors = require('./colors.json').colors;
+const localization = require('./localization.json');
 
 class HttpServer {
 	constructor() {
@@ -77,25 +78,9 @@ class HttpServer {
 	getTranslation(language) {
 		switch (language) {
 			case 'hu':
-				return {
-					language: 'hu',
-					localize: 'Lokalizáció',
-					setLanguage: 'Nyelv beállítása',
-					progressbar: 'Állapotjelző',
-					button: 'Gomb',
-					searchbox: 'Kereshető mező',
-					fileuploader: 'Fájl feltöltő',
-				};
+				return localization.hu;
 			case 'en':
-				return {
-					language: 'en',
-					localize: 'Localize',
-					setLanguage: 'Set language',
-					progressbar: 'Progress bar',
-					button: 'Button',
-					searchbox: 'Searchbox',
-					fileuploader: 'File uploader',
-				};
+				return localization.en;
 			default: return {};
 		}
 	}

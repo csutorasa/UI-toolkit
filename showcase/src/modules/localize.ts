@@ -6,8 +6,8 @@ import { LocalizationService } from 'uitoolkit/localization/LocalizationService'
 	template: `
 	<h2>{{"localize" | localize}}</h2>
 	{{"setLanguage" | localize}}<br>
-	<button (click)="set(\'en\')">en</button>
-	<button (click)="set(\'hu\')">hu</button>`,
+	<button (click)="set(\'en\')" buttonstyle="info">en</button>
+	<button (click)="set(\'hu\')" buttonstyle="info">hu</button>`,
 })
 export class LocalizeTestComponent {
 	constructor(protected localizationService: LocalizationService) {

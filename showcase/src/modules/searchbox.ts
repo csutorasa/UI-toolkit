@@ -2,8 +2,18 @@ import { Component, Input, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http';
 
 @Component({
+	selector: 'searchbox-tester',
+	template: `
+    <sources>
+        <searchbox-test #sources></searchbox-test>
+    </sources>`,
+})
+export class SearchBoxTesterComponent { }
+
+@Component({
 	selector: 'searchbox-test',
 	template: `
+	<!-- Plain -->
 	<h3>Plain</h3>
     <uisearchbox [dataSource]="dataSource">
 		<uiinputtemplate>
@@ -13,6 +23,7 @@ import { Http } from '@angular/http';
 			<div template="let value=value;" class="list-element-nostyle">{{value}}</div>
 		</uilistelement>
 	</uisearchbox>
+	<!-- Design -->
 	<h3>With design</h3>
     <uisearchbox [dataSource]="dataSource" value="test">
 		<uiinputtemplate>
@@ -26,6 +37,7 @@ import { Http } from '@angular/http';
 			<div template class="list-element-separator"></div>
 		</uilistelementseparator>
 	</uisearchbox>
+	<!-- Remote -->
 	<h3>With remote search</h3>
     <uisearchbox [dataSource]="remoteDataSource" value="test">
 		<uiinputtemplate>
@@ -41,10 +53,10 @@ import { Http } from '@angular/http';
 	</uisearchbox>`,
 })
 export class SearchBoxTestComponent {
-	dataSource: (text:string) => Promise<string[]>;
-	remoteDataSource: (text:string) => Promise<string[]>;
+	dataSource: (text: string) => Promise<string[]>;
+	remoteDataSource: (text: string) => Promise<string[]>;
 	constructor(http: Http) {
-		this.dataSource = (text:string) => Promise.resolve([text + '1', text + '2', text + text + '3']);
-		this.remoteDataSource = (text:string) => http.post('/search', text).map(res => res.json()).toPromise();
+		this.dataSource = (text: string) => Promise.resolve([text + '1', text + '2', text + text + '3']);
+		this.remoteDataSource = (text: string) => http.post('/search', text).map(res => res.json()).toPromise();
 	}
 }

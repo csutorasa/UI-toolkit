@@ -2,6 +2,15 @@ import { Component } from '@angular/core';
 import { Utils } from 'uitoolkit/utils/Utils';
 
 @Component({
+	selector: 'draganddrop-tester',
+	template: `
+    <sources>
+        <draganddrop-test #sources></draganddrop-test>
+    </sources>`,
+})
+export class DragAndDropTesterComponent {}
+
+@Component({
 	selector: 'draganddrop-test',
 	template: `
     <div class="drop-zone" (uidrop)="drop($event)"></div>

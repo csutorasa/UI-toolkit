@@ -10,13 +10,14 @@ import { LocalizationService } from 'uitoolkit/localization/LocalizationService'
 import { Showcase } from './showcase';
 import { routerConfig } from './router';
 import { MainMenuComponent } from './menu';
+import { SourceComponent } from './source';
 
-import { LocalizeTestComponent } from './modules/localize';
-import { ProgressBarTestComponent } from './modules/progressbar';
-import { DragAndDropTestComponent } from './modules/draganddrop';
-import { ButtonTestComponent } from './modules/button';
-import { FileUploadTestComponent } from './modules/fileupload';
-import { SearchBoxTestComponent } from './modules/searchbox';
+import { LocalizeTesterComponent, LocalizeTestComponent } from './modules/localize';
+import { ProgressBarTesterComponent, ProgressBarTestComponent } from './modules/progressbar';
+import { DragAndDropTesterComponent, DragAndDropTestComponent } from './modules/draganddrop';
+import { ButtonTesterComponent, ButtonTestComponent } from './modules/button';
+import { FileUploadTesterComponent, FileUploadTestComponent } from './modules/fileupload';
+import { SearchBoxTesterComponent, SearchBoxTestComponent } from './modules/searchbox';
 
 const debug = true;
 
@@ -30,12 +31,19 @@ const debug = true;
 	],
 	declarations: [
 		Showcase,
+		SourceComponent,
 		MainMenuComponent,
+		LocalizeTesterComponent,
 		LocalizeTestComponent,
+		ProgressBarTesterComponent,
 		ProgressBarTestComponent,
+		DragAndDropTesterComponent,
 		DragAndDropTestComponent,
+		ButtonTesterComponent,
 		ButtonTestComponent,
+		FileUploadTesterComponent,
 		FileUploadTestComponent,
+		SearchBoxTesterComponent,
 		SearchBoxTestComponent
 	],
 	providers: [

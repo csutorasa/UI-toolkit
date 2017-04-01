@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 import { LocalizationResolver } from 'uitoolkit/localization/LocalizationResolver';
 import { MainMenuComponent } from './menu';
-import { LocalizeTestComponent } from './modules/localize';
-import { ProgressBarTestComponent } from './modules/progressbar';
-import { DragAndDropTestComponent } from './modules/draganddrop';
-import { ButtonTestComponent } from './modules/button';
-import { FileUploadTestComponent } from './modules/fileupload';
-import { SearchBoxTestComponent } from './modules/searchbox';
+import { LocalizeTesterComponent } from './modules/localize';
+import { ProgressBarTesterComponent } from './modules/progressbar';
+import { DragAndDropTesterComponent } from './modules/draganddrop';
+import { ButtonTesterComponent } from './modules/button';
+import { FileUploadTesterComponent } from './modules/fileupload';
+import { SearchBoxTesterComponent } from './modules/searchbox';
 
 export const routerConfig: Routes = [
     {
@@ -17,27 +17,27 @@ export const routerConfig: Routes = [
         },
         {
             path: 'progressbar',
-            component: ProgressBarTestComponent
+            component: ProgressBarTesterComponent
         },
         {
             path: 'localize',
-            component: LocalizeTestComponent,
+            component: LocalizeTesterComponent,
         },
         {
             path: 'button',
-            component: ButtonTestComponent,
+            component: ButtonTesterComponent,
         },
         {
             path: 'fileupload',
-            component: FileUploadTestComponent,
+            component: FileUploadTesterComponent,
         },
         {
             path: 'searchbox',
-            component: SearchBoxTestComponent,
+            component: SearchBoxTesterComponent,
         },
         {
             path: 'draganddrop',
-            component: DragAndDropTestComponent,
+            component: DragAndDropTesterComponent,
         }],
         resolve: {
             localizeData: LocalizationResolver

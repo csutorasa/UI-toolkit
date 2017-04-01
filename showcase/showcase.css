@@ -28,6 +28,28 @@ body {
     cursor: pointer;
 }
 
+.source-table {
+    width: 100%;
+    border: solid 1px #666;
+}
+
+.source-table-header {
+    border: solid 1px #666;
+    height: 40px;
+    line-height: 40px;
+}
+
+.source-table-result-cell {
+    vertical-align: top;
+    padding: 5px;
+}
+
+.source-table-source-cell {
+    width: 50%;
+    vertical-align: top;
+    background: #aaa;
+}
+
 /* Drag and Drop */
 div.drop-zone {
     width: 200px;

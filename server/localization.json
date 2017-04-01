@@ -1,5 +1,7 @@
 {
     "en": {
+        "result": "Result",
+        "source": "Source",
         "language": "en",
         "localize": "Localize",
         "setLanguage": "Set language",
@@ -10,6 +12,8 @@
         "fileuploader": "File uploader"
     },
     "hu": {
+        "result": "Eredmény",
+        "source": "Forráskód",
         "language": "hu",
         "localize": "Lokalizáció",
         "setLanguage": "Nyelv beállítása",

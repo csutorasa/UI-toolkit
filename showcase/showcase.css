@@ -1,3 +1,5 @@
+/* General */
+
 body {
     background: #ddd;
     margin: 0;
@@ -26,11 +28,49 @@ body {
     cursor: pointer;
 }
 
+/* SearchBox */
+
+.list-element-nostyle {
+    background: white;
+}
+
+.input-template {
+    width: 300px;
+    border-width: 0;
+    border-radius: 3px;
+    outline: none;
+    font-size: 14px;
+    padding: 5px;
+}
+
 .list-element {
-    background: #ddd;
+    background: #ccc;
+    width: 300px;
+    overflow: hidden;
+    padding: 3px;
+    border-color: #bbb;
+    border-style: solid;
+    border-width: 0 2px;
+}
+
+.list-element:hover {
+    background: #bbb;
+}
+
+.list-element.list-element-selected {
+    background: #aaf;
+}
+
+.list-element.list-element-first {
+    border-top-width: 2px;
+}
+.list-element.list-element-last {
+    border-radius: 0 0 10px 10px;
+    border-bottom-width: 2px;
 }
 
 .list-element-separator {
     height: 2px;
     background: #aaa;
 }
+

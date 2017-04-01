@@ -1,9 +1,11 @@
 uisearchbox {
     div.searchbox-element-list {
         position: relative;
-        div.list-elements {
+        div.searchbox-list-elements {
             position: absolute;
-            box-shadow: $list-elements-box-shadow;
+            div.searchbox-list-element {
+                cursor: pointer;
+            }
         }
     }
 }

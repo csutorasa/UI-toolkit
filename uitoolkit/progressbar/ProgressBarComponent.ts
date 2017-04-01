@@ -2,10 +2,9 @@ import { Component, Input, ContentChild, ViewChild, ElementRef, AfterViewInit } 
 
 @Component({
 	selector: 'uiprogressbar',
-	template: `
-	<div class="progressbar-background">
-		<div #fill class="progressbar-foreground"></div>
-	</div>`,
+	template: `<div class="progressbar-background">
+	<div #fill class="progressbar-foreground"></div>
+</div>`,
 })
 export class ProgressBarComponent implements AfterViewInit {
 	@Input('min') min: number;

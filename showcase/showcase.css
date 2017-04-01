@@ -48,6 +48,7 @@ body {
     width: 50%;
     vertical-align: top;
     background: #aaa;
+    white-space: pre-wrap;
 }
 
 /* Drag and Drop */

@@ -30,18 +30,17 @@ export class ElementData {
 
 @Component({
 	selector: 'uisearchbox',
-	template: `
-	<div (focusout)="lostFocus($event)">
-		<template [templatecreator]="inputTemplate.template" [data]="inputTemplateData"></template>
-		<div class="searchbox-element-list" tabindex="0" #searchBoxList (keydown)="keydown($event)">
-			<div [hidden]="!isOpen" class="searchbox-list-elements" #elementContainer>
-				<div *ngFor="let d of dataSource;let i=index;let last=last;" (click)="selectValue(d.value)" class="searchbox-list-element">
-					<template [templatecreator]="listElement.template" [data]="d"></template>
-					<template [templatecreator]="listElementSeparator.template" *ngIf="!last && listElementSeparator"></template>
-				</div>
+	template: `<div (focusout)="lostFocus($event)">
+	<template [templatecreator]="inputTemplate.template" [data]="inputTemplateData"></template>
+	<div class="searchbox-element-list" tabindex="0" #searchBoxList (keydown)="keydown($event)">
+		<div [hidden]="!isOpen" class="searchbox-list-elements" #elementContainer>
+			<div *ngFor="let d of dataSource;let i=index;let last=last;" (click)="selectValue(d.value)" class="searchbox-list-element">
+				<template [templatecreator]="listElement.template" [data]="d"></template>
+				<template [templatecreator]="listElementSeparator.template" *ngIf="!last && listElementSeparator"></template>
 			</div>
 		</div>
-	</div>`,
+	</div>
+</div>`,
 })
 export class SearchboxComponent implements AfterContentInit {
 	@ContentChild(InputTemplate) public inputTemplate: InputTemplate;

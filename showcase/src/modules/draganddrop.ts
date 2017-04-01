@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Utils } from 'uitoolkit/utils/Utils';
 
 @Component({
 	selector: 'draganddrop-test',
@@ -14,10 +15,7 @@ export class DragAndDropTestComponent {
 		if(textValue) {
 			this.text = textValue;
 		} else if(transfer.files.length > 0) {
-			this.text = '';
-			for(let i = 0; i < transfer.files.length; i++) {
-				this.text += transfer.files[i].name + ', ';
-			}
+			this.text = Utils.CollectionToArray(transfer.files).map(f => f.name).join(', ');
 		}
 	}
 }

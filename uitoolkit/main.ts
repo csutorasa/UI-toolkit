@@ -11,6 +11,8 @@ import { ListElement } from './template/ListElement';
 import { ListElementSeparator } from './template/ListElementSeparator';
 import { TemplateCreator } from './template/TemplateCreator';
 
+import { DragAndDropDirective } from './draganddrop/DropDirective';
+
 import { ProgressBarComponent } from './progressbar/ProgressBarComponent';
 
 import { ButtonDirective } from './button/ButtonDirective';
@@ -39,6 +41,7 @@ import { LocalStorage } from './storage/LocalStorage';
         ListElement,
         ListElementSeparator,
         TemplateCreator,
+        DragAndDropDirective,
         ProgressBarComponent,
         ButtonDirective,
         FileUploaderComponent,
@@ -50,6 +53,7 @@ import { LocalStorage } from './storage/LocalStorage';
         ListElement,
         ListElementSeparator,
         TemplateCreator,
+        DragAndDropDirective,
         ProgressBarComponent,
         ButtonDirective,
         FileUploaderComponent,

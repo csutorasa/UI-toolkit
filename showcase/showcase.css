@@ -28,6 +28,13 @@ body {
     cursor: pointer;
 }
 
+/* Drag and Drop */
+div.drop-zone {
+    width: 200px;
+    height: 200px;
+    border: solid 1px black;
+}
+
 /* SearchBox */
 
 .list-element-nostyle {

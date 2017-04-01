@@ -13,6 +13,7 @@ import { MainMenuComponent } from './menu';
 
 import { LocalizeTestComponent } from './modules/localize';
 import { ProgressBarTestComponent } from './modules/progressbar';
+import { DragAndDropTestComponent } from './modules/draganddrop';
 import { ButtonTestComponent } from './modules/button';
 import { FileUploadTestComponent } from './modules/fileupload';
 import { SearchBoxTestComponent } from './modules/searchbox';
@@ -32,6 +33,7 @@ const debug = true;
 		MainMenuComponent,
 		LocalizeTestComponent,
 		ProgressBarTestComponent,
+		DragAndDropTestComponent,
 		ButtonTestComponent,
 		FileUploadTestComponent,
 		SearchBoxTestComponent

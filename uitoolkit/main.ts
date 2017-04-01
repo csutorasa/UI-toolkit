@@ -14,7 +14,7 @@ import { ProgressBarComponent } from './progressbar/ProgressBarComponent';
 
 import { ButtonDirective } from './button/ButtonDirective';
 
-import { FileUploaderComponent } from './fileuploader/FileuploaderComponent';
+import { FileUploaderComponent } from './fileuploader/FileUploaderComponent';
 
 import { SearchboxComponent } from './searchbox/SearchboxComponent';
 

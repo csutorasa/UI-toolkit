@@ -2,6 +2,7 @@ const http = require('http');
 const url = require('url');
 const path = require('path');
 const fs = require('fs');
+const colors = require('./colors');
 
 class HttpServer {
 	constructor() {
@@ -47,9 +48,25 @@ class HttpServer {
 					const localizationData = this.getTranslation(json.language);
 					this.writeObject(res, localizationData);
 				})
-			} else if(req.url === '/languages') {
+			} else if (req.url === '/languages') {
 				this.readBody(req, data => {
 					this.writeObject(res, ['en', 'hu']);
+				})
+			} else if (req.url === '/search') {
+				this.readBody(req, data => {
+					const search = data.toLowerCase();
+					const starts = [];
+					const matches = [];
+					colors.forEach(c => {
+						const index = c.toLowerCase().indexOf(search);
+						if(index === 0) {
+							starts.push(c);
+						} else if (index > 0) {
+							matches.push(c);
+						}
+					});
+					const result = starts.concat(matches).slice(0, 100);
+					this.writeObject(res, result);
 				})
 			}
 		} else {
@@ -86,16 +103,16 @@ class HttpServer {
 	readBody(req, callback) {
 		var body = '';
 
-        req.on('data', function (data) {
-            body += data;
+		req.on('data', function (data) {
+			body += data;
 
-            if (body.length > 10000000)
-                request.connection.destroy();
-        });
+			if (body.length > 10000000)
+				request.connection.destroy();
+		});
 
-        req.on('end', function () {
-            callback(body);
-        });
+		req.on('end', function () {
+			callback(body);
+		});
 	}
 
 	readFilename(req, paths) {

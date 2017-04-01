@@ -69,6 +69,8 @@ class HttpServer {
 					const result = starts.concat(matches).slice(0, 100);
 					this.writeObject(res, result);
 				})
+			} else {
+				this.writeNotFound(res);
 			}
 		} else {
 			this.writeMethodNotAllowed();

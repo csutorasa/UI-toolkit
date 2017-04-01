@@ -7,8 +7,8 @@ import { ListElementSeparator } from '../template/ListElementSeparator';
 	template: `
 	<div (focusout)="lostFocus($event)">
 		<template [templatecreator]="inputTemplate" [data]="inputData"></template>
-		<div class="searchbox-element-list" style="position:relative;" tabindex="0" #searchBoxList (keyup)="keyup($event)">
-			<div [hidden]="!isOpen" class="list-elements" style="position:absolute;background:lightgray;box-shadow: 0px 0px 5px #888888;">
+		<div class="searchbox-element-list" tabindex="0" #searchBoxList (keyup)="keyup($event)">
+			<div [hidden]="!isOpen" class="list-elements">
 				<div *ngFor="let d of dataSource;let i=index;let last=last;" (click)="selectValue(d.value)">
 					<template [templatecreator]="listElement.template" [data]="d"></template>
 					<template [templatecreator]="listElementSeparator.template" *ngIf="!last && listElementSeparator"></template>

@@ -1,0 +1,9 @@
+uisearchbox {
+    div.searchbox-element-list {
+        position: relative;
+        div.list-elements {
+            position: absolute;
+            box-shadow: $list-elements-box-shadow;
+        }
+    }
+}

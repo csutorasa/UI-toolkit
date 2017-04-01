@@ -25,3 +25,12 @@ body {
     text-decoration: underline;
     cursor: pointer;
 }
+
+.list-element {
+    background: #ddd;
+}
+
+.list-element-separator {
+    height: 2px;
+    background: #aaa;
+}

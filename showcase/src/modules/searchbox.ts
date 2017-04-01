@@ -6,10 +6,10 @@ import { Component, Input, OnDestroy } from '@angular/core';
     <uisearchbox [dataSource]="dataSource" value="test">
 		<input template="let data=inputData;" placeholder="Test input" [ngModel]="data.value" (ngModelChange)="data.onChange($event)"/>
 		<uilistelement>
-			<div template="let value=value;">{{value}}</div>
+			<div template="let value=value;" class="list-element">{{value}}</div>
 		</uilistelement>
 		<uilistelementseparator>
-			<div template style="height: 3px; background: gray;"></div>
+			<div template class="list-element-separator"></div>
 		</uilistelementseparator>
 	</uisearchbox>`,
 })

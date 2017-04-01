@@ -7,6 +7,7 @@ import { LocalizationResolver } from './localization/LocalizationResolver';
 import { LocalizationService } from './localization/LocalizationService';
 
 import { ListElement } from './template/ListElement';
+import { ListElementSeparator } from './template/ListElementSeparator';
 import { TemplateCreator } from './template/TemplateCreator';
 
 import { ProgressBarComponent } from './progressbar/ProgressBarComponent';
@@ -34,6 +35,7 @@ import { LocalStorage } from './storage/LocalStorage';
     declarations: [
         LocalizationPipe,
         ListElement,
+        ListElementSeparator,
         TemplateCreator,
         ProgressBarComponent,
         ButtonDirective,
@@ -43,6 +45,7 @@ import { LocalStorage } from './storage/LocalStorage';
     exports: [
         LocalizationPipe,
         ListElement,
+        ListElementSeparator,
         TemplateCreator,
         ProgressBarComponent,
         ButtonDirective,

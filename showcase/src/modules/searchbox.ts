@@ -8,6 +8,9 @@ import { Component, Input, OnDestroy } from '@angular/core';
 		<uilistelement>
 			<div template="let value=value;">{{value}}</div>
 		</uilistelement>
+		<uilistelementseparator>
+			<div template style="height: 3px; background: gray;"></div>
+		</uilistelementseparator>
 	</uisearchbox>`,
 })
 export class SearchBoxTestComponent {

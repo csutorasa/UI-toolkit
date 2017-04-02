@@ -8,7 +8,7 @@
     "start": "node server.js",
     "test": "echo \"No tests are specified\"",
     "watch": "concurrently --prefix \"[{name}]\" --names \"TypeScript,Sass\" \"npm run typescript-watch\" \"npm run sass-watch\"",
-    "clean": "rimraf target",
+    "clean": "rimraf target && rimraf upload",
     "typescript": "tsc --project .",
     "typescript-watch": "tsc --watch --project .",
     "sass": "node-sass --output-style compressed uitoolkit/main.scss target/main.css",

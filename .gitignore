@@ -17,3 +17,6 @@ pids
 
 # Target directory
 target
+
+# Upload directory
+upload

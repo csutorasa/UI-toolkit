@@ -36,41 +36,65 @@ class HttpServer {
 
 	process(req, res) {
 		if (req.method === 'GET') {
-			const filename = this.readFilename(req, ['/showcase', '/target', '/node_modules']);
+			const filename = this.readFilename(req, ['/showcase', '/target', '/node_modules', '/upload']);
 			if (filename) {
 				this.writeFile(res, filename);
 			} else {
 				this.writeNotFound(res);
 			}
 		} else if (req.method === 'POST') {
-			if (req.url === '/localization') {
-				this.readBody(req, data => {
-					const json = JSON.parse(data);
-					const localizationData = this.getTranslation(json.language);
-					this.writeObject(res, localizationData);
-				})
-			} else if (req.url === '/languages') {
-				this.readBody(req, data => {
-					this.writeObject(res, ['en', 'hu']);
-				})
-			} else if (req.url === '/search') {
-				this.readBody(req, data => {
-					const search = data.toLowerCase();
-					const starts = [];
-					const matches = [];
-					colors.forEach(c => {
-						const index = c.toLowerCase().indexOf(search);
-						if(index === 0) {
-							starts.push(c);
-						} else if (index > 0) {
-							matches.push(c);
+			switch (req.url) {
+				case '/localization':
+					this.readBody(req, data => {
+						const json = JSON.parse(data);
+						const localizationData = this.getTranslation(json.language);
+						this.writeObject(res, localizationData);
+					})
+					break;
+				case '/languages':
+					this.readBody(req, data => {
+						this.writeObject(res, ['en', 'hu']);
+					})
+					break;
+				case '/search':
+					this.readBody(req, data => {
+						const search = data.toLowerCase();
+						const starts = [];
+						const matches = [];
+						colors.forEach(c => {
+							const index = c.toLowerCase().indexOf(search);
+							if (index === 0) {
+								starts.push(c);
+							} else if (index > 0) {
+								matches.push(c);
+							}
+						});
+						const result = starts.concat(matches).slice(0, 100);
+						this.writeObject(res, result);
+					})
+					break;
+				case '/upload':
+					this.readBody(req, data => {
+						const json = JSON.parse(data);
+						try {
+							fs.statSync('upload');
+							// exists
+						} catch(ex) {
+							// not exists
+							fs.mkdirSync('upload');
 						}
+						fs.writeFile('upload/' + json.filename, json.content, 'binary', err => {
+							if(err) {
+								this.writeInternalError(res, err);
+							} else {
+								this.writeObject(res, {});
+							}
+						});
 					});
-					const result = starts.concat(matches).slice(0, 100);
-					this.writeObject(res, result);
-				})
-			} else {
-				this.writeNotFound(res);
+					break;
+				default:
+					this.writeNotFound(res);
+					break;
 			}
 		} else {
 			this.writeMethodNotAllowed();
@@ -93,7 +117,7 @@ class HttpServer {
 		req.on('data', function (data) {
 			body += data;
 
-			if (body.length > 10000000)
+			if (body.length > 100001000)
 				request.connection.destroy();
 		});
 
@@ -146,9 +170,9 @@ class HttpServer {
 			if (err) {
 				this.writeInternalError(res, err);
 			} else {
-				res.writeHead(200, { 'Content-Type': this.getContentType(filename) });
+				res.writeHead(200, { 'Content-Type': this.getContentType(filename) + '; charset=utf-8' });
 				res.write(file, 'binary');
-				res.end();
+		res.end();
 			}
 		});
 	}

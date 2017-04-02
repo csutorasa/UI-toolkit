@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
+import { CreateTesterComponentData } from '../source';
 
-@Component({
-	selector: 'progressbar-tester',
-	template: `<sources>
-    <progressbar-test #sources></progressbar-test>
-</sources>`,
-})
+@Component(CreateTesterComponentData('progressbar'))
 export class ProgressBarTesterComponent { }
 
 @Component({

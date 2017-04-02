@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { Utils } from 'uitoolkit/utils/Utils';
+import { CreateTesterComponentData } from '../source';
 
-@Component({
-	selector: 'draganddrop-tester',
-	template: `<sources>
-	<draganddrop-test #sources></draganddrop-test>
-</sources>`,
-})
+@Component(CreateTesterComponentData('draganddrop'))
 export class DragAndDropTesterComponent { }
 
 @Component({

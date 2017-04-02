@@ -1,12 +1,8 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http';
+import { CreateTesterComponentData } from '../source';
 
-@Component({
-	selector: 'searchbox-tester',
-	template: `<sources>
-	<searchbox-test #sources></searchbox-test>
-</sources>`,
-})
+@Component(CreateTesterComponentData('searchbox'))
 export class SearchBoxTesterComponent { }
 
 @Component({

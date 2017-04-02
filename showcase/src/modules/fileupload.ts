@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
+import { CreateTesterComponentData } from '../source';
 
-@Component({
-	selector: 'fileupload-tester',
-	template: `<sources>
-    <fileupload-test #sources></fileupload-test>
-</sources>`,
-})
+@Component(CreateTesterComponentData('fileupload'))
 export class FileUploadTesterComponent { }
 
 @Component({

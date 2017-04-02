@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
+import { CreateTesterComponentData } from '../source';
 
-@Component({
-	selector: 'button-tester',
-	template: `<sources>
-    <button-test #sources></button-test>
-</sources>`,
-})
+@Component(CreateTesterComponentData('button'))
 export class ButtonTesterComponent { }
 
 @Component({

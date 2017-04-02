@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { LocalizationService } from 'uitoolkit/localization/LocalizationService';
+import { CreateTesterComponentData } from '../source';
 
-@Component({
-	selector: 'localize-tester',
-	template: `<sources>
-	<localize-test #sources></localize-test>
-</sources>`,
-})
+@Component(CreateTesterComponentData('localize'))
 export class LocalizeTesterComponent {}
 
 @Component({

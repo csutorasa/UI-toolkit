@@ -45,3 +45,10 @@ export class SourceComponent implements AfterContentInit {
         }
     }
 }
+
+export function CreateTesterComponentData(component: string): Component {
+    return {
+        selector: component + '-tester',
+        template: '<sources><' + component  + '-test #sources></' + component + '-test></sources>'
+    };
+}

@@ -7,6 +7,7 @@ import { DragAndDropTesterComponent } from './modules/draganddrop';
 import { ButtonTesterComponent } from './modules/button';
 import { FileUploadTesterComponent } from './modules/fileupload';
 import { SearchBoxTesterComponent } from './modules/searchbox';
+import { DataGridTesterComponent } from './modules/datagrid';
 
 export const routerConfig: Routes = [
     {
@@ -38,6 +39,10 @@ export const routerConfig: Routes = [
         {
             path: 'draganddrop',
             component: DragAndDropTesterComponent,
+        },
+        {
+            path: 'datagrid',
+            component: DataGridTesterComponent,
         }],
         resolve: {
             localizeData: LocalizationResolver

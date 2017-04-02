@@ -18,6 +18,7 @@ import { DragAndDropTesterComponent, DragAndDropTestComponent } from './modules/
 import { ButtonTesterComponent, ButtonTestComponent } from './modules/button';
 import { FileUploadTesterComponent, FileUploadTestComponent } from './modules/fileupload';
 import { SearchBoxTesterComponent, SearchBoxTestComponent } from './modules/searchbox';
+import { DataGridTesterComponent, DataGridTestComponent } from './modules/datagrid';
 
 const debug = true;
 
@@ -44,7 +45,9 @@ const debug = true;
 		FileUploadTesterComponent,
 		FileUploadTestComponent,
 		SearchBoxTesterComponent,
-		SearchBoxTestComponent
+		SearchBoxTestComponent,
+		DataGridTesterComponent,
+		DataGridTestComponent
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },

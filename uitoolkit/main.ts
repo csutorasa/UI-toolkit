@@ -12,6 +12,9 @@ import { TemplateCreator } from './template/TemplateCreator';
 import { ListElementDirective } from './list/ListElementDirective';
 import { ListElementSeparatorDirective } from './list/ListElementSeparatorDirective';
 
+import { ColumnDirective } from './datagrid/ColumnDirective';
+import { DataGridComponent } from './datagrid/DataGridComponent';
+
 import { DragAndDropDirective } from './draganddrop/DropDirective';
 
 import { ProgressBarComponent } from './progressbar/ProgressBarComponent';
@@ -42,6 +45,8 @@ import { LocalStorage } from './storage/LocalStorage';
         ListElementDirective,
         ListElementSeparatorDirective,
         TemplateCreator,
+        ColumnDirective,
+        DataGridComponent,
         DragAndDropDirective,
         ProgressBarComponent,
         ButtonDirective,
@@ -54,6 +59,8 @@ import { LocalStorage } from './storage/LocalStorage';
         ListElementDirective,
         ListElementSeparatorDirective,
         TemplateCreator,
+        ColumnDirective,
+        DataGridComponent,
         DragAndDropDirective,
         ProgressBarComponent,
         ButtonDirective,

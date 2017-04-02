@@ -9,7 +9,8 @@
         "draganddrop": "Drag and drop",
         "button": "Button",
         "searchbox": "Searchbox",
-        "fileuploader": "File uploader"
+        "fileuploader": "File uploader",
+        "datagrid": "Datagrid"
     },
     "hu": {
         "result": "Eredmény",
@@ -21,6 +22,7 @@
         "draganddrop": "Fogd és vidd",
         "button": "Gomb",
         "searchbox": "Kereshető mező",
-        "fileuploader": "Fájl feltöltő"
+        "fileuploader": "Fájl feltöltő",
+        "datagrid": "Adattáblázat"
     }
 }

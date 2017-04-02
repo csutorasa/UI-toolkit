@@ -1,8 +1,6 @@
 import { Component, Input, Output, EventEmitter, ContentChild, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { InputTemplate } from '../template/InputTemplate';
 import { List } from '../list/List';
-import { ListElement } from '../list/ListElement';
-import { ListElementSeparator } from '../list/ListElementSeparator';
 
 export type SearchBoxDataSource = { value: string }[];
 export interface InputTemplateData {

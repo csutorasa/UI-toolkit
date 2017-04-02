@@ -9,8 +9,8 @@ import { LocalizationService } from './localization/LocalizationService';
 import { InputTemplate } from './template/InputTemplate';
 import { TemplateCreator } from './template/TemplateCreator';
 
-import { ListElement } from './list/ListElement';
-import { ListElementSeparator } from './list/ListElementSeparator';
+import { ListElementDirective } from './list/ListElementDirective';
+import { ListElementSeparatorDirective } from './list/ListElementSeparatorDirective';
 
 import { DragAndDropDirective } from './draganddrop/DropDirective';
 
@@ -39,8 +39,8 @@ import { LocalStorage } from './storage/LocalStorage';
     declarations: [
         LocalizationPipe,
         InputTemplate,
-        ListElement,
-        ListElementSeparator,
+        ListElementDirective,
+        ListElementSeparatorDirective,
         TemplateCreator,
         DragAndDropDirective,
         ProgressBarComponent,
@@ -51,8 +51,8 @@ import { LocalStorage } from './storage/LocalStorage';
     exports: [
         LocalizationPipe,
         InputTemplate,
-        ListElement,
-        ListElementSeparator,
+        ListElementDirective,
+        ListElementSeparatorDirective,
         TemplateCreator,
         DragAndDropDirective,
         ProgressBarComponent,

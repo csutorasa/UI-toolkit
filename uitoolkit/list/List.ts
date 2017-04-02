@@ -1,10 +1,10 @@
 import { ContentChild, AfterContentInit } from '@angular/core';
-import { ListElement } from './ListElement';
-import { ListElementSeparator } from './ListElementSeparator';
+import { ListElementDirective } from './ListElementDirective';
+import { ListElementSeparatorDirective } from './ListElementSeparatorDirective';
 
 export abstract class List implements AfterContentInit {
-	@ContentChild(ListElement) public listElement: ListElement;
-	@ContentChild(ListElementSeparator) public listElementSeparator: ListElementSeparator;
+	@ContentChild(ListElementDirective) public listElement: ListElementDirective;
+	@ContentChild(ListElementSeparatorDirective) public listElementSeparator: ListElementSeparatorDirective;
 
 	public ngAfterContentInit(): void {
 		if (this.listElement == null) {

@@ -1,5 +1,5 @@
 import { Directive } from '@angular/core';
-import { TemplateHolder } from './TemplateHolder';
+import { TemplateHolder } from '../template/TemplateHolder';
 
 @Directive({
     selector: 'uilistelementseparator'

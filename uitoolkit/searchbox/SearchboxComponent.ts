@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter, ContentChild, ContentChildren, AfterContentInit, ElementRef, ViewChild, TemplateRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ContentChild, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { InputTemplate } from '../template/InputTemplate';
-import { ListElement } from '../template/ListElement';
-import { ListElementSeparator } from '../template/ListElementSeparator';
+import { List } from '../list/List';
+import { ListElement } from '../list/ListElement';
+import { ListElementSeparator } from '../list/ListElementSeparator';
 
 export type SearchBoxDataSource = { value: string }[];
 export interface InputTemplateData {
@@ -34,7 +35,7 @@ export class ElementData {
 	<template [templatecreator]="inputTemplate.template" [data]="inputTemplateData"></template>
 	<div class="searchbox-element-list" tabindex="0" #searchBoxList (keydown)="keydown($event)">
 		<div [hidden]="!isOpen" class="searchbox-list-elements" #elementContainer>
-			<div *ngFor="let d of dataSource;let i=index;let last=last;" (click)="selectValue(d.value)" class="searchbox-list-element">
+			<div *ngFor="let d of dataSource;let last=last;" (click)="selectValue(d.value)" class="searchbox-list-element">
 				<template [templatecreator]="listElement.template" [data]="d"></template>
 				<template [templatecreator]="listElementSeparator.template" *ngIf="!last && listElementSeparator"></template>
 			</div>
@@ -42,10 +43,8 @@ export class ElementData {
 	</div>
 </div>`,
 })
-export class SearchboxComponent implements AfterContentInit {
+export class SearchboxComponent extends List {
 	@ContentChild(InputTemplate) public inputTemplate: InputTemplate;
-	@ContentChild(ListElement) public listElement: ListElement;
-	@ContentChild(ListElementSeparator) public listElementSeparator: ListElementSeparator;
 	@ViewChild('searchBoxList') public searchBoxList: ElementRef;
 	@ViewChild('elementContainer') public elementContainer: ElementRef;
 	@Input('dataSource') dataSourceFactory: (text: string) => Promise<string[]>;
@@ -59,11 +58,9 @@ export class SearchboxComponent implements AfterContentInit {
 	};
 
 	public ngAfterContentInit(): void {
-		if (this.listElement == null) {
+		super.ngAfterContentInit();
+		if (this.inputTemplate == null) {
 			throw 'Invalid Searchbox component!\nInputTemplate is a mandatory template.';
-		}
-		if (this.listElement == null) {
-			throw 'Invalid Searchbox component!\nListElement is a mandatory template.';
 		}
 	}
 

@@ -7,9 +7,10 @@ import { LocalizationResolver } from './localization/LocalizationResolver';
 import { LocalizationService } from './localization/LocalizationService';
 
 import { InputTemplate } from './template/InputTemplate';
-import { ListElement } from './template/ListElement';
-import { ListElementSeparator } from './template/ListElementSeparator';
 import { TemplateCreator } from './template/TemplateCreator';
+
+import { ListElement } from './list/ListElement';
+import { ListElementSeparator } from './list/ListElementSeparator';
 
 import { DragAndDropDirective } from './draganddrop/DropDirective';
 

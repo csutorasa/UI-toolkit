@@ -11,4 +11,11 @@ export class Utils {
         }
         return array;
     }
+
+    public static WaterFall(promise: Promise<any>,...promises: ((value?: any) => any)[]) {
+        promises.forEach(p => {
+            promise = promise.then(p);
+        });
+        return promise;
+    }
 }

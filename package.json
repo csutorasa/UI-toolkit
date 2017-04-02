@@ -1,6 +1,6 @@
 {
   "name": "ui-toolkit",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "UI-toolkit",
   "main": "server.js",
   "scripts": {

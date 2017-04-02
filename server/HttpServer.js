@@ -79,12 +79,12 @@ class HttpServer {
 						try {
 							fs.statSync('upload');
 							// exists
-						} catch(ex) {
+						} catch (ex) {
 							// not exists
 							fs.mkdirSync('upload');
 						}
 						fs.writeFile('upload/' + json.filename, json.content, 'binary', err => {
-							if(err) {
+							if (err) {
 								this.writeInternalError(res, err);
 							} else {
 								this.writeObject(res, {});
@@ -172,7 +172,7 @@ class HttpServer {
 			} else {
 				res.writeHead(200, { 'Content-Type': this.getContentType(filename) + '; charset=utf-8' });
 				res.write(file, 'binary');
-		res.end();
+				res.end();
 			}
 		});
 	}

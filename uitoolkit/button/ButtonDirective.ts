@@ -4,8 +4,7 @@ import { Directive, ElementRef, Input } from '@angular/core';
 	selector: 'button',
 })
 export class ButtonDirective {
-
-	static BOOTSTRAP_STYLES = [
+	public static BOOTSTRAP_STYLES = [
 		'default',
 		'primary',
 		'success',
@@ -17,23 +16,23 @@ export class ButtonDirective {
 
 	constructor(protected element: ElementRef) {
 		const classList = this.getClassList();
-		if(!classList.contains('btn')) {
+		if (!classList.contains('btn')) {
 			classList.add('btn');
 		}
 	}
 
 	@Input('buttonstyle')
 	public set style(style: string) {
-		if(style && !ButtonDirective.BOOTSTRAP_STYLES.some(s => s === style)) {
+		if (style && !ButtonDirective.BOOTSTRAP_STYLES.some(s => s === style)) {
 			throw 'Invalid Button Style!';
 		}
 		const classList = this.getClassList();
 		ButtonDirective.BOOTSTRAP_STYLES.forEach(s => {
-			if(classList.contains('btn-' + s)) {
+			if (classList.contains('btn-' + s)) {
 				classList.remove('btn-' + s);
 			}
 		});
-		if(style) {
+		if (style) {
 			classList.add('btn-' + style);
 		}
 	}

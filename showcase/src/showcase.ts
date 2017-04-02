@@ -13,7 +13,7 @@ export class Showcase {
 	constructor(protected localizationService: LocalizationService, protected http: Http) {
 		localizationService.config(
 			() => this.http.post('/languages', {}).map(res => res.json()).toPromise(),
-			(lang) => this.http.post('/localization', {language: lang}).map(res => res.json()).toPromise()
+			(lang) => this.http.post('/localization', { language: lang }).map(res => res.json()).toPromise()
 		);
 	}
 }

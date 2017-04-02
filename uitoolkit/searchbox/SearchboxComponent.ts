@@ -4,6 +4,7 @@ import { List } from '../list/List';
 import { ListItem } from '../list/ListItem';
 
 export type SearchBoxDataSource = { value: string }[];
+
 export interface InputTemplateData {
 	data: { value: string };
 	events: {
@@ -11,9 +12,11 @@ export interface InputTemplateData {
 		onKeydown: (event: KeyboardEvent) => void
 	};
 }
+
 export interface ElementDataInput {
 	selectedIndex: number;
 };
+
 export class SearchBoxListItem extends ListItem {
 	constructor(private input: ElementDataInput, public value: string, index: number, count: number) {
 		super(index, count);
@@ -42,13 +45,13 @@ export class SearchboxComponent extends List {
 	@ContentChild(InputTemplate) public inputTemplate: InputTemplate;
 	@ViewChild('searchBoxList') public searchBoxList: ElementRef;
 	@ViewChild('elementContainer') public elementContainer: ElementRef;
-	@Input('dataSource') dataSourceFactory: (text: string) => Promise<string[]>;
-	@Output('valueChange') valueChange: EventEmitter<string> = new EventEmitter<string>();
+	@Input('dataSource') protected dataSourceFactory: (text: string) => Promise<string[]>;
+	@Output('valueChange') protected valueChange: EventEmitter<string> = new EventEmitter<string>();
 
-	inputTemplateData: InputTemplateData = { data: { value: '' }, events: { onChange: (value) => this.onChange(value), onKeydown: (event) => this.keydown(event) } };
-	dataSource: SearchBoxListItem[] = [];
-	isOpen: boolean = false;
-	elementDataInput: ElementDataInput = {
+	protected inputTemplateData: InputTemplateData = { data: { value: '' }, events: { onChange: (value) => this.onChange(value), onKeydown: (event) => this.keydown(event) } };
+	protected dataSource: SearchBoxListItem[] = [];
+	protected isOpen: boolean = false;
+	protected elementDataInput: ElementDataInput = {
 		selectedIndex: 0
 	};
 
@@ -60,19 +63,19 @@ export class SearchboxComponent extends List {
 	}
 
 	@Input('value')
-	set setValue(value: string) {
+	public set setValue(value: string) {
 		if (this.inputTemplateData.data.value !== value) {
 			this.inputTemplateData.data.value = value;
 			this.valueChange.emit(value);
 		}
 	}
 
-	selectValue(value: string): void {
+	protected selectValue(value: string): void {
 		this.setValue = value;
 		this.isOpen = false;
 	}
 
-	lostFocus(event: MouseEvent): void {
+	protected lostFocus(event: MouseEvent): void {
 		if (event.relatedTarget === this.searchBoxList.nativeElement) {
 			if (!this.isOpen) {
 				this.refreshList();
@@ -82,7 +85,7 @@ export class SearchboxComponent extends List {
 		}
 	}
 
-	keydown(event: KeyboardEvent): void {
+	protected keydown(event: KeyboardEvent): void {
 		if (!this.isOpen) {
 			return;
 		}
@@ -111,13 +114,13 @@ export class SearchboxComponent extends List {
 		}
 	}
 
-	onChange(value: string): void {
+	protected onChange(value: string): void {
 		this.inputTemplateData.data.value = value;
 		this.valueChange.emit(value);
 		this.refreshList();
 	}
 
-	refreshList(): void {
+	protected refreshList(): void {
 		this.dataSourceFactory(this.inputTemplateData.data.value).then(items => {
 			this.dataSource = items.map((item, index) => { return new SearchBoxListItem(this.elementDataInput, item, index, items.length); });
 			this.isOpen = true;

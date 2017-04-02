@@ -1,5 +1,5 @@
 export class ListItem {
-	constructor(public index: number, public count: number) {
+    constructor(public index: number, public count: number) {
     }
 
     public get first(): boolean { return this.index === 0; }

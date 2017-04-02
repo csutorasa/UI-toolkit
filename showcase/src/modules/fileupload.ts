@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <fileupload-test #sources></fileupload-test>
 </sources>`,
 })
-export class FileUploadTesterComponent {}
+export class FileUploadTesterComponent { }
 
 @Component({
 	selector: 'fileupload-test',
@@ -33,7 +33,7 @@ export class FileUploadTesterComponent {}
 </uifileuploader>`,
 })
 export class FileUploadTestComponent {
-    log(files: File[]) {
+	protected log(files: File[]): void {
 		console.log(files.length + ' files have been uploaded!');
 	}
 }

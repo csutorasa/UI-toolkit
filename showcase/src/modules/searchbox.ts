@@ -50,8 +50,8 @@ export class SearchBoxTesterComponent { }
 </uisearchbox>`,
 })
 export class SearchBoxTestComponent {
-	dataSource: (text: string) => Promise<string[]>;
-	remoteDataSource: (text: string) => Promise<string[]>;
+	protected dataSource: (text: string) => Promise<string[]>;
+	protected remoteDataSource: (text: string) => Promise<string[]>;
 	constructor(http: Http) {
 		this.dataSource = (text: string) => Promise.resolve([text + '1', text + '2', text + text + '3']);
 		this.remoteDataSource = (text: string) => http.post('/search', text).map(res => res.json()).toPromise();

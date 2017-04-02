@@ -7,7 +7,7 @@ import { Utils } from 'uitoolkit/utils/Utils';
 	<draganddrop-test #sources></draganddrop-test>
 </sources>`,
 })
-export class DragAndDropTesterComponent {}
+export class DragAndDropTesterComponent { }
 
 @Component({
 	selector: 'draganddrop-test',
@@ -15,13 +15,13 @@ export class DragAndDropTesterComponent {}
 <p>{{text}}</p>`,
 })
 export class DragAndDropTestComponent {
-	text: string;
+	protected text: string;
 
-	drop(transfer: DataTransfer) {
+	protected drop(transfer: DataTransfer): void {
 		const textValue = transfer.getData('text');
-		if(textValue) {
+		if (textValue) {
 			this.text = textValue;
-		} else if(transfer.files.length > 0) {
+		} else if (transfer.files.length > 0) {
 			this.text = Utils.CollectionToArray(transfer.files).map(f => f.name).join(', ');
 		}
 	}

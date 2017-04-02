@@ -7,9 +7,9 @@ import { Component, Input, ContentChild, ViewChild, ElementRef, AfterViewInit } 
 </div>`,
 })
 export class ProgressBarComponent implements AfterViewInit {
-	@Input('min') min: number;
-	@Input('max') max: number;
-	@ViewChild('fill') div: ElementRef;
+	@Input('min') protected min: number;
+	@Input('max') protected max: number;
+	@ViewChild('fill') protected div: ElementRef;
 
 	private innerValue: number;
 
@@ -21,12 +21,12 @@ export class ProgressBarComponent implements AfterViewInit {
 		this.innerValue = value;
 	}
 
-	ngAfterViewInit() {
+	public ngAfterViewInit(): void {
 		this.value = this.innerValue;
 	}
 
 	protected calculatePercent(value: number): number {
-		if(Math.abs(this.max - this.min) < 0.000001) {
+		if (Math.abs(this.max - this.min) < 0.000001) {
 			return 0;
 		}
 		const calculated = ((value - this.min) / this.max - this.min) * 100;

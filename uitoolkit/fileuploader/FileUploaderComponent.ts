@@ -41,55 +41,55 @@ export class FileUploaderListItem extends ListItem {
 </div>`,
 })
 export class FileUploaderComponent extends List {
-	@Input('multiple') multiple = true;
-	@Output('uploaded') uploaded: EventEmitter<File[]> = new EventEmitter();
+	@Input('multiple') protected multiple = true;
+	@Output('uploaded') protected uploaded: EventEmitter<File[]> = new EventEmitter();
 
 	public static SIZE_LIMIT = 100000000;
 
-	files: FileUploaderListItem[] = [];
-	doneCount: number;
-	uploading: boolean = false;
+	protected files: FileUploaderListItem[] = [];
+	protected doneCount: number;
+	protected uploading: boolean = false;
 
 	constructor(private http: Http) {
 		super();
 	}
 
-	onFileSelected(event: Event) {
+	protected onFileSelected(event: Event): void {
 		this.addFiles(<FileList>(<any>event.srcElement).files);
 	}
 
-	onDrop(transfer: DataTransfer) {
+	protected onDrop(transfer: DataTransfer): void {
 		this.addFiles(transfer.files);
 	}
 
-	addFiles(fileList: FileList) {
-		if(this.uploading) {
+	public addFiles(fileList: FileList): void {
+		if (this.uploading) {
 			return;
 		}
 		this.files = this.files.concat(Utils.CollectionToArray(fileList).filter(f => f.size <= FileUploaderComponent.SIZE_LIMIT).map(f => new FileUploaderListItem(f, UploadProgress.None, (index: number) => this.remove(index), 0, 0)));
-		if(!this.multiple) {
+		if (!this.multiple) {
 			this.files.splice(0, this.files.length - 1);
 		}
 		this.refreshIndices();
 	}
 
-	remove(index: number) {
+	public remove(index: number): void {
 		console.log(this);
-		if(this.uploading) {
+		if (this.uploading) {
 			return;
 		}
 		this.files.splice(index, 1);
 		this.refreshIndices();
 	}
-	
-	refreshIndices() {
+
+	protected refreshIndices(): void {
 		this.files.forEach((f, index) => {
 			f.count = this.files.length;
 			f.index = index;
 		});
 	}
 
-	readFile(file: File): Promise<any> {
+	protected readFile(file: File): Promise<any> {
 		return new Promise((resolve, reject) => {
 			const reader = new FileReader();
 			reader.onloadend = (event: ProgressEvent) => {
@@ -99,9 +99,9 @@ export class FileUploaderComponent extends List {
 		});
 	}
 
-	upload() {
+	public upload(): Promise<void> {
 		let promise: Promise<any> = Promise.resolve();
-		if(this.files.length === 0) {
+		if (this.files.length === 0) {
 			return promise;
 		}
 		this.doneCount = 0;
@@ -122,7 +122,7 @@ export class FileUploaderComponent extends List {
 			this.uploading = false;
 			this.uploaded.emit(this.files.map(f => f.file));
 		}, err => {
-			this.uploading = false;	
+			this.uploading = false;
 		});
 		return promise;
 	}

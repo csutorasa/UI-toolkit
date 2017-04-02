@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <progressbar-test #sources></progressbar-test>
 </sources>`,
 })
-export class ProgressBarTesterComponent {}
+export class ProgressBarTesterComponent { }
 
 @Component({
 	selector: 'progressbar-test',
@@ -17,5 +17,5 @@ export class ProgressBarTesterComponent {}
 <button (click)="value = 100">100</button>`,
 })
 export class ProgressBarTestComponent {
-    public value = 20;
+	public value: number = 20;
 }

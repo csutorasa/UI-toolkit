@@ -25,7 +25,7 @@ const debug = true;
 	imports: [
 		BrowserModule,
 		UIToolkitModule,
-        HttpModule,
+		HttpModule,
 		FormsModule,
 		RouterModule.forRoot(routerConfig)
 	],
@@ -55,14 +55,14 @@ const debug = true;
 export class ShowcaseModule { }
 
 
-if(debug) {
+if (debug) {
 	console.debug('Bootstrapping...');
 } else {
 	enableProdMode();
 }
 const bootstappingStart = new Date();
 platformBrowserDynamic().bootstrapModule(ShowcaseModule).then(() => {
-	if(debug) {
+	if (debug) {
 		console.debug('Bootstrapped successfully in ' + (new Date().getTime() - bootstappingStart.getTime()) + 'ms');
 	}
 }, err => {

@@ -1,8 +1,8 @@
 import { Component, ElementRef, ContentChild, AfterContentInit, ViewContainerRef } from '@angular/core';
 
 @Component({
-	selector: 'sources',
-	template: `<table class="source-table">
+    selector: 'sources',
+    template: `<table class="source-table">
     <tr class="source-table-header">
         <th>
             {{'result' | localize }}
@@ -26,17 +26,17 @@ import { Component, ElementRef, ContentChild, AfterContentInit, ViewContainerRef
 </table>`,
 })
 export class SourceComponent implements AfterContentInit {
-    @ContentChild('sources') component: any;
-    source: string;
-    showSource: boolean = false;
+    @ContentChild('sources') protected component: any;
+    protected source: string;
+    protected showSource: boolean = false;
 
     constructor(protected viewContainer: ViewContainerRef) {
     }
 
-    ngAfterContentInit() {
+    public ngAfterContentInit(): void {
         const type = this.component.constructor;
         const annotations: Component[] = Reflect.getMetadata('annotations', type);
-        if(annotations != null) {
+        if (annotations != null) {
             this.source = annotations.find(a => a.template != null).template.replace(/^\t/, '');
         }
         else {

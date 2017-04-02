@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <button-test #sources></button-test>
 </sources>`,
 })
-export class ButtonTesterComponent {}
+export class ButtonTesterComponent { }
 
 @Component({
 	selector: 'button-test',
@@ -20,5 +20,4 @@ export class ButtonTesterComponent {}
 <button buttonstyle="link">Link</button>`,
 })
 export class ButtonTestComponent {
-    
 }

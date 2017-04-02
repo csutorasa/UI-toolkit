@@ -20,7 +20,7 @@ export class LocalizeTestComponent {
 	constructor(protected localizationService: LocalizationService) {
 	}
 
-	public setLanguageCode(code: string) {
+	public setLanguageCode(code: string): void {
 		this.localizationService.setLanguageCode(code);
 		location.reload();
 	}

@@ -30,7 +30,7 @@ import { LocalStorage } from './storage/LocalStorage';
         BrowserModule,
         FormsModule
     ],
-    providers: [ 
+    providers: [
         Cache,
         LocalizationService,
         LocalizationResolver,

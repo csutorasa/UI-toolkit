@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ContentChild, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { InputTemplate } from '../template/InputTemplate';
 import { List } from '../list/List';
+import { ListItem } from '../list/ListItem';
 
 export type SearchBoxDataSource = { value: string }[];
 export interface InputTemplateData {
@@ -10,20 +11,16 @@ export interface InputTemplateData {
 		onKeydown: (event: KeyboardEvent) => void
 	};
 }
-export interface ElementDataInput { 
+export interface ElementDataInput {
 	selectedIndex: number;
 };
-export class ElementData {
-	constructor(private input: ElementDataInput, public value: string, public last: boolean, private index: number) {
-
+export class SearchBoxListItem extends ListItem {
+	constructor(private input: ElementDataInput, public value: string, index: number, count: number) {
+		super(index, count);
 	}
-	
+
 	public get selected(): boolean {
 		return this.index === this.input.selectedIndex;
-	}
-
-	public get first(): boolean {
-		return this.index === 0;
 	}
 }
 
@@ -49,7 +46,7 @@ export class SearchboxComponent extends List {
 	@Output('valueChange') valueChange: EventEmitter<string> = new EventEmitter<string>();
 
 	inputTemplateData: InputTemplateData = { data: { value: '' }, events: { onChange: (value) => this.onChange(value), onKeydown: (event) => this.keydown(event) } };
-	dataSource: ElementData[] = [];
+	dataSource: SearchBoxListItem[] = [];
 	isOpen: boolean = false;
 	elementDataInput: ElementDataInput = {
 		selectedIndex: 0
@@ -77,7 +74,7 @@ export class SearchboxComponent extends List {
 
 	lostFocus(event: MouseEvent): void {
 		if (event.relatedTarget === this.searchBoxList.nativeElement) {
-			if(!this.isOpen) {
+			if (!this.isOpen) {
 				this.refreshList();
 			}
 		} else {
@@ -96,7 +93,7 @@ export class SearchboxComponent extends List {
 				this.elementDataInput.selectedIndex--;
 				const container = <HTMLScriptElement>this.elementContainer.nativeElement;
 				const div = container.children[this.elementDataInput.selectedIndex];
-				if((<any>div).offsetTop < container.scrollTop) {
+				if ((<any>div).offsetTop < container.scrollTop) {
 					container.scrollTop -= container.scrollTop - (<any>div).offsetTop;
 				}
 			}
@@ -107,7 +104,7 @@ export class SearchboxComponent extends List {
 				const div = container.children[this.elementDataInput.selectedIndex];
 				const offsetBottom = (<any>div).offsetTop + div.getBoundingClientRect().height;
 				const scrollBottom = container.scrollTop + container.getBoundingClientRect().height;
-				if(offsetBottom > scrollBottom) {
+				if (offsetBottom > scrollBottom) {
 					container.scrollTop += offsetBottom - scrollBottom;
 				}
 			}
@@ -122,7 +119,7 @@ export class SearchboxComponent extends List {
 
 	refreshList(): void {
 		this.dataSourceFactory(this.inputTemplateData.data.value).then(items => {
-			this.dataSource = items.map((item, index) => { return new ElementData(this.elementDataInput, item, index === items.length -1, index); });
+			this.dataSource = items.map((item, index) => { return new SearchBoxListItem(this.elementDataInput, item, index, items.length); });
 			this.isOpen = true;
 			this.elementDataInput.selectedIndex = 0;
 			const container = <HTMLScriptElement>this.elementContainer.nativeElement;

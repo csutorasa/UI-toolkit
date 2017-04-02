@@ -1,0 +1,9 @@
+uifileuploader {
+    div.fileuploader-spacing {
+        margin: 10px 0;
+    }
+    div.fileuploader-drop-zone {
+        min-height: $fileuploader-drop-zone-minheigth;
+        border: $fileuploader-drop-zone-border;
+    }
+}

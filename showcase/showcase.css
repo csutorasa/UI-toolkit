@@ -104,3 +104,18 @@ div.drop-zone {
     background: #aaa;
 }
 
+
+/* FileUploader */
+
+.file-list-element-container {
+    display: table;
+    margin: 5px 0;
+}
+
+.file-list-element-container .file-list-element {
+    display: table-cell;
+}
+
+.file-list-element-container .file-list-element:first-child {
+    width: 100%;
+}

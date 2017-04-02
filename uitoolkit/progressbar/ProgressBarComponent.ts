@@ -26,6 +26,9 @@ export class ProgressBarComponent implements AfterViewInit {
 	}
 
 	protected calculatePercent(value: number): number {
+		if(Math.abs(this.max - this.min) < 0.000001) {
+			return 0;
+		}
 		const calculated = ((value - this.min) / this.max - this.min) * 100;
 		if (calculated > 100)
 			return 100;

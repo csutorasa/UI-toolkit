@@ -43,6 +43,5 @@ export class SourceComponent implements AfterContentInit {
             const elementRef = <ElementRef>this.component;
             this.source = elementRef.nativeElement.outerHTML;
         }
-        console.log(this.source);
     }
 }

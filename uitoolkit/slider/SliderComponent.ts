@@ -11,6 +11,7 @@ export class SliderComponent implements AfterViewInit {
 	@Output('valueChange') public readonly valueChange: EventEmitter<number> = new EventEmitter();
 	@Input('min') protected min: number;
 	@Input('max') protected max: number;
+	@Input('step') protected step: number;
 	@ViewChild('slider') protected sliderDiv: ElementRef;
 	@ViewChild('fill') protected fillDiv: ElementRef;
 
@@ -27,12 +28,16 @@ export class SliderComponent implements AfterViewInit {
 	 */
 	@Input('value')
 	public set value(value: number) {
-		if (this.fillDiv) {
-			this.fillDiv.nativeElement.style.width = this.calculatePercent(value) + '%';
+		let actualValue = value;
+		if(this.step != null) {
+			actualValue = Math.round(value / this.step) * this.step;
 		}
-		if (this.innerValue !== value) {
-			this.innerValue = value;
-			this.valueChange.emit(value);
+		if (this.fillDiv) {
+			this.fillDiv.nativeElement.style.width = this.calculatePercent(actualValue) + '%';
+		}
+		if (this.innerValue !== actualValue) {
+			this.innerValue = actualValue;
+			this.valueChange.emit(actualValue);
 		}
 	}
 

@@ -10,6 +10,11 @@ export class LocalizationPipe implements PipeTransform {
 
     }
 
+    /**
+     * Localizes a string synchronously.
+     * @param text text to localize
+     * @param params localization parameters
+     */
     public transform(text: string, params: Object = {}): string {
         return this.localizationService.translate(text, params);
     }

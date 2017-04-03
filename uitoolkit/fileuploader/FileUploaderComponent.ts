@@ -41,10 +41,13 @@ export class FileUploaderListItem extends ListItem {
 </div>`,
 })
 export class FileUploaderComponent extends List {
-	@Input('multiple') protected multiple = true;
-	@Output('uploaded') protected uploaded: EventEmitter<File[]> = new EventEmitter();
+	public static readonly SIZE_LIMIT = 100000000;
 
-	public static SIZE_LIMIT = 100000000;
+	/**
+	 * Event that fired when the upload has finished
+	 */
+	@Output('uploaded') public readonly uploaded: EventEmitter<File[]> = new EventEmitter();
+	@Input('multiple') protected multiple = true;
 
 	protected files: FileUploaderListItem[] = [];
 	protected doneCount: number;
@@ -54,14 +57,10 @@ export class FileUploaderComponent extends List {
 		super();
 	}
 
-	protected onFileSelected(event: Event): void {
-		this.addFiles(<FileList>(<any>event.srcElement).files);
-	}
-
-	protected onDrop(transfer: DataTransfer): void {
-		this.addFiles(transfer.files);
-	}
-
+	/**
+	 * Adds new files to upload.
+	 * @param fileList New files to add
+	 */
 	public addFiles(fileList: FileList): void {
 		if (this.uploading) {
 			return;
@@ -73,8 +72,11 @@ export class FileUploaderComponent extends List {
 		this.refreshIndices();
 	}
 
+	/**
+	 * Removes a file from upload files.
+	 * @param index Index of the file
+	 */
 	public remove(index: number): void {
-		console.log(this);
 		if (this.uploading) {
 			return;
 		}
@@ -82,23 +84,9 @@ export class FileUploaderComponent extends List {
 		this.refreshIndices();
 	}
 
-	protected refreshIndices(): void {
-		this.files.forEach((f, index) => {
-			f.count = this.files.length;
-			f.index = index;
-		});
-	}
-
-	protected readFile(file: File): Promise<any> {
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader();
-			reader.onloadend = (event: ProgressEvent) => {
-				resolve(reader.result);
-			};
-			reader.readAsBinaryString(file);
-		});
-	}
-
+	/**
+	 * Uploads the added files
+	 */
 	public upload(): Promise<void> {
 		let promise: Promise<any> = Promise.resolve();
 		if (this.files.length === 0) {
@@ -125,5 +113,30 @@ export class FileUploaderComponent extends List {
 			this.uploading = false;
 		});
 		return promise;
+	}
+
+	protected onFileSelected(event: Event): void {
+		this.addFiles(<FileList>(<any>event.srcElement).files);
+	}
+
+	protected onDrop(transfer: DataTransfer): void {
+		this.addFiles(transfer.files);
+	}
+
+	protected refreshIndices(): void {
+		this.files.forEach((f, index) => {
+			f.count = this.files.length;
+			f.index = index;
+		});
+	}
+
+	protected readFile(file: File): Promise<any> {
+		return new Promise((resolve, reject) => {
+			const reader = new FileReader();
+			reader.onloadend = (event: ProgressEvent) => {
+				resolve(reader.result);
+			};
+			reader.readAsBinaryString(file);
+		});
 	}
 }

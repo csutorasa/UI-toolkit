@@ -14,6 +14,9 @@ export class ProgressBarComponent implements AfterViewInit {
 
 	private innerValue: number;
 
+	/**
+	 * Sets the value
+	 */
 	@Input('value')
 	public set value(value: number) {
 		if (this.div) {

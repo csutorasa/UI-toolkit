@@ -1,4 +1,4 @@
-import { ContentChild, ContentChildren, Component, Directive, Input, AfterContentInit, QueryList, TemplateRef } from '@angular/core';
+import { ContentChild, ContentChildren, Component, Directive, Input, QueryList, TemplateRef } from '@angular/core';
 import { ListItem } from '../list/ListItem';
 import { ColumnDirective } from './ColumnDirective';
 
@@ -32,14 +32,17 @@ export class DataGridListItem extends ListItem {
     </tbody>
 </table>`
 })
-export class DataGridComponent implements AfterContentInit {
+export class DataGridComponent {
+    /**
+     * Columns definitions
+     */
     @ContentChildren(ColumnDirective) public columns: QueryList<ColumnDirective>;
     protected rows: DataGridListItem[];
     protected sortData: Sort;
 
-    public ngAfterContentInit() {
-    }
-
+    /**
+     * Sets the data source
+     */
     @Input('data')
     public set setData(data: any[]) {
         if (data) {

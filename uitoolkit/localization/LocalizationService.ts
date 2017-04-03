@@ -22,6 +22,12 @@ export class LocalizationService {
         this.languageCode = localStorage.get(StorageKeys.languageCode);
     }
 
+    /**
+     * Sets the configuration of the localization
+     * @param getLanguagesData promise to get the available languages
+     * @param getTranslationData promise to get the available translation for the language
+     * @param formatter post localization transformations (e.g. templating)
+     */
     public config(
         getLanguagesData: () => Promise<string[]>, getTranslationData: (language: string) => Promise<Translation>,
         formatter: (text: string, params: Object) => string = (text: string, params: Object) => text

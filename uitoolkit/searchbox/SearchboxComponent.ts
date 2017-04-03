@@ -43,10 +43,10 @@ export class SearchBoxListItem extends ListItem {
 })
 export class SearchboxComponent extends List {
 	@ContentChild(InputTemplate) public inputTemplate: InputTemplate;
-	@ViewChild('searchBoxList') public searchBoxList: ElementRef;
-	@ViewChild('elementContainer') public elementContainer: ElementRef;
+	@Output('valueChange') public readonly valueChange: EventEmitter<string> = new EventEmitter<string>();
 	@Input('dataSource') protected dataSourceFactory: (text: string) => Promise<string[]>;
-	@Output('valueChange') protected valueChange: EventEmitter<string> = new EventEmitter<string>();
+	@ViewChild('searchBoxList') protected searchBoxList: ElementRef;
+	@ViewChild('elementContainer') protected elementContainer: ElementRef;
 
 	protected inputTemplateData: InputTemplateData = { data: { value: '' }, events: { onChange: (value) => this.onChange(value), onKeydown: (event) => this.keydown(event) } };
 	protected dataSource: SearchBoxListItem[] = [];
@@ -62,6 +62,9 @@ export class SearchboxComponent extends List {
 		}
 	}
 
+	/**
+	 * Sets the value
+	 */
 	@Input('value')
 	public set setValue(value: string) {
 		if (this.inputTemplateData.data.value !== value) {

@@ -8,11 +8,11 @@ import { Utils } from '../utils/Utils';
 </div>`,
 })
 export class SliderComponent implements AfterViewInit {
+	@Output('valueChange') public readonly valueChange: EventEmitter<number> = new EventEmitter();
 	@Input('min') protected min: number;
 	@Input('max') protected max: number;
 	@ViewChild('slider') protected sliderDiv: ElementRef;
 	@ViewChild('fill') protected fillDiv: ElementRef;
-	@Output('valueChange') protected valueChange: EventEmitter<number> = new EventEmitter();
 
 	private static MINIMUM_MOUSE_MOVE_UPDATE_DELAY: number = 20;
 	protected innerValue: number;
@@ -22,6 +22,9 @@ export class SliderComponent implements AfterViewInit {
 	private mouseUpEventHandler: (event: MouseEvent) => void;
 	private lastMove: number = new Date().getTime();
 
+	/**
+	 * Sets the value
+	 */
 	@Input('value')
 	public set value(value: number) {
 		if (this.fillDiv) {
@@ -36,8 +39,6 @@ export class SliderComponent implements AfterViewInit {
 	public ngAfterViewInit(): void {
 		this.value = this.innerValue;
 	}
-
-
 
 	protected down(event: MouseEvent): void {
 		this.value = this.calculateValue(event.pageX);

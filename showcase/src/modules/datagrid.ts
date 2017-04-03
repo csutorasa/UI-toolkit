@@ -5,6 +5,11 @@ import { CreateTesterComponentData } from '../source';
 @Component(CreateTesterComponentData('datagrid'))
 export class DataGridTesterComponent { }
 
+export interface DataType {
+    key: string;
+    value: string;
+}
+
 @Component({
 	selector: 'datagrid-test',
 	template: `<uidatagrid [data]="dataSource">
@@ -21,7 +26,7 @@ export class DataGridTesterComponent { }
 </uidatagrid>`,
 })
 export class DataGridTestComponent {
-    dataSource = [
+    protected dataSource: DataType[] = [
         {
             key: 'bb',
             value: 'cda'
@@ -36,11 +41,11 @@ export class DataGridTestComponent {
         }
     ];
 
-    sortByKey(a, b) {
-        return Utils.defaultSort(a, b, x => x.key);
+    public sortByKey(a: DataType, b: DataType) {
+        return Utils.defaultSort(a.key, b.key);
     }
 
-    sortByValue(a, b) {
-        return Utils.defaultSort(a, b, x => x.value);
+    public sortByValue(a: DataType, b: DataType) {
+        return Utils.defaultSort(a.value, b.value);
     }
 }

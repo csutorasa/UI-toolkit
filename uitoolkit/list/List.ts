@@ -3,7 +3,13 @@ import { ListElementDirective } from './ListElementDirective';
 import { ListElementSeparatorDirective } from './ListElementSeparatorDirective';
 
 export abstract class List implements AfterContentInit {
+	/**
+	 * List element template
+	 */
 	@ContentChild(ListElementDirective) public listElement: ListElementDirective;
+	/**
+	 * List element separator template
+	 */
 	@ContentChild(ListElementSeparatorDirective) public listElementSeparator: ListElementSeparatorDirective;
 
 	public ngAfterContentInit(): void {

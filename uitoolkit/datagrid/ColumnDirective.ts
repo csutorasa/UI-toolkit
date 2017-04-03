@@ -5,6 +5,12 @@ import { TemplateHolder } from '../template/TemplateHolder';
     selector: 'column'
 })
 export class ColumnDirective extends TemplateHolder {
+    /**
+     * Header text of the column
+     */
     @Input('header') public header: string;
+    /**
+     * Sort function of the column
+     */
     @Input('sort') public sort: (a, b) => number;
 }

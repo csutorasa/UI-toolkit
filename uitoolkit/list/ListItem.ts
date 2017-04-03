@@ -1,4 +1,12 @@
+/**
+ * Base class for list-like templating.
+ */
 export class ListItem {
+    /**
+     * 
+     * @param index index of the item in the list
+     * @param count length of the list
+     */
     constructor(public index: number, public count: number) {
     }
 

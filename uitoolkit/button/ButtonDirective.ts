@@ -4,7 +4,10 @@ import { Directive, ElementRef, Input } from '@angular/core';
 	selector: 'button',
 })
 export class ButtonDirective {
-	public static BOOTSTRAP_STYLES = [
+	/**
+	 * Bootstrap 4 button styles
+	 */
+	public static readonly BOOTSTRAP_STYLES = [
 		'default',
 		'primary',
 		'success',
@@ -20,7 +23,10 @@ export class ButtonDirective {
 			classList.add('btn');
 		}
 	}
-
+	
+	/**
+	 * Style of the button
+	 */
 	@Input('buttonstyle')
 	public set style(style: string) {
 		if (style && !ButtonDirective.BOOTSTRAP_STYLES.some(s => s === style)) {

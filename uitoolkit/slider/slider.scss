@@ -11,5 +11,8 @@ uislider {
         border-radius: $slider-border-radius;
         position: relative;
         transition: width $slider-width-transition-duration;
+        &.mouse-down {
+            transition: width 0s;
+        }
     }
 }

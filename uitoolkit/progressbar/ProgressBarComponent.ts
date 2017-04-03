@@ -31,6 +31,6 @@ export class ProgressBarComponent implements AfterViewInit {
 			return 0;
 		}
 		const calculated = ((value - this.min) / this.max - this.min) * 100;
-		return Utils.limit(calculated, this.min, this.max);
+		return Utils.limit(calculated, 0, 100);
 	}
 }

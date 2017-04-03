@@ -37,10 +37,10 @@ export class DataGridTestComponent {
     ];
 
     sortByKey(a, b) {
-        return Utils.DefaultSort(a, b, x => x.key);
+        return Utils.defaultSort(a, b, x => x.key);
     }
 
     sortByValue(a, b) {
-        return Utils.DefaultSort(a, b, x => x.value);
+        return Utils.defaultSort(a, b, x => x.value);
     }
 }

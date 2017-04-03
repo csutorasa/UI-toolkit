@@ -66,7 +66,7 @@ export class FileUploaderComponent extends List {
 		if (this.uploading) {
 			return;
 		}
-		this.files = this.files.concat(Utils.CollectionToArray(fileList).filter(f => f.size <= FileUploaderComponent.SIZE_LIMIT).map(f => new FileUploaderListItem(f, UploadProgress.None, (index: number) => this.remove(index), 0, 0)));
+		this.files = this.files.concat(Utils.collectionToArray(fileList).filter(f => f.size <= FileUploaderComponent.SIZE_LIMIT).map(f => new FileUploaderListItem(f, UploadProgress.None, (index: number) => this.remove(index), 0, 0)));
 		if (!this.multiple) {
 			this.files.splice(0, this.files.length - 1);
 		}
@@ -108,7 +108,7 @@ export class FileUploaderComponent extends List {
 		this.uploading = true;
 		this.files.forEach(file => {
 			file.progress = UploadProgress.Waiting;
-			promise = Utils.WaterFall(promise, () => {
+			promise = Utils.waterFall(promise, () => {
 				file.progress = UploadProgress.Reading;
 			}, () => this.readFile(file.file), content => {
 				file.progress = UploadProgress.Uploading;

@@ -18,7 +18,7 @@ export class DragAndDropTestComponent {
 		if (textValue) {
 			this.text = textValue;
 		} else if (transfer.files.length > 0) {
-			this.text = Utils.CollectionToArray(transfer.files).map(f => f.name).join(', ');
+			this.text = Utils.collectionToArray(transfer.files).map(f => f.name).join(', ');
 		}
 	}
 }

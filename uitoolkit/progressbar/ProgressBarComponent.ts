@@ -1,4 +1,5 @@
 import { Component, Input, ContentChild, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Utils } from '../utils/Utils';
 
 @Component({
 	selector: 'uiprogressbar',
@@ -26,15 +27,10 @@ export class ProgressBarComponent implements AfterViewInit {
 	}
 
 	protected calculatePercent(value: number): number {
-		if (Math.abs(this.max - this.min) < 0.000001) {
+		if (Utils.numberEquals(this.max, this.min)) {
 			return 0;
 		}
 		const calculated = ((value - this.min) / this.max - this.min) * 100;
-		if (calculated > 100)
-			return 100;
-		else if (calculated < 0)
-			return 0;
-		else
-			return calculated;
+		return Utils.limit(calculated, this.min, this.max);
 	}
 }

@@ -1,0 +1,15 @@
+uislider {
+    .slider-background {
+        height: $slider-height;
+        background: $slider-background-color;
+        border-radius: $slider-border-radius;
+    }
+
+    .slider-foreground {
+        height: $slider-height;
+        background: $slider-foreground-color;
+        border-radius: $slider-border-radius;
+        position: relative;
+        transition: width $slider-width-transition-duration;
+    }
+}

@@ -14,6 +14,7 @@ import { SourceComponent } from './source';
 
 import { LocalizeTesterComponent, LocalizeTestComponent } from './modules/localize';
 import { ProgressBarTesterComponent, ProgressBarTestComponent } from './modules/progressbar';
+import { SliderTesterComponent, SliderTestComponent } from './modules/slider';
 import { DragAndDropTesterComponent, DragAndDropTestComponent } from './modules/draganddrop';
 import { ButtonTesterComponent, ButtonTestComponent } from './modules/button';
 import { FileUploadTesterComponent, FileUploadTestComponent } from './modules/fileupload';
@@ -38,6 +39,8 @@ const debug = true;
 		LocalizeTestComponent,
 		ProgressBarTesterComponent,
 		ProgressBarTestComponent,
+		SliderTestComponent,
+		SliderTesterComponent,
 		DragAndDropTesterComponent,
 		DragAndDropTestComponent,
 		ButtonTesterComponent,

@@ -3,6 +3,7 @@ import { LocalizationResolver } from 'uitoolkit/localization/LocalizationResolve
 import { MainMenuComponent } from './menu';
 import { LocalizeTesterComponent } from './modules/localize';
 import { ProgressBarTesterComponent } from './modules/progressbar';
+import { SliderTesterComponent } from './modules/slider';
 import { DragAndDropTesterComponent } from './modules/draganddrop';
 import { ButtonTesterComponent } from './modules/button';
 import { FileUploadTesterComponent } from './modules/fileupload';
@@ -43,6 +44,10 @@ export const routerConfig: Routes = [
         {
             path: 'datagrid',
             component: DataGridTesterComponent,
+        },
+        {
+            path: 'slider',
+            component: SliderTesterComponent,
         }],
         resolve: {
             localizeData: LocalizationResolver

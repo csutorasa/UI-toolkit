@@ -19,6 +19,8 @@ import { DragAndDropDirective } from './draganddrop/DropDirective';
 
 import { ProgressBarComponent } from './progressbar/ProgressBarComponent';
 
+import { SliderComponent } from './slider/SliderComponent';
+
 import { ButtonDirective } from './button/ButtonDirective';
 
 import { FileUploaderComponent } from './fileuploader/FileUploaderComponent';
@@ -49,6 +51,7 @@ import { LocalStorage } from './storage/LocalStorage';
         DataGridComponent,
         DragAndDropDirective,
         ProgressBarComponent,
+        SliderComponent,
         ButtonDirective,
         FileUploaderComponent,
         SearchboxComponent
@@ -63,6 +66,7 @@ import { LocalStorage } from './storage/LocalStorage';
         DataGridComponent,
         DragAndDropDirective,
         ProgressBarComponent,
+        SliderComponent,
         ButtonDirective,
         FileUploaderComponent,
         SearchboxComponent

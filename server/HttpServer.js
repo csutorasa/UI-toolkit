@@ -97,7 +97,7 @@ class HttpServer {
 					break;
 			}
 		} else {
-			this.writeMethodNotAllowed();
+			this.writeMethodNotAllowed(res);
 		}
 	}
 

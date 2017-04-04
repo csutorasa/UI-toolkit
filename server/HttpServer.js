@@ -183,7 +183,7 @@ class HttpServer {
 		res.end();
 	}
 
-	writeMethodNotAllowed() {
+	writeMethodNotAllowed(res) {
 		res.writeHead(405, { 'Content-Type': 'text/plain' });
 		res.write('405 Method Not Allowed\n');
 		res.end();

@@ -36,6 +36,7 @@
     "@types/es6-shim": "^0.31.32",
     "@types/node": "^7.0.12",
     "@types/reflect-metadata": "0.0.5",
+    "@types/webpack": "^2.2.14",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "node-sass": "^4.5.2",
@@ -43,8 +44,10 @@
     "rimraf": "^2.6.1",
     "rxjs": "^5.2.0",
     "systemjs": "^0.19.46",
+    "ts-loader": "^2.0.3",
     "typescript": "^2.2.1",
     "uglify": "^0.1.5",
+    "webpack": "^2.3.3",
     "zone.js": "^0.7.8"
   },
   "devDependencies": {

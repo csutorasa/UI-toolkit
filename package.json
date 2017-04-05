@@ -4,7 +4,7 @@
   "description": "UI toolkit Showcase",
   "main": "server.js",
   "scripts": {
-    "install": "npm run clean && npm run typescript",
+    "install": "npm run clean && npm run typescript && cd uitoolkit && npm install",
     "start": "node server.js",
     "test": "echo \"No tests are specified\"",
     "watch": "concurrently --prefix \"[{name}]\" --names \"TypeScript,Sass\" \"npm run typescript-watch\" \"npm run sass-watch\"",

@@ -101,10 +101,10 @@ export class FileUploaderComponent extends List {
 			}, () => this.readFile(file.file), content => {
 				file.progress = UploadProgress.Uploading;
 				return content;
-			}, content => this.http.post('/upload', { filename: file.file.name, size: file.file.size, content: content }).toPromise(), () => {
+			}, content => this.http.post('/upload', { filename: file.file.name, size: file.file.size, content: content }).forEach(() => {
 				file.progress = UploadProgress.Done;
 				this.doneCount++;
-			});
+			}));
 		});
 		promise = promise.then(() => {
 			this.uploading = false;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Utils } from 'uitoolkit/utils/Utils';
+import { Utils } from 'uitoolkit';
 import { CreateTesterComponentData } from '../source';
 
 @Component(CreateTesterComponentData('datagrid'))

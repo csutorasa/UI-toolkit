@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
-import { LocalizationService } from 'uitoolkit/localization/LocalizationService';
+import { LocalizationService } from 'uitoolkit';
 
 @Component({
 	selector: 'my-app',

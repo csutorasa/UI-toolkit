@@ -1,18 +1,19 @@
 {
-  "name": "ui-toolkit-showcase",
+  "name": "ui-toolkit",
   "version": "1.0.0",
-  "description": "UI toolkit Showcase",
+  "description": "UI-toolkit",
   "main": "server.js",
   "scripts": {
-    "install": "npm run clean && npm run typescript",
-    "start": "node server.js",
+    "install": "npm run clean && npm run webpack && npm run sass",
+    "start": "echo \"Nothing to start\"",
     "test": "echo \"No tests are specified\"",
     "watch": "concurrently --prefix \"[{name}]\" --names \"TypeScript,Sass\" \"npm run typescript-watch\" \"npm run sass-watch\"",
-    "clean": "rimraf upload",
-    "typescript": "tsc --project ./server",
-    "typescript-watch": "tsc --watch --project ./server",
-    "sass": "node-sass --output-style compressed uitoolkit/main.scss target/main.css",
-    "sass-watch": "node-sass --watch --output-style compressed uitoolkit/main.scss target/main.css"
+    "clean": "rimraf bundles",
+    "webpack": "webpack --config webpackdev.config.js && webpack --config webpackprod.config.js",
+    "typescript": "tsc --project .",
+    "typescript-watch": "tsc --watch --project .",
+    "sass": "node-sass --output-style compressed index.scss bundles/uitoolkit.css",
+    "sass-watch": "node-sass --watch --output-style compressed main.scss bundles/uitoolkit.css"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,8 @@
     "url": "https://github.com/csutorasa/UI-toolkit/issues"
   },
   "homepage": "https://github.com/csutorasa/UI-toolkit#readme",
-  "dependencies": {
+  "peerDependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
     "@angular/common": "^2.4.9",
     "@angular/compiler": "^2.4.9",
     "@angular/core": "^2.4.9",
@@ -33,22 +35,20 @@
     "@angular/platform-browser": "^2.4.9",
     "@angular/platform-browser-dynamic": "^2.4.9",
     "@angular/router": "^3.4.9",
+    "rxjs": "^5.2.0",
+    "zone.js": "^0.7.8"
+  },
+  "dependencies": {
     "@types/es6-shim": "^0.31.32",
     "@types/node": "^7.0.12",
     "@types/reflect-metadata": "0.0.5",
-    "@types/webpack": "^2.2.14",
-    "bootstrap": "^4.0.0-alpha.6",
-    "core-js": "^2.4.1",
     "node-sass": "^4.5.2",
     "reflect-metadata": "^0.1.10",
     "rimraf": "^2.6.1",
-    "rxjs": "^5.3.0",
     "systemjs": "^0.19.46",
     "ts-loader": "^2.0.3",
     "typescript": "^2.2.1",
-    "uglify": "^0.1.5",
-    "webpack": "^2.3.3",
-    "zone.js": "^0.7.8"
+    "webpack": "^2.3.3"
   },
   "devDependencies": {
     "concurrently": "^3.4.0"

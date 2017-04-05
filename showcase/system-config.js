@@ -3,10 +3,7 @@ System.config({
 	typescriptOptions: {
 		target: "es5",
 		emitDecoratorMetadata: true,
-        experimentalDecorators: true,
-		paths: {
-            "uitoolkit/*": ["./uitoolkit/*"]
-		}
+        experimentalDecorators: true
 	},
 	map: {
 		'src': './src',
@@ -21,15 +18,13 @@ System.config({
 		'@angular/router': '@angular/router/bundles/router.umd.min.js',
 
 		'rxjs': 'rxjs',
-		'typescript': 'typescript/lib/typescript.js'
+		'typescript': 'typescript/lib/typescript.js',
+		'uitoolkit': 'uitoolkit.umd.js'
 	},
 	packages: {
 		src: {
 			main: './main.ts',
 			defaultExtension: 'ts'
-		},
-		uitoolkit: {
-			defaultExtension: 'js'
 		},
 		rxjs: {
 			defaultExtension: 'js'

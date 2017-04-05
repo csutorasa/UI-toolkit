@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LocalizationResolver } from 'uitoolkit/localization/LocalizationResolver';
+import { LocalizationResolver } from 'uitoolkit';
 import { MainMenuComponent } from './menu';
 import { LocalizeTesterComponent } from './modules/localize';
 import { ProgressBarTesterComponent } from './modules/progressbar';

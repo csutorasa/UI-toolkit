@@ -7,6 +7,9 @@ const localization = require('./localization.json');
 
 export class HttpServer {
 	protected http: http.Server;
+	protected defaultProcessor: RequestProcessor = new DefaultProcessor();
+	protected getProcessor: RequestProcessor = new GetProcessor();
+	protected postProcessor: RequestProcessor = new PostProcessor();
 	constructor() {
 		this.http = http.createServer((req, res) => this.process(req, res));
 	}
@@ -37,82 +40,19 @@ export class HttpServer {
 
 	protected process(req: http.ServerRequest, res: http.ServerResponse) {
 		if (req.method === 'GET') {
-			const filename = this.readFilename(req, ['/showcase', '/target', '/node_modules', '/upload']);
-			if (filename) {
-				this.writeFile(res, filename);
-			} else {
-				this.writeNotFound(res);
-			}
+			this.getProcessor.process(req, res);
 		} else if (req.method === 'POST') {
-			switch (req.url) {
-				case '/localization':
-					this.readBody(req, data => {
-						const json = JSON.parse(data);
-						const localizationData = this.getTranslation(json.language);
-						this.writeObject(res, localizationData);
-					})
-					break;
-				case '/languages':
-					this.readBody(req, data => {
-						this.writeObject(res, ['en', 'hu']);
-					})
-					break;
-				case '/search':
-					this.readBody(req, data => {
-						const search = data.toLowerCase();
-						const starts = [];
-						const matches = [];
-						colors.forEach(c => {
-							const index = c.toLowerCase().indexOf(search);
-							if (index === 0) {
-								starts.push(c);
-							} else if (index > 0) {
-								matches.push(c);
-							}
-						});
-						const result = starts.concat(matches).slice(0, 100);
-						this.writeObject(res, result);
-					})
-					break;
-				case '/upload':
-					this.readBody(req, data => {
-						const json = JSON.parse(data);
-						try {
-							fs.statSync('upload');
-							// exists
-						} catch (ex) {
-							// not exists
-							fs.mkdirSync('upload');
-						}
-						fs.writeFile('upload/' + json.filename, json.content, 'binary', err => {
-							if (err) {
-								this.writeInternalError(res, err);
-							} else {
-								this.writeObject(res, {});
-							}
-						});
-					});
-					break;
-				default:
-					this.writeNotFound(res);
-					break;
-			}
+			this.postProcessor.process(req, res);
 		} else {
-			this.writeMethodNotAllowed(res);
+			this.defaultProcessor.process(req, res);
 		}
 	}
+}
 
-	protected getTranslation(language: string): { [k: string]: string } {
-		switch (language) {
-			case 'hu':
-				return localization.hu;
-			case 'en':
-				return localization.en;
-			default: return {};
-		}
-	}
+abstract class RequestProcessor {
+	public abstract process(req: http.ServerRequest, res: http.ServerResponse): void;
 
-	protected readBody(req: http.ServerRequest, callback: (string) => void) {
+	protected readBody(req: http.ServerRequest, callback: (data: string) => void) {
 		var body = '';
 
 		req.on('data', function (data) {
@@ -127,28 +67,6 @@ export class HttpServer {
 		});
 	}
 
-	protected readFilename(req, paths) {
-		if (!(paths instanceof Array))
-			return undefined;
-
-		for (let basepath of paths) {
-			const base = path.join(process.cwd(), basepath);
-			const uri = url.parse(req.url).pathname;
-			const filename = path.join(base, uri);
-			try {
-				const stat = fs.statSync(filename);
-				if (stat.isDirectory()) {
-					return path.join(filename, '/index.html');
-				}
-				return filename;
-			}
-			catch (ex) {
-				// file not Found
-			}
-		}
-		return undefined;
-	}
-
 	protected getContentType(filename: string): string {
 		const ext = path.extname(filename);
 		switch (ext) {
@@ -160,16 +78,10 @@ export class HttpServer {
 		}
 	}
 
-	protected writeObject(res: http.ServerResponse, object: any): void {
-		res.writeHead(200, { 'Content-Type': 'application/json' });
-		res.write(JSON.stringify(object));
-		res.end();
-	}
-
 	protected writeFile(res: http.ServerResponse, filename: string): void {
 		fs.readFile(filename, 'binary', (err, file) => {
 			if (err) {
-				this.writeInternalError(res, err);
+				this.writeNotFound(res);
 			} else {
 				res.writeHead(200, { 'Content-Type': this.getContentType(filename) + '; charset=utf-8' });
 				res.write(file, 'binary');
@@ -194,5 +106,130 @@ export class HttpServer {
 		res.writeHead(500, { 'Content-Type': 'text/plain' });
 		res.write(err + '\n');
 		res.end();
+	}
+	protected writeObject(res: http.ServerResponse, object: any): void {
+		res.writeHead(200, { 'Content-Type': 'application/json' });
+		res.write(JSON.stringify(object));
+		res.end();
+	}
+}
+
+class DefaultProcessor extends RequestProcessor {
+	public process(req: http.ServerRequest, res: http.ServerResponse): void {
+		this.writeMethodNotAllowed(res);
+	}
+}
+
+class GetProcessor extends RequestProcessor {
+	public process(req: http.ServerRequest, res: http.ServerResponse): void {
+		const filename = this.readFilename(req, ['/showcase', '/uitoolkit/bundles', '/node_modules', '/upload']);
+		if (filename) {
+			this.writeFile(res, filename);
+		} else {
+			this.writeNotFound(res);
+		}
+	}
+
+	protected readFilename(req, paths) {
+		if (!(paths instanceof Array))
+			return undefined;
+
+		for (let basepath of paths) {
+			const base = path.join(process.cwd(), basepath);
+			const uri = url.parse(req.url).pathname;
+			const filename = path.join(base, uri);
+			try {
+				const stat = fs.statSync(filename);
+				if (stat.isDirectory()) {
+					return path.join(filename, '/index.html');
+				}
+				return filename;
+			}
+			catch (ex) {
+				// file not Found
+			}
+		}
+		return undefined;
+	}
+}
+
+class PostProcessor extends RequestProcessor {
+	public process(req: http.ServerRequest, res: http.ServerResponse): void {
+		switch (req.url) {
+			case '/localization':
+				this.readBody(req, data => {
+					this.localization(req, res, data);
+				});
+				break;
+			case '/languages':
+				this.languages(req, res);
+				break;
+			case '/search':
+				this.readBody(req, data => {
+					this.search(req, res, data);
+				})
+				break;
+			case '/upload':
+				this.readBody(req, data => {
+					this.upload(req, res, data);
+				});
+				break;
+			default:
+				this.writeNotFound(res);
+				break;
+		}
+	}
+
+	protected localization(req: http.ServerRequest, res: http.ServerResponse, data: string): void {
+		const json = JSON.parse(data);
+		let localizationData;
+		switch (json.language) {
+			case 'hu':
+				localizationData = localization.hu;
+				break;
+			case 'en':
+				localizationData = localization.en;
+				break;
+			default: localizationData = {};
+		}
+		this.writeObject(res, localizationData);
+	}
+
+	protected languages(req: http.ServerRequest, res: http.ServerResponse): void {
+		this.writeObject(res, ['en', 'hu']);
+	}
+
+	protected search(req: http.ServerRequest, res: http.ServerResponse, data: string): void {
+		const search = data.toLowerCase();
+		const starts = [];
+		const matches = [];
+		colors.forEach(c => {
+			const index = c.toLowerCase().indexOf(search);
+			if (index === 0) {
+				starts.push(c);
+			} else if (index > 0) {
+				matches.push(c);
+			}
+		});
+		const result = starts.concat(matches).slice(0, 100);
+		this.writeObject(res, result);
+	}
+
+	protected upload(req: http.ServerRequest, res: http.ServerResponse, data: string): void {
+		const json = JSON.parse(data);
+		try {
+			fs.statSync('upload');
+			// exists
+		} catch (ex) {
+			// not exists
+			fs.mkdirSync('upload');
+		}
+		fs.writeFile('upload/' + json.filename, json.content, 'binary', err => {
+			if (err) {
+				this.writeInternalError(res, err);
+			} else {
+				this.writeObject(res, {});
+			}
+		});
 	}
 }

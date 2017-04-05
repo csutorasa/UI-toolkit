@@ -15,8 +15,9 @@ pids
 # Optional npm cache directory
 .npm
 
-# Target directory
+# Target
 target
+server/*.js
 
-# Upload directory
+# Upload
 upload

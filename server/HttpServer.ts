@@ -1,17 +1,18 @@
-const http = require('http');
-const url = require('url');
-const path = require('path');
-const fs = require('fs');
+import * as http from 'http';
+import * as url from 'url';
+import * as path from 'path';
+import * as fs from 'fs';
 const colors = require('./colors.json').colors;
 const localization = require('./localization.json');
 
-class HttpServer {
+export class HttpServer {
+	protected http: http.Server;
 	constructor() {
 		this.http = http.createServer((req, res) => this.process(req, res));
 	}
 
-	listen(host, port) {
-		return new Promise((resolve, reject) => {
+	public listen(host: string, port: number): Promise<void> {
+		return new Promise<void>((resolve, reject) => {
 			this.http.listen(port, host, 511, err => {
 				if (err) {
 					reject(err);
@@ -22,8 +23,8 @@ class HttpServer {
 		});
 	}
 
-	close() {
-		return new Promise((resolve, reject) => {
+	public close(): Promise<void> {
+		return new Promise<void>((resolve, reject) => {
 			this.http.close(err => {
 				if (err) {
 					reject(err);
@@ -34,7 +35,7 @@ class HttpServer {
 		});
 	}
 
-	process(req, res) {
+	protected process(req: http.ServerRequest, res: http.ServerResponse) {
 		if (req.method === 'GET') {
 			const filename = this.readFilename(req, ['/showcase', '/target', '/node_modules', '/upload']);
 			if (filename) {
@@ -101,7 +102,7 @@ class HttpServer {
 		}
 	}
 
-	getTranslation(language) {
+	protected getTranslation(language: string): { [k: string]: string } {
 		switch (language) {
 			case 'hu':
 				return localization.hu;
@@ -111,14 +112,14 @@ class HttpServer {
 		}
 	}
 
-	readBody(req, callback) {
+	protected readBody(req: http.ServerRequest, callback: (string) => void) {
 		var body = '';
 
 		req.on('data', function (data) {
 			body += data;
 
 			if (body.length > 100001000)
-				request.connection.destroy();
+				req.connection.destroy();
 		});
 
 		req.on('end', function () {
@@ -126,7 +127,7 @@ class HttpServer {
 		});
 	}
 
-	readFilename(req, paths) {
+	protected readFilename(req, paths) {
 		if (!(paths instanceof Array))
 			return undefined;
 
@@ -148,7 +149,7 @@ class HttpServer {
 		return undefined;
 	}
 
-	getContentType(filename) {
+	protected getContentType(filename: string): string {
 		const ext = path.extname(filename);
 		switch (ext) {
 			case '.html': return 'text/html';
@@ -159,13 +160,13 @@ class HttpServer {
 		}
 	}
 
-	writeObject(res, object) {
+	protected writeObject(res: http.ServerResponse, object: any): void {
 		res.writeHead(200, { 'Content-Type': 'application/json' });
 		res.write(JSON.stringify(object));
 		res.end();
 	}
 
-	writeFile(res, filename) {
+	protected writeFile(res: http.ServerResponse, filename: string): void {
 		fs.readFile(filename, 'binary', (err, file) => {
 			if (err) {
 				this.writeInternalError(res, err);
@@ -177,23 +178,21 @@ class HttpServer {
 		});
 	}
 
-	writeNotFound(res) {
+	protected writeNotFound(res: http.ServerResponse): void {
 		res.writeHead(404, { 'Content-Type': 'text/plain' });
 		res.write('404 Not Found\n');
 		res.end();
 	}
 
-	writeMethodNotAllowed(res) {
+	protected writeMethodNotAllowed(res: http.ServerResponse): void {
 		res.writeHead(405, { 'Content-Type': 'text/plain' });
 		res.write('405 Method Not Allowed\n');
 		res.end();
 	}
 
-	writeInternalError(res, err) {
+	protected writeInternalError(res: http.ServerResponse, err: any): void {
 		res.writeHead(500, { 'Content-Type': 'text/plain' });
 		res.write(err + '\n');
 		res.end();
 	}
 }
-
-module.exports = HttpServer;

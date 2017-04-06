@@ -30,8 +30,8 @@ export class FileUploaderListItem extends ListItem {
 	</div>
 	<div class="fileuploader-drop-zone" (uidrop)="onDrop($event)">
 		<div *ngFor="let f of files;let last=last;">
-			<template [templatecreator]="listElement.template" [data]="f"></template>
-			<template [templatecreator]="listElementSeparator.template" *ngIf="!last && listElementSeparator"></template>
+			<ng-template [templatecreator]="listElement.template" [data]="f"></ng-template>
+			<ng-template [templatecreator]="listElementSeparator.template" *ngIf="!last && listElementSeparator"></ng-template>
 		</div>
 	</div>
 	<div class="fileuploader-spacing">

@@ -30,12 +30,12 @@ export class SearchBoxListItem extends ListItem {
 @Component({
 	selector: 'uisearchbox',
 	template: `<div (focusout)="lostFocus($event)">
-	<template [templatecreator]="inputTemplate.template" [data]="inputTemplateData"></template>
+	<ng-template [templatecreator]="inputTemplate.template" [data]="inputTemplateData"></ng-template>
 	<div class="searchbox-element-list" tabindex="0" #searchBoxList (keydown)="keydown($event)">
 		<div [hidden]="!isOpen" class="searchbox-list-elements" #elementContainer>
 			<div *ngFor="let d of dataSource;let last=last;" (click)="selectValue(d.value)" class="searchbox-list-element">
-				<template [templatecreator]="listElement.template" [data]="d"></template>
-				<template [templatecreator]="listElementSeparator.template" *ngIf="!last && listElementSeparator"></template>
+				<ng-template [templatecreator]="listElement.template" [data]="d"></ng-template>
+				<ng-template [templatecreator]="listElementSeparator.template" *ngIf="!last && listElementSeparator"></ng-template>
 			</div>
 		</div>
 	</div>

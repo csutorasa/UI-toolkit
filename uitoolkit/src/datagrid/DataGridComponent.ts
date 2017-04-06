@@ -26,7 +26,7 @@ export class DataGridListItem extends ListItem {
     <tbody>
         <tr *ngFor="let row of rows">
             <td *ngFor="let column of columns">
-                <template [templatecreator]="column.template" [data]="row"></template>
+                <ng-template [templatecreator]="column.template" [data]="row"></ng-template>
             </td>
         </tr>
     </tbody>

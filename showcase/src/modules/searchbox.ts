@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http';
 import { CreateTesterComponentData } from '../source';
+import { Observable } from 'rxjs/Rx';
 
 @Component(CreateTesterComponentData('searchbox'))
 export class SearchBoxTesterComponent { }

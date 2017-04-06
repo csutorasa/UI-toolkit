@@ -16,6 +16,7 @@ uitoolkit/**/*.d.ts
 uitoolkit/**/*.css
 !uitoolkit/webpackdev.config.js
 !uitoolkit/webpackprod.config.js
+showcase/bundles
 server/**/*.js
 
 # Server uploads directory

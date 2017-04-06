@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { LocalizationService } from 'uitoolkit';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
 	selector: 'my-app',

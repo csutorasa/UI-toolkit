@@ -8,7 +8,7 @@ export class FileUploadTesterComponent { }
 	selector: 'fileupload-test',
 	template: `<uifileuploader [multiple]="false" (uploaded)="log($event)">
 	<uilistelement>
-		<div template="let file=file;let progress=progress;let index= index;">
+		<div *template="let file=file;let progress=progress;let index= index;">
 			{{ file.name }}
 			{{ progress === 0 ? '' : (progress === 1 ? 'Waiting' : (progress === 2 ? 'Reading' : (progress === 3 ? 'Uploading' : 'Done')))}}
 			<button (click)="remove(index)" buttonstyle="danger" *ngIf="!uploading">X</button>
@@ -17,14 +17,14 @@ export class FileUploadTesterComponent { }
 </uifileuploader>
 <uifileuploader (uploaded)="log($event)">
 	<uilistelement>
-		<div template="let file=file;let progress=progress;let remove=remove;" class="file-list-element-container">
+		<div *template="let file=file;let progress=progress;let remove=remove;" class="file-list-element-container">
 			<div class="file-list-element">{{ file.name }}</div>
 			<div class="file-list-element">{{ progress === 0 ? '' : (progress === 1 ? 'Waiting' : (progress === 2 ? 'Reading' : (progress === 3 ? 'Uploading' : 'Done')))}}</div>
 			<div class="file-list-element"><button (click)="remove()" buttonstyle="danger">X</button></div>
 		</div>
 	</uilistelement>
 	<uilistelementseparator>
-		<div template class="list-element-separator"></div>
+		<div *template class="list-element-separator"></div>
 	</uilistelementseparator>
 </uifileuploader>`,
 })

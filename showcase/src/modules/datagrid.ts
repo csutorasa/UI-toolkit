@@ -14,12 +14,12 @@ export interface DataType {
 	selector: 'datagrid-test',
 	template: `<uidatagrid [data]="dataSource">
     <column header="Keys" [sort]="sortByKey">
-        <div template="let data=data">
+        <div *template="let data=data">
             {{data.key}}
         </div>
     </column>
     <column header="Values" [sort]="sortByValue">
-        <div template="let data=data">
+        <div *template="let data=data">
             {{data.value}}
         </div>
     </column>

@@ -81,7 +81,7 @@ abstract class RequestProcessor {
 	protected writeFile(res: http.ServerResponse, filename: string): void {
 		fs.readFile(filename, 'binary', (err, file) => {
 			if (err) {
-				this.writeNotFound(res);
+				this.writeInternalError(res, err);
 			} else {
 				res.writeHead(200, { 'Content-Type': this.getContentType(filename) + '; charset=utf-8' });
 				res.write(file, 'binary');
@@ -122,7 +122,7 @@ class DefaultProcessor extends RequestProcessor {
 
 class GetProcessor extends RequestProcessor {
 	public process(req: http.ServerRequest, res: http.ServerResponse): void {
-		const filename = this.readFilename(req, ['/showcase', '/uitoolkit/bundles', '/node_modules', '/upload']);
+		const filename = this.readFilename(req, ['/showcase/bundles', '/showcase/public', '/uitoolkit/bundles', '/node_modules', '/upload']);
 		if (filename) {
 			this.writeFile(res, filename);
 		} else {
@@ -133,15 +133,15 @@ class GetProcessor extends RequestProcessor {
 	protected readFilename(req, paths) {
 		if (!(paths instanceof Array))
 			return undefined;
-
 		for (let basepath of paths) {
 			const base = path.join(process.cwd(), basepath);
 			const uri = url.parse(req.url).pathname;
-			const filename = path.join(base, uri);
+			let filename = path.join(base, uri);
 			try {
 				const stat = fs.statSync(filename);
 				if (stat.isDirectory()) {
-					return path.join(filename, '/index.html');
+					filename = path.join(filename, '/index.html');
+					fs.statSync(filename);
 				}
 				return filename;
 			}

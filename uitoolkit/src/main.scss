@@ -1,9 +1,5 @@
 @import 'config';
 
-body {
-    width: $default-value;
-}
-
 @import 'progressbar/progressbar';
 @import 'slider/slider';
 @import 'fileuploader/fileuploader';

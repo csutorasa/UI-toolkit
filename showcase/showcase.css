@@ -1,6 +1,7 @@
 /* General */
 
 body {
+    width: 100%;
     background: #ddd;
     margin: 0;
 }

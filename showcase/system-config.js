@@ -1,6 +1,6 @@
 System.config({
 	map: {
-		'src': 'bundles/showcase.min.js'
+		'src': 'bundles/showcase.js'
 	}
 });
 

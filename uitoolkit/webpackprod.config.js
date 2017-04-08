@@ -72,5 +72,8 @@ module.exports = {
                 keep_fnames: true  // https://github.com/angular/angular/issues/10618
             }
         })
-    ]
+    ],
+    watchOptions: {
+        ignored: /node_modules/
+    }
 };

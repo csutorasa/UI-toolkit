@@ -72,5 +72,8 @@ module.exports = {
                 keep_fnames: true
             }
         })*/
-    ]
+    ],
+    watchOptions: {
+        ignored: /node_modules/
+    }
 };

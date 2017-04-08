@@ -4,16 +4,17 @@
   "description": "UI-toolkit",
   "main": "server.js",
   "scripts": {
-    "install": "npm run clean && npm run webpack && npm run sass",
+    "install": "npm run clean && npm run buildjs && npm run buildcss",
     "start": "echo \"Nothing to start\"",
     "test": "echo \"No tests are specified\"",
-    "watch": "concurrently --prefix \"[{name}]\" --names \"TypeScript,Sass\" \"npm run typescript-watch\" \"npm run sass-watch\"",
+    "watch": "concurrently --prefix \"[{name}]\" --names \"WebpackDev,WebpackMin,CSS\" \"npm run watchdevjs\" \"npm run watchprodjs\" \"npm run watchcss\"",
     "clean": "rimraf bundles",
-    "webpack": "webpack --config webpackdev.config.js && webpack --config webpackprod.config.js",
-    "typescript": "tsc --project .",
-    "typescript-watch": "tsc --watch --project .",
-    "sass": "node-sass --output-style compressed index.scss bundles/uitoolkit.css",
-    "sass-watch": "node-sass --watch --output-style compressed main.scss bundles/uitoolkit.css"
+    "buildjs": "webpack --config webpackdev.config.js && webpack --config webpackprod.config.js",
+    "watchdevjs": "webpack --config webpackdev.config.js --watch",
+    "watchprodjs": "webpack --config webpackprod.config.js --watch",
+    "buildcss": "node-sass --output-style compressed index.scss bundles/uitoolkit.css",
+    "watchcss": "node-sass --watch --output-style compressed index.scss bundles/uitoolkit.css",
+    "typescript": "tsc --project ."
   },
   "repository": {
     "type": "git",

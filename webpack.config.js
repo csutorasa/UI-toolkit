@@ -1,9 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const toolkitFile = path.join(__dirname, 'uitoolkit', 'bundles', 'uitoolkit.umd.min.js');
+
 module.exports = {
     entry: {
-        'showcase.min': path.join(__dirname, 'showcase', 'src', './main.ts')
+        'showcase': path.join(__dirname, 'showcase', 'src', './main.ts')
     },
     output: {
         path: path.join(__dirname, 'showcase', 'bundles'),
@@ -11,28 +13,26 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'uitoolkit': path.join(__dirname, 'uitoolkit', 'bundles', 'uitoolkit.umd.js'),
+            'uitoolkit': toolkitFile,
             'rxjs/Rx': path.join(__dirname, 'node_modules', 'rxjs', 'Rx.js')
         },
         extensions: ['.ts', '.js']
     },
     module: {
         loaders: [
-            { 
-                test: /\.ts$/, 
+            {
+                test: /\.ts$/,
                 loader: "ts-loader"
             }
         ]
     },
     plugins: [
-        /*new webpack.optimize.UglifyJsPlugin({ // https://github.com/angular/angular/issues/10618
-            mangle: {
-                keep_fnames: true
-            }
-        }),*/
         new webpack.ContextReplacementPlugin(
             /@angular/,
             path.join(__dirname, 'showcase', 'src')
         )
-    ]
+    ],
+    watchOptions: {
+        ignored: /node_modules/
+    }
 };

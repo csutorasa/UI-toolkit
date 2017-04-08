@@ -8,7 +8,7 @@
     "start": "echo \"Nothing to start\"",
     "test": "echo \"No tests are specified\"",
     "watch": "concurrently --prefix \"[{name}]\" --names \"WebpackDev,WebpackMin,CSS\" \"npm run watchdevjs\" \"npm run watchprodjs\" \"npm run watchcss\"",
-    "clean": "rimraf bundles",
+    "clean": "rimraf bundles && rimraf src/**/*.d.ts",
     "buildjs": "webpack --config webpackdev.config.js && webpack --config webpackprod.config.js",
     "watchdevjs": "webpack --config webpackdev.config.js --watch",
     "watchprodjs": "webpack --config webpackprod.config.js --watch",

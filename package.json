@@ -8,7 +8,7 @@
     "start": "node server.js",
     "test": "echo \"No tests are specified\"",
     "watch": "concurrently --prefix \"[{name}]\" --names \"Server,ToolkitJS,ToolkitCSS,Showcase\" \"npm run watchserver\" \"npm run watchtoolkitjs\" \"npm run watchtoolkitcss\" \"npm run watchjs\"",
-    "clean": "rimraf upload",
+    "clean": "rimraf upload && rimraf server/*.js && rimraf showcase/bundles",
     "installtoolkit": "cd uitoolkit && npm install",
     "buildtoolkitjs": "cd uitoolkit && npm buildjs",
     "watchtoolkitjs": "cd uitoolkit && npm run watchprodjs",

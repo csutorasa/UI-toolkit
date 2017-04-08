@@ -29,7 +29,7 @@ export class SliderComponent implements AfterViewInit {
 	@Input('value')
 	public set value(value: number) {
 		let actualValue = value;
-		if(this.step != null) {
+		if (this.step != null) {
 			actualValue = Math.round(value / this.step) * this.step;
 		}
 		if (this.fillDiv) {
@@ -52,10 +52,11 @@ export class SliderComponent implements AfterViewInit {
 		this.mouseUpEventHandler = (event => this.up(event));
 		document.addEventListener('mousemove', this.mouseMoveEventHandler);
 		document.addEventListener('mouseup', this.mouseUpEventHandler);
+		document.addEventListener('dragend', this.dragend);
 	}
 
 	protected move(event: MouseEvent): void {
-		if(Math.abs(this.clickOffset - event.pageX) > 5) {
+		if (Math.abs(this.clickOffset - event.pageX) > 5) {
 			this.drag = true;
 		}
 		if (new Date().getTime() - this.lastMove > SliderComponent.MINIMUM_MOUSE_MOVE_UPDATE_DELAY) {
@@ -66,6 +67,12 @@ export class SliderComponent implements AfterViewInit {
 
 	protected up(event: MouseEvent): void {
 		this.value = this.calculateValue(event.pageX);
+		document.removeEventListener('mousemove', this.mouseMoveEventHandler);
+		document.removeEventListener('mouseup', this.mouseUpEventHandler);
+		this.drag = false;
+	}
+
+	protected dragend(event: Event): void {
 		document.removeEventListener('mousemove', this.mouseMoveEventHandler);
 		document.removeEventListener('mouseup', this.mouseUpEventHandler);
 		this.drag = false;
@@ -82,7 +89,7 @@ export class SliderComponent implements AfterViewInit {
 			return this.min;
 		}
 		return Utils.limit(this.min + ratio * (this.max - this.min), this.min, this.max);
-	} 
+	}
 
 	protected calculatePercent(value: number): number {
 		if (Utils.numberEquals(this.max, this.min)) {

@@ -28,27 +28,40 @@ body {
     cursor: pointer;
 }
 
-.source-table {
+.source-container {
     width: 100%;
     border: solid 1px #666;
+    display: flex;
 }
 
-.source-table-header {
-    border: solid 1px #666;
+.source-show-hide {
+    float: right;
+}
+
+.source-header {
     height: 40px;
     line-height: 40px;
 }
 
-.source-table-result-cell {
+.source-result {
+    width: 100%;
     vertical-align: top;
     padding: 5px;
 }
 
-.source-table-source-cell {
-    width: 50%;
+.source-code {
+    width: 100%;
+    overflow-x: hidden;
     vertical-align: top;
-    background: #aaa;
-    white-space: pre-wrap;
+    padding: 5px;
+}
+
+.source-code p {
+    white-space: pre;
+    border: solid 1px #666;
+    background: #fff;
+    overflow-x: auto;
+    font-family: "Courier New", Courier, monospace;
 }
 
 /* Drag and Drop */

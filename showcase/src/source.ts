@@ -2,32 +2,34 @@ import { Component, ElementRef, ContentChild, AfterContentInit, ViewContainerRef
 
 @Component({
     selector: 'sources',
-    template: `<table class="source-table">
-    <tr class="source-table-header">
-        <th>
+    template: `<div class="source-container">
+    <div class="source-result">
+        <div class="source-header">
             {{'result' | localize }}
-            <div style="float: right;">
+            <div class="source-show-hide">
                 <button [hidden]="showSource" (click)="showSource = true;" buttonstyle="info">Show source</button>
             </div>
-        </th>
-        <th [hidden]="!showSource">
+        </div>
+        <ng-content></ng-content>
+    </div>
+    <div [hidden]="!showSource" class="source-code">
+        <div class="source-header">
             {{'source' | localize}}
-            <div style="float: right;">
+            <div class="source-show-hide">
                 <button (click)="showSource = false;" buttonstyle="info">Hide source</button>
             </div>
-        </th>
-    </tr>
-    <tr>
-        <td class="source-table-result-cell">
-            <ng-content></ng-content>
-        </td>
-        <td class="source-table-source-cell" [hidden]="!showSource">{{source}}</td>
-    </tr>
-</table>`,
+        </div>
+        <h3>HTML</h3>
+        <p>{{sourceHTML}}</p>
+        <h3>JavaScript</h3>
+        <p>{{sourceJS}}</p>
+    </div>
+</div>`,
 })
 export class SourceComponent implements AfterContentInit {
     @ContentChild('sources') protected component: any;
-    protected source: string;
+    protected sourceHTML: string;
+    protected sourceJS: string;
     protected showSource: boolean = false;
 
     constructor(protected viewContainer: ViewContainerRef) {
@@ -37,12 +39,26 @@ export class SourceComponent implements AfterContentInit {
         const type = this.component.constructor;
         const annotations: Component[] = Reflect.getMetadata('annotations', type);
         if (annotations != null) {
-            this.source = annotations.find(a => a.template != null).template.replace(/^\t/, '');
+            this.sourceHTML = annotations.find(a => a.template != null).template.replace(/^\t/, '');
+            this.sourceJS = this.getSource(type);
         }
         else {
             const elementRef = <ElementRef>this.component;
-            this.source = elementRef.nativeElement.outerHTML;
+            this.sourceHTML = elementRef.nativeElement.outerHTML;
         }
+    }
+
+    protected getSource(type: any): string {
+        let source: string = '';
+        const indent: string = '    ';
+
+        source += 'class ' + type.name + ' {\n';
+        source += indent + 'constructor' + (<string>type.toString()).substring((<string>type.toString()).indexOf('(')) + '\n';
+        for(let key in type.prototype) {
+            source += indent + type.prototype[key].toString().replace('function ', key) + '\n';
+        }
+        source += '}';
+        return source;
     }
 }
 

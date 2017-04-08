@@ -9,42 +9,42 @@ export class SearchBoxTesterComponent { }
 @Component({
 	selector: 'searchbox-test',
 	template: `<h3>Plain</h3>
-<uisearchbox [dataSource]="dataSource">
-	<uiinputtemplate>
+<ui-searchbox [dataSource]="dataSource">
+	<ui-inputtemplate>
 		<input #input *template="let data=data;let events=events" [ngModel]="data.value" (ngModelChange)="events.onChange($event)" (keydown)="events.onKeydown($event)"/>
-	</uiinputtemplate>
-	<uilistelement>
+	</ui-inputtemplate>
+	<ui-listelement>
 		<div *template="let value=value;" class="list-element-nostyle">{{value}}</div>
-	</uilistelement>
-</uisearchbox>
+	</ui-listelement>
+</ui-searchbox>
 
 <h3>With design</h3>
-<uisearchbox [dataSource]="dataSource" value="test">
-	<uiinputtemplate>
+<ui-searchbox [dataSource]="dataSource" value="test">
+	<ui-inputtemplate>
 		<input *template="let data=data;let events=events" class="input-template" placeholder="Test input" [ngModel]="data.value" (ngModelChange)="events.onChange($event)" (keydown)="events.onKeydown($event)" spellcheck="false"/>
-	</uiinputtemplate>
-	<uilistelement>
+	</ui-inputtemplate>
+	<ui-listelement>
 		<div *template="let value=value;let selected=selected;let first=first;let last=last;" class="list-element"
 		[ngClass]="{'list-element-selected': selected, 'list-element-first': first, 'list-element-last': last}">{{value}}</div>
-	</uilistelement>
-	<uilistelementseparator>
+	</ui-listelement>
+	<ui-listelementseparator>
 		<div *template class="list-element-separator"></div>
-	</uilistelementseparator>
-</uisearchbox>
+	</ui-listelementseparator>
+</ui-searchbox>
 
 <h3>With remote search</h3>
-<uisearchbox [dataSource]="remoteDataSource" value="test">
-	<uiinputtemplate>
+<ui-searchbox [dataSource]="remoteDataSource" value="test">
+	<ui-inputtemplate>
 		<input *template="let data=data;let events=events" class="input-template" placeholder="Test input" [ngModel]="data.value" (ngModelChange)="events.onChange($event)" (keydown)="events.onKeydown($event)" spellcheck="false"/>
-	</uiinputtemplate>
-	<uilistelement>
+	</ui-inputtemplate>
+	<ui-listelement>
 		<div *template="let value=value;let selected=selected;let first=first;let last=last;" class="list-element"
 		[ngClass]="{'list-element-selected': selected, 'list-element-first': first, 'list-element-last': last}">{{value}}</div>
-	</uilistelement>
-	<uilistelementseparator>
+	</ui-listelement>
+	<ui-listelementseparator>
 		<div *template class="list-element-separator"></div>
-	</uilistelementseparator>
-</uisearchbox>`,
+	</ui-listelementseparator>
+</ui-searchbox>`,
 })
 export class SearchBoxTestComponent {
 	protected dataSource: (text: string) => Promise<string[]>;

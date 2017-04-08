@@ -2,9 +2,9 @@ import { Component, Input, ContentChild, ViewChild, ElementRef, AfterViewInit } 
 import { Utils } from '../utils/Utils';
 
 @Component({
-	selector: 'uiprogressbar',
-	template: `<div class="progressbar-background">
-	<div #fill class="progressbar-foreground"></div>
+	selector: 'ui-progressbar',
+	template: `<div class="ui-progressbar-background">
+	<div #fill class="ui-progressbar-foreground"></div>
 </div>`,
 })
 export class ProgressBarComponent implements AfterViewInit {

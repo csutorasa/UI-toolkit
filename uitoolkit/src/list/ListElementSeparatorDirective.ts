@@ -2,7 +2,7 @@ import { Directive } from '@angular/core';
 import { TemplateHolder } from '../template/TemplateHolder';
 
 @Directive({
-    selector: 'uilistelementseparator'
+    selector: 'ui-listelementseparator'
 })
 export class ListElementSeparatorDirective extends TemplateHolder {
 }

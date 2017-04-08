@@ -7,7 +7,7 @@ export class DragAndDropTesterComponent { }
 
 @Component({
 	selector: 'draganddrop-test',
-	template: `<div class="drop-zone" (uidrop)="drop($event)"></div>
+	template: `<div class="drop-zone" (ui-drop)="drop($event)"></div>
 <p>{{text}}</p>`,
 })
 export class DragAndDropTestComponent {

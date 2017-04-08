@@ -1,11 +1,11 @@
-uislider {
-    .slider-background {
+ui-slider {
+    .ui-slider-background {
         height: $slider-height;
         background: $slider-background-color;
         border-radius: $slider-border-radius;
     }
 
-    .slider-foreground {
+    .ui-slider-foreground {
         height: $slider-height;
         background: $slider-foreground-color;
         border-radius: $slider-border-radius;

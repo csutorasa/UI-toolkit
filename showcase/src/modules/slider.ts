@@ -6,9 +6,9 @@ export class SliderTesterComponent { }
 
 @Component({
 	selector: 'slider-test',
-	template: `<uislider [min]="0" [max]="100" [(value)]="value"></uislider>
+	template: `<ui-slider [min]="0" [max]="100" [(value)]="value"></ui-slider>
 <div>{{value}}</div>
-<uislider [min]="0" [max]="100" [(value)]="value2" [step]="5"></uislider>
+<ui-slider [min]="0" [max]="100" [(value)]="value2" [step]="5"></ui-slider>
 <div>{{value2}}</div>`,
 })
 export class SliderTestComponent {

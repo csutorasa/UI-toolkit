@@ -6,7 +6,7 @@ export class ProgressBarTesterComponent { }
 
 @Component({
 	selector: 'progressbar-test',
-	template: `<uiprogressbar [min]="0" [max]="100" [value]="value"></uiprogressbar>
+	template: `<ui-progressbar [min]="0" [max]="100" [value]="value"></ui-progressbar>
 <button (click)="value = 0">0</button>
 <button (click)="value = 20">20</button>
 <button (click)="value = 50">50</button>

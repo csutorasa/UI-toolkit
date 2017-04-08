@@ -2,9 +2,9 @@ import { Component, Input, Output, EventEmitter, ContentChild, ViewChild, Elemen
 import { Utils } from '../utils/Utils';
 
 @Component({
-	selector: 'uislider',
-	template: `<div #slider class="slider-background" (mousedown)="down($event)">
-	<div #fill class="slider-foreground" [ngClass]="{'mouse-down': drag}"></div>
+	selector: 'ui-slider',
+	template: `<div #slider class="ui-slider-background" (mousedown)="down($event)">
+	<div #fill class="ui-slider-foreground" [ngClass]="{'mouse-down': drag}"></div>
 </div>`,
 })
 export class SliderComponent implements AfterViewInit {

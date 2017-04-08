@@ -2,7 +2,7 @@ import { Directive } from '@angular/core';
 import { TemplateHolder } from './TemplateHolder';
 
 @Directive({
-    selector: 'uiinputtemplate'
+    selector: 'ui-inputtemplate'
 })
 export class InputTemplate extends TemplateHolder {
 }

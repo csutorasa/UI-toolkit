@@ -14,7 +14,7 @@ export class DataGridListItem extends ListItem {
 }
 
 @Component({
-    selector: 'uidatagrid',
+    selector: 'ui-datagrid',
     template: `<table>
     <thead>
         <tr>

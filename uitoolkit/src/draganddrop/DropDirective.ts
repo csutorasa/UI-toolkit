@@ -1,10 +1,10 @@
 import { Directive, ElementRef, Output, EventEmitter } from '@angular/core';
 
 @Directive({
-    selector: '[uidrop]',
+    selector: '[ui-drop]',
 })
 export class DragAndDropDirective {
-    @Output('uidrop') public readonly onDrop: EventEmitter<DataTransfer> = new EventEmitter();
+    @Output('ui-drop') public readonly onDrop: EventEmitter<DataTransfer> = new EventEmitter();
 
     constructor(protected element: ElementRef) {
         (<HTMLScriptElement>element.nativeElement).ondragover = this.allowDragAndDrop;

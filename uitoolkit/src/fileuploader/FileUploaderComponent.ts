@@ -22,20 +22,20 @@ export class FileUploaderListItem extends ListItem {
 }
 
 @Component({
-	selector: 'uifileuploader',
+	selector: 'ui-fileuploader',
 	template: `<div>
-	<div class="fileuploader-spacing">
+	<div class="ui-fileuploader-spacing">
 		<input type="file" (change)="onFileSelected($event)" *ngIf="!multiple"/>
 		<input type="file" (change)="onFileSelected($event)" multiple *ngIf="multiple"/>
 	</div>
-	<div class="fileuploader-drop-zone" (uidrop)="onDrop($event)">
+	<div class="ui-fileuploader-drop-zone" (ui-drop)="onDrop($event)">
 		<div *ngFor="let f of files;let last=last;">
 			<ng-template [templatecreator]="listElement.template" [data]="f"></ng-template>
 			<ng-template [templatecreator]="listElementSeparator.template" *ngIf="!last && listElementSeparator"></ng-template>
 		</div>
 	</div>
-	<div class="fileuploader-spacing">
-		<uiprogressbar [min]="0" [max]="files.length" [value]="doneCount"></uiprogressbar>
+	<div class="ui-fileuploader-spacing">
+		<ui-progressbar [min]="0" [max]="files.length" [value]="doneCount"></ui-progressbar>
 	</div>
 	<button (click)="upload()" buttonstyle="success">Upload</button>
 </div>`,

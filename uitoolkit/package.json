@@ -45,7 +45,6 @@
     "node-sass": "^4.5.2",
     "reflect-metadata": "^0.1.10",
     "rimraf": "^2.6.1",
-    "systemjs": "^0.19.46",
     "ts-loader": "^2.0.3",
     "typescript": "^2.2.2",
     "webpack": "^2.3.3"

@@ -60,17 +60,18 @@ const debug = true;
 })
 export class ShowcaseModule { }
 
-
-if (debug) {
-	console.debug('Bootstrapping...');
-} else {
-	enableProdMode();
-}
-const bootstappingStart = new Date();
-platformBrowserDynamic().bootstrapModule(ShowcaseModule).then(() => {
+window.onload = () => {
 	if (debug) {
-		console.debug('Bootstrapped successfully in ' + (new Date().getTime() - bootstappingStart.getTime()) + 'ms');
+		console.debug('Bootstrapping...');
+	} else {
+		enableProdMode();
 	}
-}, err => {
-	console.error(err);
-});
+	const bootstappingStart = new Date();
+	platformBrowserDynamic().bootstrapModule(ShowcaseModule).then(() => {
+		if (debug) {
+			console.debug('Bootstrapped successfully in ' + (new Date().getTime() - bootstappingStart.getTime()) + 'ms');
+		}
+	}, err => {
+		console.error(err);
+	});
+}

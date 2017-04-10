@@ -11,11 +11,10 @@ node_modules
 uitoolkit/node_modules
 
 # Target
-uitoolkit/**/*.js
 uitoolkit/**/*.d.ts
 uitoolkit/**/*.css
-!uitoolkit/webpackdev.config.js
-!uitoolkit/webpackprod.config.js
+uitoolkit/src/**/*.js
+uitoolkit/bundles
 showcase/bundles
 server/**/*.js
 

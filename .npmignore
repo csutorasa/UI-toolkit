@@ -11,6 +11,11 @@ node_modules
 uitoolkit/node_modules
 
 # Target
+uitoolkit/**/*.d.ts
+uitoolkit/**/*.css
+uitoolkit/src/**/*.js
+uitoolkit/bundles
+showcase/bundles
 server/**/*.js
 
 # Server uploads directory

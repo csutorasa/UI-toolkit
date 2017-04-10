@@ -3,8 +3,8 @@ const fs = require('fs');
 const webpack = require('webpack');
 
 const alias = {};
-//const filename = path.join('wizyx', 'bundles', 'wizyx.umd.js');
-const filename = path.join('wizyx', 'index.ts');
+const filename = path.join('wizyx', 'bundles', 'wizyx.umd.min.js');
+//const filename = path.join('wizyx', 'index.ts');
 try {
     const innerDevFilename = path.join(__dirname, '..', filename);
     fs.statSync(innerDevFilename);
@@ -41,7 +41,7 @@ module.exports = {
     plugins: [
         new webpack.ContextReplacementPlugin(
             /@angular/,
-            path.join(__dirname, 'showcase', 'src')
+            path.join(__dirname, 'src')
         )
     ],
     watchOptions: {

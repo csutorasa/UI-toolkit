@@ -1,6 +1,6 @@
 {
   "name": "wizyx",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "UI-toolkit",
   "main": "server.js",
   "scripts": {
@@ -38,7 +38,6 @@
     "@angular/platform-browser": "^4.0.1",
     "@angular/platform-browser-dynamic": "^4.0.1",
     "@angular/router": "^4.0.1",
-    "reflect-metadata": "^0.1.10",
     "rxjs": "^5.3.0",
     "zone.js": "^0.8.5"
   },

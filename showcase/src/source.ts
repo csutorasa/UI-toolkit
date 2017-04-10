@@ -1,4 +1,5 @@
 import { Component, ElementRef, ContentChild, AfterContentInit, ViewContainerRef } from '@angular/core';
+import 'reflect-metadata';
 
 @Component({
     selector: 'sources',

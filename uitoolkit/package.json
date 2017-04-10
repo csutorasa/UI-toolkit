@@ -1,6 +1,6 @@
 {
   "name": "wizyx",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "UI-toolkit",
   "main": "server.js",
   "scripts": {

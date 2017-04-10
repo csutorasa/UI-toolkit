@@ -8,7 +8,7 @@
         "lib": ["es5", "es6", "dom"],
         "baseUrl": ".",
         "paths": {
-            "uitoolkit": ["../uitoolkit/index.ts"]
+            "wizyx": ["../wizyx/index.ts"]
         }
     }
 }

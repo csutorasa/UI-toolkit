@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 
-const filePath = [__dirname, 'uitoolkit', 'bundles', 'uitoolkit.umd.min.js'];
+const filePath = [__dirname, 'wizyx', 'bundles', 'wizyx.umd.min.js'];
 const alias = {};
 
 try {
@@ -11,7 +11,7 @@ try {
         filename = path.join(filename, file);
         fs.statSync(filename);
     });
-    alias['uitoolkit'] = filename;
+    alias['wizyx'] = filename;
 }
 catch(ex) {
     // file not found

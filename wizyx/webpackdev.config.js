@@ -3,12 +3,12 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        'uitoolkit.umd': path.join(__dirname, './index.ts')
+        'wizyx.umd': path.join(__dirname, './index.ts')
     },
     output: {
         path: __dirname,
         filename: path.join('bundles', '[name].js'),
-        library: 'uitoolkit',
+        library: 'wizyx',
         libraryTarget: 'umd'
     },
     resolve: {

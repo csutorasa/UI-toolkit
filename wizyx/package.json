@@ -13,8 +13,8 @@
     "buildjs": "webpack --config webpackprod.config.js",
     "watchdevjs": "webpack --config webpackdev.config.js --watch",
     "watchjs": "webpack --config webpackprod.config.js --watch",
-    "buildcss": "node-sass --output-style compressed index.scss bundles/uitoolkit.css",
-    "watchcss": "node-sass --watch --output-style compressed index.scss bundles/uitoolkit.css",
+    "buildcss": "node-sass --output-style compressed index.scss bundles/wizyx.css",
+    "watchcss": "node-sass --watch --output-style compressed index.scss bundles/wizyx.css",
     "typescript": "tsc --project ."
   },
   "repository": {

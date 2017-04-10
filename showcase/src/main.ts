@@ -5,8 +5,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { UIToolkitModule } from 'uitoolkit';
-import { LocalizationService } from 'uitoolkit';
+import { WizyxModule } from 'wizyx';
+import { LocalizationService } from 'wizyx';
 import { Showcase } from './showcase';
 import { routerConfig } from './router';
 import { MainMenuComponent } from './menu';
@@ -26,7 +26,7 @@ const debug = true;
 @NgModule({
 	imports: [
 		BrowserModule,
-		UIToolkitModule,
+		WizyxModule,
 		HttpModule,
 		FormsModule,
 		RouterModule.forRoot(routerConfig)

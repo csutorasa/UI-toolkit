@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LocalizationService } from 'uitoolkit';
+import { LocalizationService } from 'wizyx';
 import { CreateTesterComponentData } from '../source';
 
 @Component(CreateTesterComponentData('localize'))

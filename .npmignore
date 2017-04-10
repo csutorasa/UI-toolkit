@@ -8,10 +8,10 @@ npm-debug.log*
 
 # Dependency directories
 node_modules
-uitoolkit/node_modules
+wizyx/node_modules
 
 # Target
-uitoolkit
+wizyx
 showcase/bundles
 server/**/*.js
 

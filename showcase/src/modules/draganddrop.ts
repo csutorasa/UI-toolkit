@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Utils } from 'uitoolkit';
+import { Utils } from 'wizyx';
 import { CreateTesterComponentData } from '../source';
 
 @Component(CreateTesterComponentData('draganddrop'))

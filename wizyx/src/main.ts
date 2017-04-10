@@ -91,4 +91,4 @@ export { Utils } from './utils/Utils';
         SearchboxComponent
     ]
 })
-export class UIToolkitModule { }
+export class WizyxModule { }

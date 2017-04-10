@@ -13,8 +13,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'uitoolkit': toolkitFile,
-            'rxjs/Rx': path.join(__dirname, 'node_modules', 'rxjs', 'Rx.js')
+            'uitoolkit': toolkitFile
         },
         extensions: ['.ts', '.js']
     },

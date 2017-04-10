@@ -4,11 +4,12 @@
   "description": "UI-toolkit",
   "main": "server.js",
   "scripts": {
-    "install": "npm run clean && npm run buildjs && npm run buildcss",
+    "install": "",
     "start": "echo \"Nothing to start\"",
     "test": "echo \"No tests are specified\"",
     "watch": "concurrently --prefix \"[{name}]\" --names \"WebpackDev,WebpackMin,CSS\" \"npm run watchdevjs\" \"npm run watchjs\" \"npm run watchcss\"",
-    "clean": "rimraf bundles && rimraf src/**/*.d.ts",
+    "clean": "rimraf bundles && rimraf src/**/*.d.ts && rimraf index.d.ts && rimraf src/**/*.js && rimraf index.js && rimraf src/**/*.js.map && rimraf index.js.map",
+    "rebuild": "npm run clean && npm run buildjs && npm run buildcss",
     "builddevjs": "webpack --config webpackdev.config.js",
     "buildjs": "webpack --config webpackprod.config.js",
     "watchdevjs": "webpack --config webpackdev.config.js --watch",
@@ -37,19 +38,17 @@
     "@angular/platform-browser": "^4.0.1",
     "@angular/platform-browser-dynamic": "^4.0.1",
     "@angular/router": "^4.0.1",
+    "reflect-metadata": "^0.1.10",
     "rxjs": "^5.3.0",
     "zone.js": "^0.8.5"
   },
-  "dependencies": {
-    "@types/node": "^7.0.12",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^3.4.0",
     "node-sass": "^4.5.2",
-    "reflect-metadata": "^0.1.10",
     "rimraf": "^2.6.1",
     "ts-loader": "^2.0.3",
     "typescript": "^2.2.2",
     "webpack": "^2.3.3"
-  },
-  "devDependencies": {
-    "concurrently": "^3.4.0"
   }
 }

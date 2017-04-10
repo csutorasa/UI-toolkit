@@ -2,20 +2,17 @@ const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 
-const filePath = [__dirname, 'wizyx', 'bundles', 'wizyx.umd.min.js'];
 const alias = {};
-
+const filename = path.join('wizyx', 'bundles', 'wizyx.umd.min.js');
 try {
-    let filename = '';
-    filePath.forEach(file => {
-        filename = path.join(filename, file);
-        fs.statSync(filename);
-    });
-    alias['wizyx'] = filename;
+    const innerDevFilename = path.join(__dirname, filename);
+    fs.statSync(innerDevFilename);
+    alias['wizyx'] = innerDevFilename;
 }
 catch(ex) {
     // file not found
     // package will be used if found
+    alias['wizyx'] = filename;
 }
 
 module.exports = {

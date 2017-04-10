@@ -24,9 +24,6 @@
     "url": "https://github.com/csutorasa/UI-toolkit/issues"
   },
   "homepage": "https://github.com/csutorasa/UI-toolkit#readme",
-  "peerDependencies": {
-    "wizyx": "^1.0.3"
-  },
   "dependencies": {
     "@angular/common": "^4.0.1",
     "@angular/compiler": "^4.0.1",
@@ -36,7 +33,6 @@
     "@angular/platform-browser": "^4.0.1",
     "@angular/platform-browser-dynamic": "^4.0.1",
     "@angular/router": "^4.0.1",
-    "@types/node": "^7.0.12",
     "@types/reflect-metadata": "0.0.5",
     "@types/webpack": "^2.2.14",
     "bootstrap": "^4.0.0-alpha.6",
@@ -48,6 +44,7 @@
     "ts-loader": "^2.0.3",
     "typescript": "^2.2.2",
     "webpack": "^2.3.3",
+    "wizyx": "^1.0.3",
     "zone.js": "^0.8.5"
   },
   "devDependencies": {

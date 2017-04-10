@@ -10,5 +10,9 @@
         "paths": {
             "wizyx": ["../wizyx/index.ts"]
         }
-    }
+    },
+    "exclude": [
+        "bundles",
+        "public"
+    ]
 }

@@ -14,6 +14,8 @@ wizyx/node_modules
 wizyx/**/*.d.ts
 wizyx/**/*.css
 wizyx/src/**/*.js
+wizyx/**/*.js.map
+wizyx/index.js
 wizyx/bundles
 showcase/bundles
 server/**/*.js

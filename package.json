@@ -1,6 +1,6 @@
 {
   "name": "wizyx-showcase",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "UI toolkit Showcase",
   "main": "server.js",
   "scripts": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/csutorasa/UI-toolkit#readme",
   "peerDependencies": {
-    "wizyx": "^1.0.2"
+    "wizyx": "^1.0.3"
   },
   "dependencies": {
     "@angular/common": "^4.0.1",

@@ -1,16 +1,16 @@
 {
   "name": "wizyx-showcase",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "UI toolkit Showcase",
   "main": "server.js",
   "scripts": {
     "install": "npm run clean && npm run buildserver && npm run buildjs",
-    "start": "node server.js",
+    "start": "node server/StartServer.js",
     "test": "echo \"No tests are specified\"",
     "watch": "concurrently --prefix \"[{name}]\" --names \"Server,Showcase\" \"npm run watchserver\" \"npm run watchjs\"",
     "clean": "rimraf upload && rimraf server/*.js && rimraf showcase/bundles",
-    "buildjs": "webpack --config webpack.config.js",
-    "watchjs": "webpack --config webpack.config.js --watch",
+    "buildjs": "webpack --config showcase/webpack.config.js",
+    "watchjs": "webpack --config showcase/webpack.config.js --watch",
     "buildserver": "tsc --project ./server",
     "watchserver": "tsc --watch --project ./server"
   },
@@ -44,7 +44,7 @@
     "ts-loader": "^2.0.3",
     "typescript": "^2.2.2",
     "webpack": "^2.3.3",
-    "wizyx": "^1.0.4",
+    "wizyx": "^1.0.5",
     "zone.js": "^0.8.5"
   },
   "devDependencies": {

@@ -38,7 +38,6 @@
     "@angular/platform-browser": "^4.0.1",
     "@angular/platform-browser-dynamic": "^4.0.1",
     "@angular/router": "^4.0.1",
-    "@types/es6-shim": "^0.31.32",
     "@types/node": "^7.0.12",
     "@types/reflect-metadata": "0.0.5",
     "@types/webpack": "^2.2.14",

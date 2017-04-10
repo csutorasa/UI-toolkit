@@ -5,6 +5,7 @@
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "lib": ["es5", "es6", "dom"],
         "baseUrl": ".",
         "paths": {
             "uitoolkit": ["../uitoolkit/index.ts"]

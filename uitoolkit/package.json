@@ -40,7 +40,6 @@
     "zone.js": "^0.8.5"
   },
   "dependencies": {
-    "@types/es6-shim": "^0.31.32",
     "@types/node": "^7.0.12",
     "node-sass": "^4.5.2",
     "reflect-metadata": "^0.1.10",

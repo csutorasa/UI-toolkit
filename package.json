@@ -4,16 +4,11 @@
   "description": "UI toolkit Showcase",
   "main": "server.js",
   "scripts": {
-    "install": "npm run installtoolkit && npm run clean && npm run buildserver && npm run buildjs",
+    "install": "npm run clean && npm run buildserver && npm run buildjs",
     "start": "node server.js",
     "test": "echo \"No tests are specified\"",
-    "watch": "concurrently --prefix \"[{name}]\" --names \"Server,ToolkitJS,ToolkitCSS,Showcase\" \"npm run watchserver\" \"npm run watchtoolkitjs\" \"npm run watchtoolkitcss\" \"npm run watchjs\"",
+    "watch": "concurrently --prefix \"[{name}]\" --names \"Server,Showcase\" \"npm run watchserver\" \"npm run watchjs\"",
     "clean": "rimraf upload && rimraf server/*.js && rimraf showcase/bundles",
-    "installtoolkit": "cd uitoolkit && npm install",
-    "buildtoolkitjs": "cd uitoolkit && npm buildjs",
-    "watchtoolkitjs": "cd uitoolkit && npm run watchprodjs",
-    "buildtoolkitcss": "cd uitoolkit && npm buildcss",
-    "watchtoolkitcss": "cd uitoolkit && npm run watchcss",
     "buildjs": "webpack --config webpack.config.js",
     "watchjs": "webpack --config webpack.config.js --watch",
     "buildserver": "tsc --project ./server",
@@ -29,6 +24,9 @@
     "url": "https://github.com/csutorasa/UI-toolkit/issues"
   },
   "homepage": "https://github.com/csutorasa/UI-toolkit#readme",
+  "peerDependencies": {
+    "wizyx": "^1.0.1"
+  },
   "dependencies": {
     "@angular/common": "^4.0.1",
     "@angular/compiler": "^4.0.1",

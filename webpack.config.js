@@ -1,7 +1,22 @@
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 
-const toolkitFile = path.join(__dirname, 'uitoolkit', 'bundles', 'uitoolkit.umd.min.js');
+const filePath = [__dirname, 'uitoolkit', 'bundles', 'uitoolkit.umd.min.js'];
+const alias = {};
+
+try {
+    let filename = '';
+    filePath.forEach(file => {
+        filename = path.join(filename, file);
+        fs.statSync(filename);
+    });
+    alias['uitoolkit'] = filename;
+}
+catch(ex) {
+    // file not found
+    // package will be used if found
+}
 
 module.exports = {
     entry: {
@@ -12,9 +27,7 @@ module.exports = {
         filename: '[name].js'
     },
     resolve: {
-        alias: {
-            'uitoolkit': toolkitFile
-        },
+        alias: alias,
         extensions: ['.ts', '.js']
     },
     module: {

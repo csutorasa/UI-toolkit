@@ -11,10 +11,7 @@ node_modules
 uitoolkit/node_modules
 
 # Target
-uitoolkit/**/*.d.ts
-uitoolkit/**/*.css
-uitoolkit/src/**/*.js
-uitoolkit/bundles
+uitoolkit
 showcase/bundles
 server/**/*.js
 

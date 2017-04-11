@@ -122,7 +122,7 @@ class DefaultProcessor extends RequestProcessor {
 
 class GetProcessor extends RequestProcessor {
 	public process(req: http.ServerRequest, res: http.ServerResponse): void {
-		const filename = this.readFilename(req, ['/showcase/bundles', '/showcase/public', '/wizyx/bundles', '/node_modules', '/upload']);
+		const filename = this.readFilename(req, ['/showcase/bundles', '/showcase/public', '/wizyx/bundles', '/node_modules', '/node_modules/wizyx/bundles', '/upload']);
 		if (filename) {
 			this.writeFile(res, filename);
 		} else {

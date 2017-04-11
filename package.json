@@ -9,6 +9,8 @@
     "test": "echo \"No tests are specified\"",
     "watch": "concurrently --prefix \"[{name}]\" --names \"Server,Showcase\" \"npm run watchserver\" \"npm run watchjs\"",
     "clean": "rimraf upload && rimraf server/*.js && rimraf showcase/bundles",
+    "installtoolkit": "cd wizyx && npm install && npm run rebuild",
+    "buildtoolkit": "cd wizyx && npm run rebuild",
     "buildjs": "webpack --config showcase/webpack.config.js",
     "watchjs": "webpack --config showcase/webpack.config.js --watch",
     "buildserver": "tsc --project ./server",

@@ -9,9 +9,12 @@
         "slider": "Slider",
         "draganddrop": "Drag and drop",
         "button": "Button",
+        "expander": "Expander",
         "searchbox": "Searchbox",
         "fileuploader": "File uploader",
-        "datagrid": "Datagrid"
+        "datagrid": "Datagrid",
+        "open": "Open",
+        "close": "Close"
     },
     "hu": {
         "result": "Eredmény",
@@ -23,8 +26,11 @@
         "slider": "Csúszka",
         "draganddrop": "Fogd és vidd",
         "button": "Gomb",
+        "expander": "Expander",
         "searchbox": "Kereshető mező",
         "fileuploader": "Fájl feltöltő",
-        "datagrid": "Adattáblázat"
+        "datagrid": "Adattáblázat",
+        "open": "Kinyitás",
+        "close": "Bezárás"
     }
 }

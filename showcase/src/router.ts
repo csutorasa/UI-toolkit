@@ -6,6 +6,7 @@ import { ProgressBarTesterComponent } from './modules/progressbar';
 import { SliderTesterComponent } from './modules/slider';
 import { DragAndDropTesterComponent } from './modules/draganddrop';
 import { ButtonTesterComponent } from './modules/button';
+import { ExpanderTesterComponent } from './modules/expander';
 import { FileUploadTesterComponent } from './modules/fileupload';
 import { SearchBoxTesterComponent } from './modules/searchbox';
 import { DataGridTesterComponent } from './modules/datagrid';
@@ -28,6 +29,10 @@ export const routerConfig: Routes = [
         {
             path: 'button',
             component: ButtonTesterComponent,
+        },
+        {
+            path: 'expander',
+            component: ExpanderTesterComponent,
         },
         {
             path: 'fileupload',

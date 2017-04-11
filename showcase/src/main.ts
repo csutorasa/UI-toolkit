@@ -17,6 +17,7 @@ import { ProgressBarTesterComponent, ProgressBarTestComponent } from './modules/
 import { SliderTesterComponent, SliderTestComponent } from './modules/slider';
 import { DragAndDropTesterComponent, DragAndDropTestComponent } from './modules/draganddrop';
 import { ButtonTesterComponent, ButtonTestComponent } from './modules/button';
+import { ExpanderTesterComponent, ExpanderTestComponent } from './modules/expander';
 import { FileUploadTesterComponent, FileUploadTestComponent } from './modules/fileupload';
 import { SearchBoxTesterComponent, SearchBoxTestComponent } from './modules/searchbox';
 import { DataGridTesterComponent, DataGridTestComponent } from './modules/datagrid';
@@ -45,6 +46,8 @@ const debug = true;
 		DragAndDropTestComponent,
 		ButtonTesterComponent,
 		ButtonTestComponent,
+		ExpanderTesterComponent,
+		ExpanderTestComponent,
 		FileUploadTesterComponent,
 		FileUploadTestComponent,
 		SearchBoxTesterComponent,

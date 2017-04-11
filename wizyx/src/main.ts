@@ -9,6 +9,8 @@ export { LocalizationResolver } from './localization/LocalizationResolver';
 import { LocalizationService } from './localization/LocalizationService';
 export { LocalizationService } from './localization/LocalizationService';
 
+import { ContentTemplate } from './template/ContentTemplate';
+export { ContentTemplate } from './template/ContentTemplate';
 import { InputTemplate } from './template/InputTemplate';
 export { InputTemplate } from './template/InputTemplate';
 import { TemplateCreator } from './template/TemplateCreator';
@@ -36,6 +38,9 @@ export { SliderComponent } from './slider/SliderComponent';
 import { ButtonDirective } from './button/ButtonDirective';
 export { ButtonDirective } from './button/ButtonDirective';
 
+import { ExpanderComponent } from './expander/ExpanderComponent';
+export { ExpanderComponent } from './expander/ExpanderComponent';
+
 import { FileUploaderComponent } from './fileuploader/FileUploaderComponent';
 export { FileUploaderComponent } from './fileuploader/FileUploaderComponent';
 
@@ -62,6 +67,7 @@ export { Utils } from './utils/Utils';
     ],
     declarations: [
         LocalizationPipe,
+        ContentTemplate,
         InputTemplate,
         ListElementDirective,
         ListElementSeparatorDirective,
@@ -72,11 +78,13 @@ export { Utils } from './utils/Utils';
         ProgressBarComponent,
         SliderComponent,
         ButtonDirective,
+        ExpanderComponent,
         FileUploaderComponent,
         SearchboxComponent
     ],
     exports: [
         LocalizationPipe,
+        ContentTemplate,
         InputTemplate,
         ListElementDirective,
         ListElementSeparatorDirective,
@@ -87,6 +95,7 @@ export { Utils } from './utils/Utils';
         ProgressBarComponent,
         SliderComponent,
         ButtonDirective,
+        ExpanderComponent,
         FileUploaderComponent,
         SearchboxComponent
     ]

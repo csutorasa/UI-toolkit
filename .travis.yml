@@ -2,6 +2,6 @@ language: node_js
 node_js:
   - "7"
 env:
-  - SCRIPT=cd wizyx && npm install && npm run rebuild && npm test
-  - SCRIPT=npm run installtoolkit && npm install && npm test
+  - SCRIPT="cd wizyx && npm install && npm run rebuild && npm test"
+  - SCRIPT="npm run installtoolkit && npm install && npm test"
 script: $SCRIPT

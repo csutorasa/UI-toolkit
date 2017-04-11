@@ -4,4 +4,4 @@ node_js:
 env:
   - SCRIPT="cd wizyx && npm install && npm run rebuild && npm test"
   - SCRIPT="npm run installtoolkit && npm install && npm test"
-script: $SCRIPT
+script: eval $SCRIPT

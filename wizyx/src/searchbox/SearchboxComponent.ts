@@ -124,12 +124,14 @@ export class SearchboxComponent extends List {
 	}
 
 	protected refreshList(): void {
-		this.dataSourceFactory(this.inputTemplateData.data.value).then(items => {
-			this.dataSource = items.map((item, index) => { return new SearchBoxListItem(this.elementDataInput, item, index, items.length); });
-			this.isOpen = true;
-			this.elementDataInput.selectedIndex = 0;
-			const container = <HTMLScriptElement>this.elementContainer.nativeElement;
-			container.scrollTop = 0;
-		});
+		if(this.dataSourceFactory) {
+			this.dataSourceFactory(this.inputTemplateData.data.value).then(items => {
+				this.dataSource = items.map((item, index) => { return new SearchBoxListItem(this.elementDataInput, item, index, items.length); });
+				this.isOpen = true;
+				this.elementDataInput.selectedIndex = 0;
+				const container = <HTMLScriptElement>this.elementContainer.nativeElement;
+				container.scrollTop = 0;
+			});
+		}
 	}
 }

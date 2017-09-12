@@ -224,7 +224,7 @@ class PostProcessor extends RequestProcessor {
 			// not exists
 			fs.mkdirSync('upload');
 		}
-		fs.writeFile('upload/' + json.filename, json.content, 'binary', err => {
+		fs.writeFile('upload/' + json.filename, json.content, {encoding: 'binary'}, err => {
 			if (err) {
 				this.writeInternalError(res, err);
 			} else {

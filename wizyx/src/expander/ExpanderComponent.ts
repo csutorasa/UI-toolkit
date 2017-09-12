@@ -27,17 +27,15 @@ export class ExpanderComponent implements AfterViewInit {
                 this.display = false;
             }
         });
-        expanderElement.addEventListener('transitioncancel', () => {
-            if(!this.isOpen) {
-                this.display = false;
-            }
-        });
     }
     
     @Input('isopen')
     public set open(isOpen: boolean) {
         setTimeout(() => {
-            this.isOpen = isOpen;
+            if(this.isOpen !== isOpen) {
+                this.isOpen = isOpen;
+                this.isOpenChange.emit(this.isOpen);
+            }
         }, 0);
         if(isOpen) {
             this.display = true;

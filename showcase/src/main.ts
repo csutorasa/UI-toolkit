@@ -6,7 +6,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { WizyxModule } from 'wizyx';
-import { LocalizationService } from 'wizyx';
+import { LocalizationService, DragAndDropService } from 'wizyx';
 import { Showcase } from './showcase';
 import { routerConfig } from './router';
 import { MainMenuComponent } from './menu';
@@ -57,7 +57,8 @@ const debug = true;
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
-		LocalizationService
+		LocalizationService,
+		DragAndDropService
 	],
 	bootstrap: [Showcase]
 })

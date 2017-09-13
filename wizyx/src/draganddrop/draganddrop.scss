@@ -1,0 +1,21 @@
+.ui-drop {
+    &.ui-can-drop {
+        background-color: green !important;
+    }
+    &.ui-cannot-drop {
+        background-color: red !important;
+    }
+}
+
+.ui-draggable {
+    -moz-user-select: all;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: move;
+    transition: transform $drag-animation-duration;
+    &.ui-dragging {
+        transition: none;
+    }
+}
+

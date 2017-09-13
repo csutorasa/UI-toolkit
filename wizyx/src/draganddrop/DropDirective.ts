@@ -1,22 +1,25 @@
-import { Directive, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, Input, Output, EventEmitter } from '@angular/core';
+import { DragAndDropService, DragEventContext } from './DragAndDropService';
 
 @Directive({
     selector: '[ui-drop]',
 })
-export class DragAndDropDirective {
-    @Output('ui-drop') public readonly onDrop: EventEmitter<DataTransfer> = new EventEmitter();
+export class DropDirective {
+    @Input('ui-candrop') public canDropFunction: (dragData: DragEventContext) => boolean;
+    @Input('ui-drop-data') public dropData: any;
+    @Output('ui-drop') public readonly onDrop: EventEmitter<DragEventContext> = new EventEmitter();
 
-    constructor(protected element: ElementRef) {
-        (<HTMLScriptElement>element.nativeElement).ondragover = this.allowDragAndDrop;
-        (<HTMLScriptElement>element.nativeElement).ondrop = (event) => this.drop(event);
+    constructor(protected element: ElementRef, protected dragAndDropService: DragAndDropService) {
+        const nativeElement = <HTMLScriptElement>element.nativeElement;
+        nativeElement.classList.add(DragAndDropService.DROP_CLASS);
+        dragAndDropService.registerDropZone(nativeElement, () => this.dropData, context => this.canDrop(context), context => this.drop(context));
+    }
+    
+    protected canDrop(context: DragEventContext): boolean {
+        return this.canDropFunction(context);
     }
 
-    protected allowDragAndDrop(event: DragEvent): void {
-        event.preventDefault();
-    }
-
-    protected drop(event: DragEvent): void {
-        event.preventDefault();
-        this.onDrop.emit(event.dataTransfer);
+    protected drop(context: DragEventContext): void {
+        this.onDrop.emit(context);
     }
 }

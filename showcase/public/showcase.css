@@ -74,6 +74,12 @@ div.drop-zone {
     border: solid 1px black;
 }
 
+div.draggable {
+    width: 100px;
+    height: 100px;
+    background-color: #1050c0;
+}
+
 /* SearchBox */
 
 .list-element-nostyle {

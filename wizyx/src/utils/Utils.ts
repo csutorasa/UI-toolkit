@@ -3,6 +3,11 @@ export interface Collection<T> {
     [index: number]: T;
 }
 
+export interface Coordinates {
+    x: number;
+    y: number;
+}
+
 export class Utils {
     /**
      * Converts collection to native array.
@@ -52,12 +57,12 @@ export class Utils {
      * @param max higher bound
      */
     public static limit(value: number, min: number, max: number): number {
-		if (value > max)
-			return max;
-		else if (value < min)
-			return min;
-		else
-			return value;
+        if (value > max)
+            return max;
+        else if (value < min)
+            return min;
+        else
+            return value;
     }
 
     /**
@@ -67,5 +72,49 @@ export class Utils {
      */
     public static numberEquals(a: number, b: number): boolean {
         return Math.abs(a - b) < 0.000001;
+    }
+    
+    public static getPageCoordinates(element: HTMLScriptElement): Coordinates {
+        // element.getBoundingClientRect().left is the relative position to the (scrolled) screen
+        // window.pageXOffset is the scroll from the left side of the page
+        const boundingClientRect: ClientRect = element.getBoundingClientRect();
+        return {
+            x: boundingClientRect.left + window.pageXOffset,
+            y: boundingClientRect.top + window.pageYOffset,
+        };
+    }
+
+    public static getPageCoordinatesFromRelative(element: HTMLScriptElement, coordinates: Coordinates): Coordinates
+    public static getPageCoordinatesFromRelative(element: HTMLScriptElement, x: number, y: number): Coordinates
+    public static getPageCoordinatesFromRelative(element: HTMLScriptElement, first: Coordinates | number, second?: number): Coordinates {
+        let coordinates: Coordinates;
+        if(typeof(first) === 'object') {
+            coordinates = <Coordinates>first;
+        } else {
+            coordinates = { x: <number>first, y: second };
+        }
+        const elementCoords: Coordinates = Utils.getPageCoordinates(element);
+        return {
+            x: coordinates.x + elementCoords.x,
+            y: coordinates.y + elementCoords.y,
+        };
+    }
+
+    public static getCoordinateDifference(firstx: number, firsty: number, secondx: number, secondy: number): Coordinates
+    public static getCoordinateDifference(first: Coordinates, second: Coordinates): Coordinates
+    public static getCoordinateDifference(first: Coordinates | number, second: Coordinates | number, third?: number, forth?: number): Coordinates {
+        let a: Coordinates;
+        let b: Coordinates;
+        if(typeof(first) === 'object') {
+            a = <Coordinates>first;
+            b = <Coordinates>second;
+        } else {
+            a = { x: <number>first, y: <number>second };
+            b = { x: third, y: forth };
+        }
+        return {
+            x: a.x - b.x,
+            y: a.y - b.y
+        }
     }
 }

@@ -26,8 +26,12 @@ export { ColumnDirective } from './datagrid/ColumnDirective';
 import { DataGridComponent } from './datagrid/DataGridComponent';
 export { DataGridComponent } from './datagrid/DataGridComponent';
 
-import { DragAndDropDirective } from './draganddrop/DropDirective';
-export { DragAndDropDirective } from './draganddrop/DropDirective';
+import { DragDirective } from './draganddrop/DragDirective';
+export { DragDirective } from './draganddrop/DragDirective';
+import { DropDirective } from './draganddrop/DropDirective';
+export { DropDirective } from './draganddrop/DropDirective';
+import { DragAndDropService, DragEventContext } from './draganddrop/DragAndDropService';
+export { DragAndDropService, DragEventContext } from './draganddrop/DragAndDropService';
 
 import { ProgressBarComponent } from './progressbar/ProgressBarComponent';
 export { ProgressBarComponent } from './progressbar/ProgressBarComponent';
@@ -63,7 +67,8 @@ export { Utils } from './utils/Utils';
         Cache,
         LocalizationService,
         LocalizationResolver,
-        LocalStorage
+        LocalStorage,
+        DragAndDropService
     ],
     declarations: [
         LocalizationPipe,
@@ -74,7 +79,8 @@ export { Utils } from './utils/Utils';
         TemplateCreator,
         ColumnDirective,
         DataGridComponent,
-        DragAndDropDirective,
+        DragDirective,
+        DropDirective,
         ProgressBarComponent,
         SliderComponent,
         ButtonDirective,
@@ -91,7 +97,8 @@ export { Utils } from './utils/Utils';
         TemplateCreator,
         ColumnDirective,
         DataGridComponent,
-        DragAndDropDirective,
+        DragDirective,
+        DropDirective,
         ProgressBarComponent,
         SliderComponent,
         ButtonDirective,

@@ -1,20 +1,20 @@
-.ui-drop {
-    &.ui-can-drop {
+.wx-drop {
+    &.wx-can-drop {
         background-color: green !important;
     }
-    &.ui-cannot-drop {
+    &.wx-cannot-drop {
         background-color: red !important;
     }
 }
 
-.ui-draggable {
+.wx-draggable {
     -moz-user-select: all;
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
     cursor: move;
     transition: transform $drag-animation-duration;
-    &.ui-dragging {
+    &.wx-dragging {
         transition: none;
     }
 }

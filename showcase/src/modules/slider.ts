@@ -6,9 +6,9 @@ export class SliderTesterComponent { }
 
 @Component({
 	selector: 'slider-test',
-	template: `<ui-slider [min]="0" [max]="100" [(value)]="value"></ui-slider>
+	template: `<wx-slider [min]="0" [max]="100" [(value)]="value"></wx-slider>
 <div>{{value}}</div>
-<ui-slider [min]="0" [max]="100" [(value)]="value2" [step]="5"></ui-slider>
+<wx-slider [min]="0" [max]="100" [(value)]="value2" [step]="5"></wx-slider>
 <div>{{value2}}</div>`,
 })
 export class SliderTestComponent {

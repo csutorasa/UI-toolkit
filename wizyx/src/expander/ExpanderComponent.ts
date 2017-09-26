@@ -3,10 +3,10 @@ import { InputTemplate } from '../template/InputTemplate';
 import { ContentTemplate } from '../template/ContentTemplate';
 
 @Component({
-	selector: 'ui-expander',
+	selector: 'wx-expander',
 	template: `<div>
     <ng-template [templatecreator]="inputTemplate.template"></ng-template>
-    <div [ngClass]="{'open': isOpen, 'display': display}" class="ui-expander-content" #expandercontent>
+    <div [ngClass]="{'open': isOpen, 'display': display}" class="wx-expander-content" #expandercontent>
         <ng-template [templatecreator]="contentTemplate.template"></ng-template>
     </div>
 </div>`,

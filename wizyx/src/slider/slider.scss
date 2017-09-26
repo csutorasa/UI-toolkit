@@ -1,11 +1,11 @@
-ui-slider {
-    .ui-slider-background {
+wx-slider {
+    .wx-slider-background {
         height: $slider-height;
         background: $slider-background-color;
         border-radius: $slider-border-radius;
     }
 
-    .ui-slider-foreground {
+    .wx-slider-foreground {
         height: $slider-height;
         background: $slider-foreground-color;
         border-radius: $slider-border-radius;

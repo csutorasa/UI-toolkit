@@ -1,11 +1,11 @@
-ui-progressbar {
-    .ui-progressbar-background {
+wx-progressbar {
+    .wx-progressbar-background {
         height: $progressbar-height;
         background: $progressbar-background-color;
         border-radius: $progressbar-border-radius;
     }
 
-    .ui-progressbar-foreground {
+    .wx-progressbar-foreground {
         height: $progressbar-height;
         background: $progressbar-foreground-color;
         border-radius: $progressbar-border-radius;

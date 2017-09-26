@@ -2,7 +2,7 @@ import { Directive } from '@angular/core';
 import { TemplateHolder } from '../template/TemplateHolder';
 
 @Directive({
-    selector: 'ui-listelement'
+    selector: 'wx-listelement'
 })
 export class ListElementDirective extends TemplateHolder {
 }

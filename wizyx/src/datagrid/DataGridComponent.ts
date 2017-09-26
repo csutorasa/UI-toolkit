@@ -14,7 +14,7 @@ export class DataGridListItem extends ListItem {
 }
 
 @Component({
-    selector: 'ui-datagrid',
+    selector: 'wx-datagrid',
     template: `<table>
     <thead>
         <tr>

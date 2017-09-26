@@ -2,25 +2,32 @@ import { Directive, ElementRef, Input, Output, EventEmitter } from '@angular/cor
 import { DragAndDropService, DragEventContext } from './DragAndDropService';
 
 @Directive({
-    selector: '[ui-drag]',
+    selector: '[wx-draggable]',
 })
 export class DragDirective {
-    @Input('ui-drag-data') public dragData: any;
-    @Output('ui-drag') public onDragged: EventEmitter<DragEventContext> = new EventEmitter();
+    @Input('wx-draggable') public draggable: boolean;
+    @Input('wx-drag-data') public dragData: any;
+    @Output('wx-drag-success') public onSuccess: EventEmitter<DragEventContext> = new EventEmitter();
+    @Output('wx-drag-fail') public onFail: EventEmitter<DragEventContext> = new EventEmitter();
 
-    private static readonly DRAG_CLASS: string = 'ui-draggable';
+    private static readonly DRAG_CLASS: string = 'wx-draggable';
 
     constructor(protected element: ElementRef, protected dragAndDropService: DragAndDropService) {
         const nativeElement = <HTMLScriptElement>element.nativeElement;
         nativeElement.classList.add(DragDirective.DRAG_CLASS);
         nativeElement.addEventListener('mousedown', (event: DragEvent) => {
-            if(event.button === 0) {
-                dragAndDropService.registerDragEvent(nativeElement, event, this.dragData, context => this.onDragFinish(context));
+            if (event.button === 0 && this.draggable) {
+                dragAndDropService.registerDragEvent(nativeElement, event, this.dragData,
+                    context => this.onDragSuccess(context), context => this.onDragFail(context));
             }
         });
     }
 
-    protected onDragFinish(context: DragEventContext) {
-        this.onDragged.emit(context);
+    protected onDragSuccess(context: DragEventContext) {
+        this.onSuccess.emit(context);
+    }
+
+    protected onDragFail(context: DragEventContext) {
+        this.onFail.emit(context);
     }
 }

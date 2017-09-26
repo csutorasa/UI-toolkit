@@ -28,12 +28,12 @@ export class SearchBoxListItem extends ListItem {
 }
 
 @Component({
-	selector: 'ui-searchbox',
+	selector: 'wx-searchbox',
 	template: `<div (focusout)="lostFocus($event)">
 	<ng-template [templatecreator]="inputTemplate.template" [data]="inputTemplateData"></ng-template>
-	<div class="ui-searchbox-element-list" tabindex="0" #searchBoxList (keydown)="keydown($event)">
-		<div [hidden]="!isOpen" class="ui-searchbox-list-elements" #elementContainer>
-			<div *ngFor="let d of dataSource;let last=last;" (click)="selectValue(d.value)" class="ui-searchbox-list-element">
+	<div class="wx-searchbox-element-list" tabindex="0" #searchBoxList (keydown)="keydown($event)">
+		<div [hidden]="!isOpen" class="wx-searchbox-list-elements" #elementContainer>
+			<div *ngFor="let d of dataSource;let last=last;" (click)="selectValue(d.value)" class="wx-searchbox-list-element">
 				<ng-template [templatecreator]="listElement.template" [data]="d"></ng-template>
 				<ng-template [templatecreator]="listElementSeparator.template" *ngIf="!last && listElementSeparator"></ng-template>
 			</div>

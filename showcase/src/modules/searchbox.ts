@@ -9,42 +9,42 @@ export class SearchBoxTesterComponent { }
 @Component({
 	selector: 'searchbox-test',
 	template: `<h3>Plain</h3>
-<ui-searchbox [dataSource]="dataSource">
-	<ui-inputtemplate>
+<wx-searchbox [dataSource]="dataSource">
+	<wx-inputtemplate>
 		<input #input *template="let data=data;let events=events" [ngModel]="data.value" (ngModelChange)="events.onChange($event)" (keydown)="events.onKeydown($event)"/>
-	</ui-inputtemplate>
-	<ui-listelement>
+	</wx-inputtemplate>
+	<wx-listelement>
 		<div *template="let value=value;" class="list-element-nostyle">{{value}}</div>
-	</ui-listelement>
-</ui-searchbox>
+	</wx-listelement>
+</wx-searchbox>
 
 <h3>With design</h3>
-<ui-searchbox [dataSource]="dataSource" value="test">
-	<ui-inputtemplate>
+<wx-searchbox [dataSource]="dataSource" value="test">
+	<wx-inputtemplate>
 		<input *template="let data=data;let events=events" class="input-template" placeholder="Test input" [ngModel]="data.value" (ngModelChange)="events.onChange($event)" (keydown)="events.onKeydown($event)" spellcheck="false"/>
-	</ui-inputtemplate>
-	<ui-listelement>
+	</wx-inputtemplate>
+	<wx-listelement>
 		<div *template="let value=value;let selected=selected;let first=first;let last=last;" class="list-element"
 		[ngClass]="{'list-element-selected': selected, 'list-element-first': first, 'list-element-last': last}">{{value}}</div>
-	</ui-listelement>
-	<ui-listelementseparator>
+	</wx-listelement>
+	<wx-listelementseparator>
 		<div *template class="list-element-separator"></div>
-	</ui-listelementseparator>
-</ui-searchbox>
+	</wx-listelementseparator>
+</wx-searchbox>
 
 <h3>With remote search</h3>
-<ui-searchbox [dataSource]="remoteDataSource" value="test">
-	<ui-inputtemplate>
+<wx-searchbox [dataSource]="remoteDataSource" value="test">
+	<wx-inputtemplate>
 		<input *template="let data=data;let events=events" class="input-template" placeholder="Test input" [ngModel]="data.value" (ngModelChange)="events.onChange($event)" (keydown)="events.onKeydown($event)" spellcheck="false"/>
-	</ui-inputtemplate>
-	<ui-listelement>
+	</wx-inputtemplate>
+	<wx-listelement>
 		<div *template="let value=value;let selected=selected;let first=first;let last=last;" class="list-element"
 		[ngClass]="{'list-element-selected': selected, 'list-element-first': first, 'list-element-last': last}">{{value}}</div>
-	</ui-listelement>
-	<ui-listelementseparator>
+	</wx-listelement>
+	<wx-listelementseparator>
 		<div *template class="list-element-separator"></div>
-	</ui-listelementseparator>
-</ui-searchbox>`,
+	</wx-listelementseparator>
+</wx-searchbox>`,
 })
 export class SearchBoxTestComponent {
 	protected dataSource: (text: string) => Promise<string[]>;

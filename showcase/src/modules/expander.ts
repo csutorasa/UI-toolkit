@@ -6,13 +6,13 @@ export class ExpanderTesterComponent { }
 
 @Component({
 	selector: 'expander-test',
-	template: `<ui-expander [(isopen)]="isOpen">
-	<ui-inputtemplate>
+	template: `<wx-expander [(isopen)]="isOpen">
+	<wx-inputtemplate>
 		<div *template>
 			<button (click)="toggleIsOpen()">{{ (isOpen ? 'close' : 'open') | localize }}</button>
 		</div>
-	</ui-inputtemplate>
-	<ui-content>
+	</wx-inputtemplate>
+	<wx-content>
 		<div *template>
 			<ul>
 				<li>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.</li>
@@ -21,16 +21,16 @@ export class ExpanderTesterComponent { }
 				<li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.</li>
 			</ul>
 		</div>
-	</ui-content>
-</ui-expander>
+	</wx-content>
+</wx-expander>
 
-<ui-expander [(isopen)]="isOpen2">
-	<ui-inputtemplate>
+<wx-expander [(isopen)]="isOpen2">
+	<wx-inputtemplate>
 		<div *template>
 			<button (click)="toggleIsOpen2()">{{ (isOpen2 ? 'close' : 'open') | localize }}</button>
 		</div>
-	</ui-inputtemplate>
-	<ui-content>
+	</wx-inputtemplate>
+	<wx-content>
 		<div *template>
 			<ul>
 				<li>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.</li>
@@ -39,8 +39,8 @@ export class ExpanderTesterComponent { }
 				<li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.</li>
 			</ul>
 		</div>
-	</ui-content>
-</ui-expander>`,
+	</wx-content>
+</wx-expander>`,
 })
 export class ExpanderTestComponent {
 	protected isOpen: boolean = false;

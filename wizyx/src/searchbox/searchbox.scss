@@ -1,11 +1,11 @@
-ui-searchbox {
-    div.ui-searchbox-element-list {
+wx-searchbox {
+    div.wx-searchbox-element-list {
         position: relative;
-        div.ui-searchbox-list-elements {
+        div.wx-searchbox-list-elements {
             overflow: auto;
             max-height: $searchbox-element-list-height;
             position: absolute;
-            div.ui-searchbox-list-element {
+            div.wx-searchbox-list-element {
                 cursor: pointer;
             }
         }

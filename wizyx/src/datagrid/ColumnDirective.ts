@@ -2,7 +2,7 @@ import { Directive, Input } from '@angular/core';
 import { TemplateHolder } from '../template/TemplateHolder';
 
 @Directive({
-    selector: 'ui-column'
+    selector: 'wx-column'
 })
 export class ColumnDirective extends TemplateHolder {
     /**

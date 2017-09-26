@@ -12,18 +12,18 @@ export interface DataType {
 
 @Component({
 	selector: 'datagrid-test',
-	template: `<ui-datagrid [data]="dataSource">
-    <ui-column header="Keys" [sort]="sortByKey">
+	template: `<wx-datagrid [data]="dataSource">
+    <wx-column header="Keys" [sort]="sortByKey">
         <div *template="let data=data">
             {{data.key}}
         </div>
-    </ui-column>
-    <ui-column header="Values" [sort]="sortByValue">
+    </wx-column>
+    <wx-column header="Values" [sort]="sortByValue">
         <div *template="let data=data">
             {{data.value}}
         </div>
-    </ui-column>
-</ui-datagrid>`,
+    </wx-column>
+</wx-datagrid>`,
 })
 export class DataGridTestComponent {
     protected dataSource: DataType[] = [

@@ -12,21 +12,23 @@ export interface DragEndData {
     dropElement: HTMLScriptElement;
     getDropData: () => any;
     canDrag: (context: DragEventContext) => boolean;
-    dragEnd: (context: DragEventContext) => any;
+    dropSuccess: (context: DragEventContext) => any;
+    dropFail: (context: DragEventContext) => any;
 }
 
 @Injectable()
 export class DragAndDropService {
 
-    public static readonly DRAGGING_CLASS = 'ui-dragging';
-    public static readonly DROP_CLASS: string = 'ui-drop';
-    private static readonly CAN_DROP_CLASS: string = 'ui-can-drop';
-    private static readonly CANNOT_DROP_CLASS: string = 'ui-cannot-drop';
+    public static readonly DRAGGING_CLASS = 'wx-dragging';
+    public static readonly DROP_CLASS: string = 'wx-drop';
+    private static readonly CAN_DROP_CLASS: string = 'wx-can-drop';
+    private static readonly CANNOT_DROP_CLASS: string = 'wx-cannot-drop';
     protected readonly dropZones: DragEndData[] = [];
 
     protected id: number = 0;
 
-    public registerDragEvent(nativeElement: HTMLScriptElement, event: MouseEvent, dragData: any, dragStart: (context: DragEventContext) => any): void {
+    public registerDragEvent(nativeElement: HTMLScriptElement, event: MouseEvent, dragData: any,
+        dragSuccess: (context: DragEventContext) => any, dragFail: (context: DragEventContext) => any): void {
         let startCoords;
         const offset = { x: event.offsetX, y: event. offsetY };
         let objectUnder: HTMLScriptElement;
@@ -54,7 +56,7 @@ export class DragAndDropService {
                     dropData: dropZone.getDropData(),
                     dropElement: dropZone.dropElement
                 };
-                this.processDragEvent(context, dragStart, dropZone.dragEnd, dropZone.canDrag);
+                this.processDragEvent(context, dropZone.canDrag, dragSuccess, dragFail, dropZone.dropSuccess, dropZone.dropFail);
             }
         }
 
@@ -64,13 +66,14 @@ export class DragAndDropService {
         document.addEventListener('mouseup', dragEndHandler);
     }
 
-    public registerDropZone(nativeElement: HTMLScriptElement, getDropData: () => any,
-        canDrag: (context: DragEventContext) => boolean, dragEnd: (context: DragEventContext) => any) {
+    public registerDropZone(nativeElement: HTMLScriptElement, getDropData: () => any, canDrag: (context: DragEventContext) => boolean,
+        dropSuccess: (context: DragEventContext) => any, dropFail: (context: DragEventContext) => any): void {
         this.dropZones.push({
             canDrag: canDrag,
             getDropData: getDropData,
             dropElement: nativeElement,
-            dragEnd: dragEnd
+            dropSuccess: dropSuccess,
+            dropFail: dropFail
         });
     }
 
@@ -118,17 +121,17 @@ export class DragAndDropService {
         return before;
     }
     
-    protected processDragEvent(context: DragEventContext, dragStart: (context: DragEventContext) => any,
-        dragEnd: (context: DragEventContext) => any, canDrag: (context: DragEventContext) => boolean): boolean {
+    protected processDragEvent(context: DragEventContext, canDrag: (context: DragEventContext) => boolean,
+        dragSuccess: (context: DragEventContext) => any, dragFail: (context: DragEventContext) => any,
+        dropSuccess: (context: DragEventContext) => any, dropFail: (context: DragEventContext) => any): boolean {
         if(canDrag && canDrag(context)) {
-            if(dragStart) {
-                dragStart(context);
-            }
-            if(dragEnd) {
-                dragEnd(context);
-            }
+            dragSuccess(context);
+            dropSuccess(context);
             return true;
+        } else {
+            dragFail(context);
+            dropFail(context);
+            return false;
         }
-        return false;
     }
 }

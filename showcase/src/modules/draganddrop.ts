@@ -7,17 +7,17 @@ export class DragAndDropTesterComponent { }
 
 @Component({
 	selector: 'draganddrop-test',
-	template: `<div class="drop-zone" (ui-drop)="drop($event)" [ui-candrop]="canDrop" ui-drop-data="1">
+	template: `<div class="drop-zone" (wx-drop-success)="drop($event)" [wx-accept-drop]="canDrop" wx-drop-data="1">
 	Can drop here!
-	<div class="draggable" ui-drag [hidden]="selected != 1"></div>
+	<div class="draggable" [wx-draggable]="true" [hidden]="selected != 1"></div>
 </div>
-<div class="drop-zone" (ui-drop)="drop($event)" [ui-candrop]="cantDrop" ui-drop-data="2">
+<div class="drop-zone" (wx-drop-success)="drop($event)" [wx-accept-drop]="cantDrop" wx-drop-data="2">
 	Cannot drop here!
-	<div class="draggable" ui-drag [hidden]="selected != 2"></div>
+	<div class="draggable" [wx-draggable]="true" [hidden]="selected != 2"></div>
 </div>
-<div class="drop-zone" (ui-drop)="drop($event)" [ui-candrop]="canDrop" ui-drop-data="3">
+<div class="drop-zone" (wx-drop-success)="drop($event)" [wx-accept-drop]="canDrop" wx-drop-data="3">
 	Can drop here!
-	<div class="draggable" ui-drag [hidden]="selected != 3"></div>
+	<div class="draggable" [wx-draggable]="true" [hidden]="selected != 3"></div>
 </div>`,
 })
 export class DragAndDropTestComponent {

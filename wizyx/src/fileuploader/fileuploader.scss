@@ -1,8 +1,8 @@
-ui-fileuploader {
-    div.ui-fileuploader-spacing {
+wx-fileuploader {
+    div.wx-fileuploader-spacing {
         margin: 10px 0;
     }
-    div.ui-fileuploader-drop-zone {
+    div.wx-fileuploader-drop-zone {
         min-height: $fileuploader-drop-zone-minheigth;
         border: $fileuploader-drop-zone-border;
     }

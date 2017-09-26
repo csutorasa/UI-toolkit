@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { List } from '../list/List';
 import { ListItem } from '../list/ListItem';
@@ -28,7 +28,7 @@ export class FileUploaderListItem extends ListItem {
 		<input type="file" (change)="onFileSelected($event)" *ngIf="!multiple"/>
 		<input type="file" (change)="onFileSelected($event)" multiple *ngIf="multiple"/>
 	</div>
-	<div class="wx-fileuploader-drop-zone" (wx-drop)="onDrop($event)">
+	<div class="wx-fileuploader-drop-zone" #dropzone>
 		<div *ngFor="let f of files;let last=last;">
 			<ng-template [templatecreator]="listElement.template" [data]="f"></ng-template>
 			<ng-template [templatecreator]="listElementSeparator.template" *ngIf="!last && listElementSeparator"></ng-template>
@@ -47,7 +47,9 @@ export class FileUploaderComponent extends List {
 	 * Event that fired when the upload has finished
 	 */
 	@Output('uploaded') public readonly uploaded: EventEmitter<File[]> = new EventEmitter();
-	@Input('multiple') protected multiple = true;
+	@Input('multiple') protected multiple: boolean = true;
+	@Input('url') protected url: string;
+	@ViewChild('dropzone') protected dropzone: ElementRef;
 
 	protected files: FileUploaderListItem[] = [];
 	protected doneCount: number;
@@ -88,6 +90,9 @@ export class FileUploaderComponent extends List {
 	 * Uploads the added files
 	 */
 	public upload(): Promise<void> {
+		if(!this.url) {
+			return Promise.reject('Url is empty');
+		}
 		let promise: Promise<any> = Promise.resolve();
 		if (this.files.length === 0) {
 			return promise;
@@ -101,7 +106,7 @@ export class FileUploaderComponent extends List {
 			}, () => this.readFile(file.file), content => {
 				file.progress = UploadProgress.Uploading;
 				return content;
-			}, content => this.http.post('/upload', { filename: file.file.name, size: file.file.size, content: content }).forEach(() => {
+			}, content => this.http.post(this.url, { filename: file.file.name, size: file.file.size, content: content }).forEach(() => {
 				file.progress = UploadProgress.Done;
 				this.doneCount++;
 			}));
@@ -115,12 +120,22 @@ export class FileUploaderComponent extends List {
 		return promise;
 	}
 
+	protected ngAfterViewInit() {
+        (<HTMLScriptElement>this.dropzone.nativeElement).ondragover = this.allowDragAndDrop;
+        (<HTMLScriptElement>this.dropzone.nativeElement).ondrop = (event: DragEvent) => this.onDrop(event);
+	}
+	
+    protected allowDragAndDrop(event: DragEvent): void {
+        event.preventDefault();
+	}
+
 	protected onFileSelected(event: Event): void {
 		this.addFiles(<FileList>(<any>event.srcElement).files);
 	}
 
-	protected onDrop(transfer: DataTransfer): void {
-		this.addFiles(transfer.files);
+	protected onDrop(event: DragEvent): void {
+		event.preventDefault();
+		this.addFiles(event.dataTransfer.files);
 	}
 
 	protected refreshIndices(): void {

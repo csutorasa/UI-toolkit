@@ -6,7 +6,7 @@ export class FileUploadTesterComponent { }
 
 @Component({
 	selector: 'fileupload-test',
-	template: `<wx-fileuploader [multiple]="false" (uploaded)="log($event)">
+	template: `<wx-fileuploader [multiple]="false" (uploaded)="log($event)" url="/upload">
 	<wx-listelement>
 		<div *template="let file=file;let progress=progress;let index= index;">
 			{{ file.name }}
@@ -15,7 +15,7 @@ export class FileUploadTesterComponent { }
 		</div>
 	</wx-listelement>
 </wx-fileuploader>
-<wx-fileuploader (uploaded)="log($event)">
+<wx-fileuploader (uploaded)="log($event)" url="/upload">
 	<wx-listelement>
 		<div *template="let file=file;let progress=progress;let remove=remove;" class="file-list-element-container">
 			<div class="file-list-element">{{ file.name }}</div>

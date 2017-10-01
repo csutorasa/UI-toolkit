@@ -4,7 +4,6 @@
   "description": "UI-toolkit",
   "main": "server.js",
   "scripts": {
-    "install": "",
     "start": "echo \"Nothing to start\"",
     "test": "echo \"No tests are specified\"",
     "watch": "concurrently --prefix \"[{name}]\" --names \"WebpackDev,WebpackMin,CSS\" \"npm run watchdevjs\" \"npm run watchjs\" \"npm run watchcss\"",

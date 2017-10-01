@@ -45,7 +45,7 @@
     "rxjs": "^5.4.3",
     "ts-loader": "^2.3.7",
     "typescript": "^2.5.2",
-    "webpack": "^2.3.3",
+    "webpack": "^3.6.0",
     "wizyx": "^1.0.7",
     "zone.js": "^0.8.17"
   },

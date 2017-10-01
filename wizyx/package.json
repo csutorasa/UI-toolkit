@@ -48,6 +48,6 @@
     "rimraf": "^2.6.2",
     "ts-loader": "^2.3.7",
     "typescript": "^2.5.2",
-    "webpack": "^2.3.3"
+    "webpack": "^3.6.0"
   }
 }

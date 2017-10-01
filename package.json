@@ -4,7 +4,7 @@
   "description": "UI toolkit Showcase",
   "main": "server.js",
   "scripts": {
-    "postinstall": "npm run clean && node library.build.js npm run buildserver && npm run buildjs",
+    "postinstall": "npm run clean && node library.build.js && npm run buildserver && npm run buildjs",
     "start": "node server/StartServer.js",
     "test": "echo \"No tests are specified\"",
     "watch": "concurrently --prefix \"[{name}]\" --names \"Server,Showcase\" \"npm run watchserver\" \"npm run watchjs\"",

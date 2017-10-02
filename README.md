@@ -2,4 +2,4 @@
 
 This is a showcase for the [Wizyx UI-toolkit](https://github.com/csutorasa/UI-toolkit/tree/master/wizyx).
 
-Online showcase available at: [https://uitoolkit-csutorasa.rhcloud.com/](https://uitoolkit-csutorasa.rhcloud.com/)
+Online showcase available at: [http://wizyx-wizyx.193b.starter-ca-central-1.openshiftapps.com/](http://wizyx-wizyx.193b.starter-ca-central-1.openshiftapps.com/)

@@ -1,6 +1,6 @@
 import { HttpServer } from './HttpServer';
 
-const host: string = process.env.OPENSHIFT_NODEJS_IP || 'localhost';
+const host: string = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 const port: number = parseInt(process.env.OPENSHIFT_NODEJS_PORT) || parseInt(process.argv[2]) || 8080;
 
 const server = new HttpServer();

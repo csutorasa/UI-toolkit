@@ -117,4 +117,19 @@ export class Utils {
             y: a.y - b.y
         }
     }
+
+    /**
+     * Clears any selected element or text.
+     */
+    public static clearSelection() {
+        if (window.getSelection) {
+            if (window.getSelection().empty) {  // Chrome
+                window.getSelection().empty();
+            } else if (window.getSelection().removeAllRanges) {  // Firefox
+                window.getSelection().removeAllRanges();
+            }
+        } else if ((<any>document).selection) {  // IE?
+            (<any>document).selection.empty();
+        }
+    }
 }

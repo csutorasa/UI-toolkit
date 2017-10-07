@@ -65,15 +65,7 @@ export class DragAndDropService {
         document.addEventListener('mousemove', mouseEventHandler);
         document.addEventListener('mouseup', dragEndHandler);
         // Clear selection not to trigger element.dragstart event
-        if (window.getSelection) {
-            if (window.getSelection().empty) {  // Chrome
-                window.getSelection().empty();
-            } else if (window.getSelection().removeAllRanges) {  // Firefox
-                window.getSelection().removeAllRanges();
-            }
-        } else if ((<any>document).selection) {  // IE?
-            (<any>document).selection.empty();
-        }
+        Utils.clearSelection();
     }
 
     public registerDropZone(nativeElement: HTMLScriptElement, getDropData: () => any, canDrag: (context: DragEventContext) => boolean,

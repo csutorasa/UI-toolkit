@@ -30,10 +30,10 @@ export class DragAndDropService {
     public registerDragEvent(nativeElement: HTMLScriptElement, event: MouseEvent, dragData: any,
         dragSuccess: (context: DragEventContext) => any, dragFail: (context: DragEventContext) => any): void {
         let startCoords;
-        const offset = { x: event.offsetX, y: event. offsetY };
+        const offset = { x: event.offsetX, y: event.offsetY };
         let objectUnder: HTMLScriptElement;
         const mouseEventHandler: (event: MouseEvent) => any = (event: MouseEvent) => {
-            if(!startCoords) {
+            if (!startCoords) {
                 startCoords = Utils.getPageCoordinates(nativeElement);
                 startCoords.x += offset.x;
                 startCoords.y += offset.y;
@@ -49,7 +49,7 @@ export class DragAndDropService {
             document.removeEventListener('mouseup', dragEndHandler);
             objectUnder = this.colorize(dragData, nativeElement, objectUnder, undefined);
             const dropZone = this.findDropZone(nativeElement, event);
-            if(dropZone) {
+            if (dropZone) {
                 const context: DragEventContext = {
                     dragData: dragData,
                     dragElement: nativeElement,
@@ -64,6 +64,16 @@ export class DragAndDropService {
         nativeElement.classList.add(DragAndDropService.DRAGGING_CLASS);
         document.addEventListener('mousemove', mouseEventHandler);
         document.addEventListener('mouseup', dragEndHandler);
+        // Clear selection not to trigger element.dragstart event
+        if (window.getSelection) {
+            if (window.getSelection().empty) {  // Chrome
+                window.getSelection().empty();
+            } else if (window.getSelection().removeAllRanges) {  // Firefox
+                window.getSelection().removeAllRanges();
+            }
+        } else if ((<any>document).selection) {  // IE?
+            (<any>document).selection.empty();
+        }
     }
 
     public registerDropZone(nativeElement: HTMLScriptElement, getDropData: () => any, canDrag: (context: DragEventContext) => boolean,
@@ -85,8 +95,8 @@ export class DragAndDropService {
     }
 
     protected findDropZoneRecursive(targetElement: Element): DragEndData {
-        if(targetElement) {
-            if(targetElement.classList.contains(DragAndDropService.DROP_CLASS)) {
+        if (targetElement) {
+            if (targetElement.classList.contains(DragAndDropService.DROP_CLASS)) {
                 return this.dropZones.find(dz => dz.dropElement === targetElement);
             } else {
                 return this.findDropZoneRecursive(targetElement.parentElement);
@@ -96,9 +106,9 @@ export class DragAndDropService {
     }
 
     protected colorize(dragData: any, dragElement: HTMLScriptElement, before: HTMLScriptElement, dropZone: DragEndData): HTMLScriptElement {
-        if(dropZone) {
-            if(before !== dropZone.dropElement) {
-                if(before) {
+        if (dropZone) {
+            if (before !== dropZone.dropElement) {
+                if (before) {
                     before.style.backgroundColor = '';
                 }
                 before = dropZone.dropElement;
@@ -108,23 +118,23 @@ export class DragAndDropService {
                     dropData: dropZone.getDropData(),
                     dropElement: dropZone.dropElement
                 };
-                if(dropZone.canDrag(context)) {
+                if (dropZone.canDrag(context)) {
                     before.style.backgroundColor = '#9ef442';
                 }
             }
         } else {
-            if(before) {
+            if (before) {
                 before.style.backgroundColor = '';
                 before = undefined;
             }
         }
         return before;
     }
-    
+
     protected processDragEvent(context: DragEventContext, canDrag: (context: DragEventContext) => boolean,
         dragSuccess: (context: DragEventContext) => any, dragFail: (context: DragEventContext) => any,
         dropSuccess: (context: DragEventContext) => any, dropFail: (context: DragEventContext) => any): boolean {
-        if(canDrag && canDrag(context)) {
+        if (canDrag && canDrag(context)) {
             dragSuccess(context);
             dropSuccess(context);
             return true;

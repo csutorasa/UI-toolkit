@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Storage } from './Storage';
 
 export const StorageKeys = {
     languageCode: 'languageCode'
 };
 
 @Injectable()
-export class LocalStorage {
+export class LocalStorage implements Storage {
     public clear(): void {
         localStorage.clear();
     }

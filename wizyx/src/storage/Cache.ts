@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Storage } from './Storage';
 
 @Injectable()
-export class Cache {
+export class Cache implements Storage {
     protected data: Object = {};
 
     public clear(): void {

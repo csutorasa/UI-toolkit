@@ -22,6 +22,9 @@ body {
     text-decoration: underline !important;
     cursor: pointer;
 }
+.showcase-subheader {
+    font-size: 200%;
+}
 
 .mainmenu-item {
     font-size: larger;
@@ -68,6 +71,10 @@ body {
     background: #fff;
     overflow-x: auto;
     font-family: "Courier New", Courier, monospace;
+}
+
+a, a:focus, a:hover, .showcase-subheader {
+    color: #0275d8 !important;
 }
 
 .generalbutton {

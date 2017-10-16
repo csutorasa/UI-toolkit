@@ -12,7 +12,7 @@ wx-progressbar rogressbar-foreground {
     background: #193;
 }
 
-a, a:focus, a:hover {
+a, a:focus, a:hover, .showcase-subheader {
     color: #081 !important;
 }
 

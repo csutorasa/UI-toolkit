@@ -50,6 +50,7 @@ export class SliderComponent implements AfterViewInit {
 		this.clickOffset = event.pageX;
 		this.mouseMoveEventHandler = (event => this.move(event));
 		this.mouseUpEventHandler = (event => this.up(event));
+		Utils.clearSelection();
 		document.addEventListener('mousemove', this.mouseMoveEventHandler);
 		document.addEventListener('mouseup', this.mouseUpEventHandler);
 		document.addEventListener('dragend', this.dragend);

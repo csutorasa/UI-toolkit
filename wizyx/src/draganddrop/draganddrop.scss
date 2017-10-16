@@ -12,10 +12,14 @@
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    cursor: move;
     transition: transform $drag-animation-duration;
+    cursor: move;
     &.wx-dragging {
         transition: none;
     }
+}
+
+body.wx-dragmouse > * {
+    cursor: move;
 }
 

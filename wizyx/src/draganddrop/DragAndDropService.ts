@@ -19,14 +19,23 @@ export interface DragEndData {
 @Injectable()
 export class DragAndDropService {
 
-    public static readonly DRAGGING_CLASS = 'wx-dragging';
+    public static readonly DRAGGING_CLASS: string = 'wx-dragging';
     public static readonly DROP_CLASS: string = 'wx-drop';
+    public static readonly DRAG_MOUSE_CLASS: string = 'wx-dragmouse'
     private static readonly CAN_DROP_CLASS: string = 'wx-can-drop';
     private static readonly CANNOT_DROP_CLASS: string = 'wx-cannot-drop';
     protected readonly dropZones: DragEndData[] = [];
 
     protected id: number = 0;
 
+    /**
+     * Starts a new wizyx drag event.
+     * @param nativeElement element that is dragged
+     * @param event native JavaScript event of the click
+     * @param dragData data from the drag-side
+     * @param dragSuccess onSuccess event handler drag-side
+     * @param dragFail onFail event handler drag-side
+     */
     public registerDragEvent(nativeElement: HTMLScriptElement, event: MouseEvent, dragData: any,
         dragSuccess: (context: DragEventContext) => any, dragFail: (context: DragEventContext) => any): void {
         let startCoords;
@@ -45,6 +54,7 @@ export class DragAndDropService {
         const dragEndHandler: (event: MouseEvent) => any = (event: MouseEvent) => {
             nativeElement.style.transform = '';
             nativeElement.classList.remove(DragAndDropService.DRAGGING_CLASS);
+            document.body.classList.remove(DragAndDropService.DRAG_MOUSE_CLASS);
             document.removeEventListener('mousemove', mouseEventHandler);
             document.removeEventListener('mouseup', dragEndHandler);
             objectUnder = this.colorize(dragData, nativeElement, objectUnder, undefined);
@@ -62,12 +72,21 @@ export class DragAndDropService {
 
         nativeElement.style.transform = '';
         nativeElement.classList.add(DragAndDropService.DRAGGING_CLASS);
+        document.body.classList.add(DragAndDropService.DRAG_MOUSE_CLASS);
         document.addEventListener('mousemove', mouseEventHandler);
         document.addEventListener('mouseup', dragEndHandler);
         // Clear selection not to trigger element.dragstart event
         Utils.clearSelection();
     }
 
+    /**
+     * Registers a new drop zone to the registry.
+     * @param nativeElement element of the zone
+     * @param getDropData callback to return drop-side data
+     * @param canDrag callback to decide if event is successful
+     * @param dropSuccess onSuccess event handler
+     * @param dropFail onFail event handler
+     */
     public registerDropZone(nativeElement: HTMLScriptElement, getDropData: () => any, canDrag: (context: DragEventContext) => boolean,
         dropSuccess: (context: DragEventContext) => any, dropFail: (context: DragEventContext) => any): void {
         this.dropZones.push({

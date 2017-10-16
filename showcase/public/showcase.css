@@ -15,6 +15,9 @@ body {
     padding: 20px;
 }
 
+.showcase {
+    font-size: 300%;
+}
 .showcase:hover {
     text-decoration: underline !important;
     cursor: pointer;
@@ -65,6 +68,11 @@ body {
     background: #fff;
     overflow-x: auto;
     font-family: "Courier New", Courier, monospace;
+}
+
+.generalbutton {
+    color: #fff;
+    background: #1050c0;
 }
 
 /* Drag and Drop */

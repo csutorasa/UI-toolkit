@@ -56,6 +56,9 @@ export { Cache } from './storage/Cache';
 import { LocalStorage } from './storage/LocalStorage';
 export { LocalStorage } from './storage/LocalStorage';
 
+import { ThemeService } from './theme/ThemeService';
+export { ThemeService } from './theme/ThemeService';
+
 export { Utils } from './utils/Utils';
 
 @NgModule({
@@ -68,6 +71,7 @@ export { Utils } from './utils/Utils';
         LocalizationService,
         LocalizationResolver,
         LocalStorage,
+        ThemeService,
         DragAndDropService
     ],
     declarations: [

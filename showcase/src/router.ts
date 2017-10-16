@@ -10,6 +10,7 @@ import { ExpanderTesterComponent } from './modules/expander';
 import { FileUploadTesterComponent } from './modules/fileupload';
 import { SearchBoxTesterComponent } from './modules/searchbox';
 import { DataGridTesterComponent } from './modules/datagrid';
+import { ThemeTesterComponent } from './modules/theme';
 
 export const routerConfig: Routes = [
     {
@@ -53,6 +54,10 @@ export const routerConfig: Routes = [
         {
             path: 'slider',
             component: SliderTesterComponent,
+        },
+        {
+            path: 'theme',
+            component: ThemeTesterComponent,
         }],
         resolve: {
             localizeData: LocalizationResolver

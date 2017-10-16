@@ -9,8 +9,8 @@ export class LocalizeTesterComponent {}
 	selector: 'localize-test',
 	template: `<h2>{{"localize" | localize}}</h2>
 <h5>{{"setLanguage" | localize}}</h5>
-<button (click)="setLanguageCode(\'en\')" buttonstyle="info">en</button>
-<button (click)="setLanguageCode(\'hu\')" buttonstyle="info">hu</button>`,
+<button (click)="setLanguageCode(\'en\')" class="generalbutton">en</button>
+<button (click)="setLanguageCode(\'hu\')" class="generalbutton">hu</button>`,
 })
 export class LocalizeTestComponent {
 	constructor(protected localizationService: LocalizationService) {

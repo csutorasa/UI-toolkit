@@ -21,6 +21,7 @@ import { ExpanderTesterComponent, ExpanderTestComponent } from './modules/expand
 import { FileUploadTesterComponent, FileUploadTestComponent } from './modules/fileupload';
 import { SearchBoxTesterComponent, SearchBoxTestComponent } from './modules/searchbox';
 import { DataGridTesterComponent, DataGridTestComponent } from './modules/datagrid';
+import { ThemeTesterComponent, ThemeTestComponent } from './modules/theme';
 
 const debug = true;
 
@@ -53,7 +54,9 @@ const debug = true;
 		SearchBoxTesterComponent,
 		SearchBoxTestComponent,
 		DataGridTesterComponent,
-		DataGridTestComponent
+		DataGridTestComponent,
+		ThemeTesterComponent,
+		ThemeTestComponent
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },

@@ -1,5 +1,6 @@
 {
     "en": {
+        "showcase": "Showcase",
         "result": "Result",
         "source": "Source",
         "language": "en",
@@ -13,10 +14,15 @@
         "searchbox": "Searchbox",
         "fileuploader": "File uploader",
         "datagrid": "Datagrid",
+        "theme": "Theme",
+        "blue": "Blue",
+        "green": "Green",
+        "default": "default",
         "open": "Open",
         "close": "Close"
     },
     "hu": {
+        "showcase": "Bemutató",
         "result": "Eredmény",
         "source": "Forráskód",
         "language": "hu",
@@ -30,6 +36,10 @@
         "searchbox": "Kereshető mező",
         "fileuploader": "Fájl feltöltő",
         "datagrid": "Adattáblázat",
+        "theme": "Téma",
+        "blue": "Kék",
+        "green": "Zöld",
+        "default": "alapértelmezett",
         "open": "Kinyitás",
         "close": "Bezárás"
     }

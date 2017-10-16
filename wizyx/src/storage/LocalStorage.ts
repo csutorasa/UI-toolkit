@@ -2,9 +2,13 @@ import { Injectable } from '@angular/core';
 import { Storage } from './Storage';
 
 export const StorageKeys = {
-    languageCode: 'languageCode'
+    languageCode: 'languageCode',
+    theme: ''
 };
 
+/**
+ * Permament store between sessions, managed by the browser.
+ */
 @Injectable()
 export class LocalStorage implements Storage {
     public clear(): void {

@@ -1,0 +1,23 @@
+
+
+wx-slider .wx-slider-foreground {
+    background: #193;
+}
+
+wx-progressbar rogressbar-foreground {
+    background: #193;
+}
+
+.generalbutton {
+    background: #193;
+}
+
+a, a:focus, a:hover {
+    color: #081 !important;
+}
+
+div.draggable {
+    width: 100px;
+    height: 100px;
+    background-color: #2DC010;
+}

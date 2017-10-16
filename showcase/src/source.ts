@@ -7,7 +7,7 @@ import { Component, ElementRef, ContentChild, AfterContentInit, ViewContainerRef
         <div class="source-header">
             {{'result' | localize }}
             <div class="source-show-hide">
-                <button [hidden]="showSource" (click)="showSource = true;" buttonstyle="info">Show source</button>
+                <button [hidden]="showSource" (click)="showSource = true;" class="generalbutton">Show source</button>
             </div>
         </div>
         <ng-content></ng-content>
@@ -16,7 +16,7 @@ import { Component, ElementRef, ContentChild, AfterContentInit, ViewContainerRef
         <div class="source-header">
             {{'source' | localize}}
             <div class="source-show-hide">
-                <button (click)="showSource = false;" buttonstyle="info">Hide source</button>
+                <button (click)="showSource = false;" class="generalbutton">Hide source</button>
             </div>
         </div>
         <h3>HTML</h3>

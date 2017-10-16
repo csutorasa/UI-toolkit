@@ -82,6 +82,7 @@ export class DataGridComponent {
             } else {
                 this.rows.sort((a, b) => -1 * this.sortData.compare(a.data, b.data));
             }
+            // Update indices for Angular *for
             this.rows.forEach((r, index) => {
                 r.index = index;
             });

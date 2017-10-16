@@ -1,6 +1,10 @@
 wx-datagrid {
     th {
         cursor: pointer;
+        -moz-user-select: all;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
     }
     svg.wx-datagrid-arrow {
         stroke: black;

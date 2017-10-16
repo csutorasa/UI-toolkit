@@ -19,7 +19,14 @@ export class DataGridListItem extends ListItem {
     <thead>
         <tr>
             <th *ngFor="let column of columns" (click)="setSort(column)">
-                {{column.header}}{{ sortData && sortData.compare === column.sort ? (sortData.ascending ? '(asc)' : '(desc)' ) : ''}}
+                {{column.header}}
+                <svg height="20" width="10" class="wx-datagrid-arrow" style="stroke-width: 2px;" [ngClass]="{
+                    'hidden': !sortData || sortData.compare !== column.sort,
+                    'down': sortData && sortData.compare === column.sort && sortData.ascending, 
+                    'up': sortData && sortData.compare === column.sort && !sortData.ascending}">
+                    <line x1="0" y1="5" x2="10" y2="10"/>
+                    <line x1="0" y1="15" x2="10" y2="10"/>
+                </svg>
             </th>
         </tr>
     </thead>

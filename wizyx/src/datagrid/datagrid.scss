@@ -1,0 +1,18 @@
+wx-datagrid {
+    th {
+        cursor: pointer;
+    }
+    svg.wx-datagrid-arrow {
+        stroke: black;
+        transition: transform 0.2s;
+        &.down {
+            transform: rotate(90deg);
+        }
+        &.up {
+            transform: rotate(-90deg);
+        }
+        &.hidden {
+            visibility: hidden;
+        }
+    }
+}

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Storage } from './Storage';
 
+/**
+ * Store for the current session.
+ */
 @Injectable()
 export class Cache implements Storage {
     protected data: Object = {};

@@ -200,18 +200,20 @@ class PostProcessor extends RequestProcessor {
 	}
 
 	protected search(req: http.ServerRequest, res: http.ServerResponse, data: string): void {
-		const search = data.toLowerCase();
+		const json = JSON.parse(data.toLowerCase());
 		const starts = [];
 		const matches = [];
 		colors.forEach(c => {
-			const index = c.toLowerCase().indexOf(search);
+			const index = c.toLowerCase().indexOf(json.search);
 			if (index === 0) {
 				starts.push(c);
 			} else if (index > 0) {
 				matches.push(c);
 			}
 		});
-		const result = starts.concat(matches).slice(0, 100);
+		const from = json.from || 0;
+		const to = json.to || 100;
+		const result = starts.concat(matches).slice(from, to);
 		this.writeObject(res, result);
 	}
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Http } from '@angular/http';
 import { Utils } from 'wizyx';
 import { CreateTesterComponentData } from '../source';
 
@@ -7,7 +8,7 @@ export class DataGridTesterComponent { }
 
 export interface DataType {
     key: string;
-    value: string;
+    value: number;
 }
 
 @Component({
@@ -26,20 +27,19 @@ export interface DataType {
 </wx-datagrid>`,
 })
 export class DataGridTestComponent {
-    protected dataSource: DataType[] = [
-        {
-            key: 'bb',
-            value: 'cda'
-        },
-        {
-            key: 'aa',
-            value: 'ab'
-        },
-        {
-            key: 'cc',
-            value: 'bbb'
-        }
-    ];
+    protected dataSource: DataType[] = [];
+
+    constructor(protected http: Http) {
+        http.post('/search', {search: '', from: 0, to: 10000}).map(res => res.json()).toPromise().then((colors: string[]) => {
+            this.dataSource = colors.map(color => {
+                return {
+                    key: color,
+                    value: color.length
+                };
+            });
+        });
+        
+    }
 
     public sortByKey(a: DataType, b: DataType) {
         return Utils.defaultSort(a.key, b.key);

@@ -16,9 +16,16 @@ export class DragDirective {
     constructor(protected element: ElementRef, protected dragAndDropService: DragAndDropService) {
         const nativeElement = <HTMLScriptElement>element.nativeElement;
         nativeElement.classList.add(DragDirective.DRAG_CLASS);
-        nativeElement.addEventListener('mousedown', (event: DragEvent) => {
+        nativeElement.addEventListener('mousedown', (event: MouseEvent) => {
             if (event.button === 0 && this.draggable) {
                 dragAndDropService.registerDragEvent(nativeElement, event, this.dragData,
+                    context => this.onDragStart(context),
+                    context => this.onDragSuccess(context), context => this.onDragFail(context));
+            }
+        });
+        nativeElement.addEventListener('touchstart', (event: TouchEvent) => {
+            if (event.touches.length === 1 && this.draggable) {
+                dragAndDropService.registerTouchDragEvent(nativeElement, event, this.dragData,
                     context => this.onDragStart(context),
                     context => this.onDragSuccess(context), context => this.onDragFail(context));
             }

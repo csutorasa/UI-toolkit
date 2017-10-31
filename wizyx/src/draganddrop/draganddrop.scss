@@ -1,9 +1,15 @@
 .wx-drop {
     &.wx-can-drop {
-        background-color: green !important;
+        background-color: lightgreen !important;
+        &.wx-drag-over {
+            background-color: green !important;
+        }
     }
     &.wx-cannot-drop {
-        background-color: red !important;
+        background-color: pink !important;
+        &.wx-drag-over {
+            background-color: red !important;
+        }
     }
 }
 

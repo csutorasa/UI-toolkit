@@ -22,3 +22,6 @@ server/**/*.js
 
 # Server uploads directory
 upload
+
+# IDE directories
+.vscode

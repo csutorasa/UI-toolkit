@@ -3,7 +3,7 @@ import { Utils } from '../utils/Utils';
 
 @Component({
 	selector: 'wx-slider',
-	template: `<div #slider class="wx-slider-background" (mousedown)="down($event)">
+	template: `<div #slider class="wx-slider-background" (mousedown)="down($event)" (touchstart)="touchStart($event)">
 	<div #fill class="wx-slider-foreground" [ngClass]="{'mouse-down': drag}"></div>
 </div>`,
 })
@@ -53,10 +53,28 @@ export class SliderComponent implements AfterViewInit {
 		Utils.clearSelection();
 		document.addEventListener('mousemove', this.mouseMoveEventHandler);
 		document.addEventListener('mouseup', this.mouseUpEventHandler);
-		document.addEventListener('dragend', this.dragend);
 	}
 
-	protected move(event: MouseEvent): void {
+	protected touchStart(event: TouchEvent): void {
+		if(event.touches.length !== 1) {
+			return;
+		}
+		const touch = event.touches.item(0);
+		this.value = this.calculateValue(touch.pageX);
+		this.clickOffset = touch.pageX;
+		const moveEventHandler = ((event: TouchEvent) => this.move(event.touches.item(0)));
+		const upHandler = ((event: TouchEvent) => {
+			this.value = this.calculateValue(event.changedTouches.item(0).pageX);
+			document.removeEventListener('touchmove', moveEventHandler);
+			document.removeEventListener('touchend', upHandler);
+			this.drag = false;
+		});
+		Utils.clearSelection();
+		document.addEventListener('touchmove', moveEventHandler);
+		document.addEventListener('touchend', upHandler);
+	}
+
+	protected move(event: MouseEvent | Touch): void {
 		if (Math.abs(this.clickOffset - event.pageX) > 5) {
 			this.drag = true;
 		}
@@ -68,12 +86,6 @@ export class SliderComponent implements AfterViewInit {
 
 	protected up(event: MouseEvent): void {
 		this.value = this.calculateValue(event.pageX);
-		document.removeEventListener('mousemove', this.mouseMoveEventHandler);
-		document.removeEventListener('mouseup', this.mouseUpEventHandler);
-		this.drag = false;
-	}
-
-	protected dragend(event: Event): void {
 		document.removeEventListener('mousemove', this.mouseMoveEventHandler);
 		document.removeEventListener('mouseup', this.mouseUpEventHandler);
 		this.drag = false;

@@ -16,6 +16,7 @@ export interface DragEndData {
     getDropData: () => any;
     canDrag: (context: DragEventContext) => boolean;
     dragStart: (context: DragStartEventContext) => any,
+    dragEnd: (context: DragStartEventContext) => any;
     dropSuccess: (context: DragEventContext) => any;
     dropFail: (context: DragEventContext) => any;
 }
@@ -43,7 +44,7 @@ export class DragAndDropService {
      * @param dragFail onFail event handler drag-side
      */
     public registerDragEvent(nativeElement: HTMLScriptElement, event: MouseEvent, dragData: any,
-        dragStart: (context: DragStartEventContext) => any,
+        dragStart: (context: DragStartEventContext) => any, dragEnd: (context: DragStartEventContext) => any,
         dragSuccess: (context: DragEventContext) => any, dragFail: (context: DragEventContext) => any): void {
         const offset: Coordinates = { x: event.offsetX, y: event.offsetY };
         const startContext: DragStartEventContext = {
@@ -80,7 +81,7 @@ export class DragAndDropService {
      * @param dragFail onFail event handler drag-side
      */
     public registerTouchDragEvent(nativeElement: HTMLScriptElement, event: TouchEvent, dragData: any,
-        dragStart: (context: DragStartEventContext) => any,
+        dragStart: (context: DragStartEventContext) => any, dragEnd: (context: DragStartEventContext) => any,
         dragSuccess: (context: DragEventContext) => any, dragFail: (context: DragEventContext) => any): void {
         const offset: Coordinates = { x: 0, y: 0 };
         const startContext: DragStartEventContext = {
@@ -118,13 +119,14 @@ export class DragAndDropService {
      * @param dropFail onFail event handler
      */
     public registerDropZone(nativeElement: HTMLScriptElement, getDropData: () => any, canDrag: (context: DragEventContext) => boolean,
-        dragStart: (context: DragStartEventContext) => any,
+        dragStart: (context: DragStartEventContext) => any, dragEnd: (context: DragStartEventContext) => any,
         dropSuccess: (context: DragEventContext) => any, dropFail: (context: DragEventContext) => any): void {
         this.dropZones.push({
             canDrag: canDrag,
             getDropData: getDropData,
             dropElement: nativeElement,
             dragStart: dragStart,
+            dragEnd: dragEnd,
             dropSuccess: dropSuccess,
             dropFail: dropFail
         });
@@ -153,15 +155,18 @@ export class DragAndDropService {
         nativeElement.classList.remove(DragAndDropService.DRAGGING_CLASS);
         document.body.classList.remove(DragAndDropService.DRAG_MOUSE_CLASS);
         this.setDragOver(dragData, nativeElement, objectUnder, undefined);
-        this.dropZones.forEach(dz => {
-            dz.dropElement.classList.remove(DragAndDropService.CAN_DROP_CLASS);
-            dz.dropElement.classList.remove(DragAndDropService.CANNOT_DROP_CLASS);
-        })
+        
+        const startContext: DragStartEventContext = {
+            dragData: dragData,
+            dragElement: nativeElement
+        };
+        this.dropZones.forEach(dz => this.processDragEndOnZones(dz, startContext));
+
         const dropZone = this.findDropZone(nativeElement, clientX, clientY);
         if (dropZone) {
             const context: DragEventContext = {
-                dragData: dragData,
-                dragElement: nativeElement,
+                dragData: startContext.dragData,
+                dragElement: startContext.dragElement,
                 dropData: dropZone.getDropData(),
                 dropElement: dropZone.dropElement
             };
@@ -224,6 +229,12 @@ export class DragAndDropService {
         } else {
             dropZone.dropElement.classList.add(DragAndDropService.CANNOT_DROP_CLASS);
         }
+    }
+
+    protected processDragEndOnZones(dropZone: DragEndData, startContext: DragStartEventContext) {
+        dropZone.dragEnd(startContext);
+        dropZone.dropElement.classList.remove(DragAndDropService.CAN_DROP_CLASS);
+        dropZone.dropElement.classList.remove(DragAndDropService.CANNOT_DROP_CLASS);
     }
 
     protected processDragEvent(context: DragEventContext, canDrag: (context: DragEventContext) => boolean,

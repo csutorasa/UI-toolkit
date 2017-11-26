@@ -1,7 +1,7 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
-    selector: '[templatecreator]'
+    selector: 'ng-template[templatecreator]'
 })
 export class TemplateCreator {
     @Input('data') public data: any;

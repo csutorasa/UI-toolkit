@@ -59,16 +59,16 @@ export class DragAndDropService {
                 startCoords.x += offset.x;
                 startCoords.y += offset.y;
             }
-            objectUnder = this.dragMove(nativeElement, dragData, objectUnder, event.pageX, event.pageY, startCoords, event.clientX, event.clientY);
+            objectUnder = this.dragMove(startContext, objectUnder, event.pageX, event.pageY, startCoords, event.clientX, event.clientY);
         };
         const dragEndHandler: (event: MouseEvent) => any = (event: MouseEvent) => {
             document.removeEventListener('mousemove', mouseEventHandler);
             document.removeEventListener('mouseup', dragEndHandler);
-            this.dragEnd(nativeElement, dragData, objectUnder, event.clientX, event.clientY, dragSuccess, dragFail);
+            this.dragEnd(startContext, objectUnder, event.clientX, event.clientY, dragEnd, dragSuccess, dragFail);
         }
         document.addEventListener('mousemove', mouseEventHandler);
         document.addEventListener('mouseup', dragEndHandler);
-        this.startDrag(nativeElement, startContext, dragStart);
+        this.startDrag(startContext, dragStart);
     }
 
     /**
@@ -97,17 +97,17 @@ export class DragAndDropService {
                 startCoords.x += offset.x;
                 startCoords.y += offset.y;
             }
-            objectUnder = this.dragMove(nativeElement, dragData, objectUnder, touch.pageX, touch.pageY, startCoords, touch.clientX, touch.clientY);
+            objectUnder = this.dragMove(startContext, objectUnder, touch.pageX, touch.pageY, startCoords, touch.clientX, touch.clientY);
         };
         const dragEndHandler: (event: TouchEvent) => any = (event: TouchEvent) => {
             const touch = event.changedTouches.item(0);
             document.removeEventListener('touchmove', mouseEventHandler);
             document.removeEventListener('touchend', dragEndHandler);
-            this.dragEnd(nativeElement, dragData, objectUnder, touch.clientX, touch.clientY, dragSuccess, dragFail);
+            this.dragEnd(startContext, objectUnder, touch.clientX, touch.clientY, dragEnd, dragSuccess, dragFail);
         }
         document.addEventListener('touchmove', mouseEventHandler);
         document.addEventListener('touchend', dragEndHandler);
-        this.startDrag(nativeElement, startContext, dragStart);
+        this.startDrag(startContext, dragStart);
     }
 
     /**
@@ -132,9 +132,9 @@ export class DragAndDropService {
         });
     }
 
-    protected startDrag(nativeElement: HTMLScriptElement, startContext: DragStartEventContext, dragStart: (context: DragStartEventContext) => any): void {
-        nativeElement.style.transform = '';
-        nativeElement.classList.add(DragAndDropService.DRAGGING_CLASS);
+    protected startDrag(startContext: DragStartEventContext, dragStart: (context: DragStartEventContext) => any): void {
+        startContext.dragElement.style.transform = '';
+        startContext.dragElement.classList.add(DragAndDropService.DRAGGING_CLASS);
         document.body.classList.add(DragAndDropService.DRAG_MOUSE_CLASS);
         dragStart(startContext);
         this.dropZones.forEach(dz => this.processDragStartOnZones(dz, startContext));
@@ -142,27 +142,25 @@ export class DragAndDropService {
         Utils.clearSelection();
     }
 
-    protected dragMove(nativeElement: HTMLScriptElement, dragData: any, objectUnder: HTMLScriptElement,
+    protected dragMove(startContext: DragStartEventContext, objectUnder: HTMLScriptElement,
         pageX: number, pageY: number, startCoords: Coordinates, clientX: number, clientY: number) {
-        nativeElement.style.transform = 'translate(' + (pageX - startCoords.x) + 'px, ' + (pageY - startCoords.y) + 'px)';
-        const dropZone = this.findDropZone(nativeElement, clientX, clientY);
-        return this.setDragOver(dragData, nativeElement, objectUnder, dropZone);
+        startContext.dragElement.style.transform = 'translate(' + (pageX - startCoords.x) + 'px, ' + (pageY - startCoords.y) + 'px)';
+        const dropZone = this.findDropZone(startContext.dragElement, clientX, clientY);
+        return this.setDragOver(startContext, objectUnder, dropZone);
     }
 
-    protected dragEnd(nativeElement: HTMLScriptElement, dragData: any, objectUnder: HTMLScriptElement, clientX: number, clientY: number,
+    protected dragEnd(startContext: DragStartEventContext, objectUnder: HTMLScriptElement, clientX: number, clientY: number,
+        dragEnd: (context: DragStartEventContext) => any,
         dragSuccess: (context: DragEventContext) => any, dragFail: (context: DragEventContext) => any) {
-        nativeElement.style.transform = '';
-        nativeElement.classList.remove(DragAndDropService.DRAGGING_CLASS);
+        startContext.dragElement.style.transform = '';
+        startContext.dragElement.classList.remove(DragAndDropService.DRAGGING_CLASS);
         document.body.classList.remove(DragAndDropService.DRAG_MOUSE_CLASS);
-        this.setDragOver(dragData, nativeElement, objectUnder, undefined);
+        this.setDragOver(startContext, objectUnder, undefined);
         
-        const startContext: DragStartEventContext = {
-            dragData: dragData,
-            dragElement: nativeElement
-        };
+        dragEnd(startContext);
         this.dropZones.forEach(dz => this.processDragEndOnZones(dz, startContext));
 
-        const dropZone = this.findDropZone(nativeElement, clientX, clientY);
+        const dropZone = this.findDropZone(startContext.dragElement, clientX, clientY);
         if (dropZone) {
             const context: DragEventContext = {
                 dragData: startContext.dragData,
@@ -192,12 +190,12 @@ export class DragAndDropService {
         return undefined;
     }
 
-    protected setDragOver(dragData: any, dragElement: HTMLScriptElement, before: HTMLScriptElement, dropZone: DragEndData): HTMLScriptElement {
+    protected setDragOver(startContext: DragStartEventContext, before: HTMLScriptElement, dropZone: DragEndData): HTMLScriptElement {
         if (dropZone) {
             if (before !== dropZone.dropElement) {
                 const context: DragEventContext = {
-                    dragData: dragData,
-                    dragElement: dragElement,
+                    dragData: startContext.dragData,
+                    dragElement: startContext.dragElement,
                     dropData: dropZone.getDropData(),
                     dropElement: dropZone.dropElement
                 };

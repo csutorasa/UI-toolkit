@@ -7,7 +7,7 @@ import { DragAndDropService, DragEventContext, DragStartEventContext } from './D
 export class DropDirective {
     @Input('wx-accept-drop') public canDropFunction: (dragData: DragEventContext) => boolean;
     @Input('wx-drop-data') public dropData: any;
-    @Output('wx-drag-start') public readonly onStart: EventEmitter<DragStartEventContext> = new EventEmitter();
+    @Output('wx-drop-start') public readonly onStart: EventEmitter<DragStartEventContext> = new EventEmitter();
     @Output('wx-drop-end') public readonly onEnd: EventEmitter<DragStartEventContext> = new EventEmitter();
     @Output('wx-drop-success') public readonly onSuccess: EventEmitter<DragEventContext> = new EventEmitter();
     @Output('wx-drop-fail') public readonly onFail: EventEmitter<DragEventContext> = new EventEmitter();
